@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Achill Island Market | Cashel & Keel | Achill Island, Co. Mayo</title>
+<meta name="description" content="Achill Island Market — two locations on Achill Island. Every Wednesday at Ted's Bar, Cashel and coming soon to Keel Beach Village. Local producers, crafts, food and artisan goods.">
+<meta property="og:title" content="Achill Island Market | Cashel & Keel">
+<meta property="og:description" content="Achill Island Market — local food, crafts, plants and artisan goods from producers across the island. Two locations: Cashel (Wednesdays) and Keel (coming soon).">
+<meta property="og:image" content="https://assets.cdn.filesafe.space/YKBJAZZGxxiZyFA9Z8eQ/media/69ad7d1a14ebc398ec44a215.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://assets.cdn.filesafe.space/YKBJAZZGxxiZyFA9Z8eQ/media/69ad7d1a14ebc398ec44a215.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Achill Island Market",
+  "description": "Weekly markets on Achill Island — local food, crafts and artisan goods at Cashel and Keel.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Achill Island",
+    "addressRegion": "Co. Mayo",
+    "addressCountry": "IE"
+  },
+  "url": "https://achillislandmarket.ie"
+}
+</script>
+
+<style>
+:root {
+  --green: #2d6a2d;
+  --green-light: #3d8a3d;
+  --amber: #c8860a;
+  --amber-light: #e09b12;
+  --cream: #f5f0e8;
+  --dark: #111a11;
+  --text: #1f2e1f;
+  --muted: #5a6e5a;
+  --ocean: #1a4d6e;
+  --ocean-light: #2a6a8e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+
+.hero{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 24px;
+  background:linear-gradient(150deg,#0a1520 0%,#0d1a0d 50%,#0d2035 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'🌿';font-size:300px;position:absolute;
+  opacity:.03;top:40%;left:30%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'🌊';font-size:300px;position:absolute;
+  opacity:.03;top:60%;left:70%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+.logo-box{margin-bottom:24px}
+.logo-box img{height:100px;width:100px;object-fit:contain;border-radius:16px;background:rgba(255,255,255,.06);padding:8px}
+
+h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,72px);font-weight:800;line-height:1.05;margin-bottom:8px}
+h1 .green{color:#7ddc7d}
+h1 .ocean{color:#7dcdec}
+.subtitle{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,20px);color:rgba(255,255,255,.45);font-style:italic;margin-bottom:12px}
+.tagline{color:rgba(255,255,255,.6);font-size:15px;max-width:540px;line-height:1.7;margin-bottom:48px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:820px;width:100%}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+
+.card{
+  border-radius:20px;padding:36px 28px;text-align:left;
+  transition:transform .25s,box-shadow .25s;
+  text-decoration:none;color:#fff;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:14px;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+
+.card-cashel{
+  background:linear-gradient(150deg,#1a3d1a,#0d2010);
+  border:1px solid rgba(45,106,45,.4);
+}
+.card-keel{
+  background:linear-gradient(150deg,#0d2035,#0a1a2a);
+  border:1px solid rgba(42,106,142,.4);
+}
+
+.card-emoji{font-size:48px}
+.card-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.card h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;line-height:1.2}
+.card p{color:rgba(255,255,255,.6);font-size:14px;line-height:1.6}
+.card-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge-live{background:rgba(45,106,45,.3);border:1px solid rgba(125,220,125,.3);color:#7ddc7d}
+.badge-coming{background:rgba(200,134,10,.2);border:1px solid rgba(200,134,10,.4);color:#e09b12}
+.card-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;
+  margin-top:auto;align-self:flex-start;transition:all .2s;
+}
+.cta-green{background:var(--green);color:#fff}
+.cta-green:hover{background:var(--green-light)}
+.cta-ocean{background:var(--ocean);color:#fff}
+.cta-ocean:hover{background:var(--ocean-light)}
+
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);padding:4px 10px;border-radius:50px;font-size:11px;font-weight:500}
+
+footer{
+  text-align:center;padding:24px;
+  background:rgba(17,26,17,.99);
+  border-top:1px solid rgba(255,255,255,.06);
+  color:rgba(255,255,255,.35);font-size:12px;
+}
+footer a{color:rgba(255,255,255,.35);text-decoration:none}
+footer a:hover{color:#7ddc7d}
+.footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="logo-box"><img src="logo.png" alt="Achill Island Market"></div>
+  <h1>Achill Island <span class="green">Market</span></h1>
+  <p class="subtitle">Two locations on Ireland's Wild Atlantic Way</p>
+  <p class="tagline">Local food, crafts, plants and artisan goods from producers across Achill Island. Support local — shop Achill.</p>
+
+  <div class="cards">
+    <a href="cashel.html" class="card card-cashel">
+      <div class="card-emoji">🌿</div>
+      <div class="card-label">Original Location</div>
+      <h2>Cashel</h2>
+      <span class="card-badge badge-live">Every Wednesday</span>
+      <p>At Ted's Bar, Cashel — 10am to 4pm. 12+ confirmed vendors, live market videos, food &amp; drinks on-site.</p>
+      <div class="pills">
+        <span class="pill">🥕 Produce</span>
+        <span class="pill">🍞 Baked Goods</span>
+        <span class="pill">🎨 Crafts</span>
+        <span class="pill">💎 Jewellery</span>
+      </div>
+      <span class="card-cta cta-green">Visit Cashel Market →</span>
+    </a>
+
+    <a href="keel.html" class="card card-keel">
+      <div class="card-emoji">🌊</div>
+      <div class="card-label">New Location</div>
+      <h2>Keel</h2>
+      <span class="card-badge badge-coming">Coming Soon</span>
+      <p>Keel Beach Village — one of Ireland's most stunning beach locations. Stall applications now open.</p>
+      <div class="pills">
+        <span class="pill">🏖️ Beach Location</span>
+        <span class="pill">🏄 Tourist Footfall</span>
+        <span class="pill">☕ Food &amp; Coffee</span>
+      </div>
+      <span class="card-cta cta-ocean">Visit Keel Market →</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="cashel.html">Cashel Market</a>
+    <a href="keel.html">Keel Market</a>
+    <a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a>
+    <a href="https://www.facebook.com/tedsachill" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.instagram.com/tedsbarachill" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <span>&copy; 2026 Achill Island Market. All rights reserved.</span> &nbsp;|&nbsp;
+  <span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span>
+</footer>
+
+</body>
+</html>
