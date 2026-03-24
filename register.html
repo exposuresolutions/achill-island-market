@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Register Your Stall | Achill Island Market — Cashel &amp; Keel</title>
+<meta name="description" content="Apply for a stall at Achill Island Market. Whether you grow it, bake it, make it or create it — there's a spot for you. Cashel (Wednesdays) and Keel locations.">
+<meta name="keywords" content="register stall Achill Island Market, sell at market Achill, vendor application Mayo, artisan stall Ireland, farmers market stall">
+<meta property="og:title" content="Register Your Stall | Achill Island Market">
+<meta property="og:description" content="Apply for a stall at Achill Island Market — local food, crafts, plants and artisan goods. Two locations on Achill Island.">
+<meta property="og:url" content="https://achillstore.store/register.html">
+<meta property="og:image" content="https://achillstore.store/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://achillstore.store/logo.png" type="image/png">
+<link rel="canonical" href="https://achillstore.store/register.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DBRFEEKZYR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DBRFEEKZYR');</script>
+<style>
+.reg-hero{background:linear-gradient(135deg,var(--green-dark) 0%,var(--dark) 60%,var(--green-dark) 100%);padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden}
+.reg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,106,45,.25) 0%,transparent 60%);pointer-events:none}
+.reg-hero>*{position:relative;z-index:1}
+.reg-hero h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px}
+.reg-hero h1 span{color:#7ddc7d}
+.reg-hero .sub{color:rgba(255,255,255,.6);font-size:16px;max-width:600px;margin:0 auto 24px;line-height:1.7}
+
+.stall-types-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;max-width:900px;margin:0 auto 36px}
+.stall-type{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.stall-type:hover{border-color:rgba(45,106,45,.5);transform:translateY(-2px)}
+.stall-type.selected{border-color:var(--green-light);background:rgba(45,106,45,.12)}
+.st-icon{font-size:2rem;margin-bottom:8px}
+.st-name{font-size:.85rem;font-weight:700;color:#fff}
+.st-desc{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:3px}
+
+.reg-layout{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;max-width:1000px;margin:0 auto}
+@media(max-width:768px){.reg-layout{grid-template-columns:1fr}}
+
+.reg-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px}
+.form-section-head{font-weight:800;font-size:1rem;color:#fff;margin:24px 0 14px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+.form-section-head:first-child{border-top:none;margin-top:0;padding-top:0}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:.9rem;font-family:inherit;transition:border-color .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--green-light)}
+.fg select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.fg textarea{resize:vertical;min-height:70px}
+.req{color:#e57373}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:600px){.form-2col,.form-3col{grid-template-columns:1fr}}
+
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+@media(max-width:600px){.check-grid{grid-template-columns:1fr}}
+.check-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;font-size:.82rem;color:rgba(255,255,255,.7);transition:all .2s}
+.check-item:hover{border-color:rgba(45,106,45,.3)}
+.check-item input[type=checkbox]{accent-color:var(--green-light);width:16px;height:16px}
+
+.preview-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;position:sticky;top:80px}
+.preview-card h3{font-size:.9rem;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:16px}
+.pv-icon{font-size:2.5rem;text-align:center;margin-bottom:10px}
+.pv-name{font-family:var(--font-display);font-size:1.2rem;font-weight:800;color:#fff;text-align:center;margin-bottom:4px}
+.pv-type{font-size:.75rem;color:var(--green-light);text-align:center;margin-bottom:10px}
+.pv-desc{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px}
+.pv-loc{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.pv-badge{font-size:.7rem;padding:4px 10px;border-radius:20px;font-weight:600}
+.pv-badge--cashel{background:rgba(45,106,45,.15);color:#7ddc7d;border:1px solid rgba(45,106,45,.3)}
+.pv-badge--keel{background:rgba(26,77,110,.15);color:#5bb8e0;border:1px solid rgba(26,77,110,.3)}
+.pv-note{font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;font-style:italic}
+
+.btn-submit{display:block;width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--green-light),var(--green));color:#fff;font-size:1.1rem;font-weight:800;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:12px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow-green)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.benefits-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:1000px;margin:0 auto}
+.benefit-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px;text-align:center;transition:all .2s}
+.benefit-card:hover{border-color:rgba(45,106,45,.3);transform:translateY(-2px)}
+.bc-icon{font-size:2rem;margin-bottom:8px}
+.bc-title{font-weight:800;font-size:.9rem;color:#fff;margin-bottom:4px}
+.bc-desc{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.5}
+
+#successSection{display:none}
+.success-box{text-align:center;padding:60px 24px;max-width:600px;margin:0 auto}
+.success-icon{font-size:4rem;margin-bottom:16px}
+.success-title{font-family:var(--font-display);font-size:2rem;font-weight:800;color:#fff;margin-bottom:12px}
+.success-sub{color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:24px}
+</style>
+</head>
+<body>
+
+<div class="top-bar">🌿 <strong>Achill Island Market</strong> — Cashel &amp; Keel &nbsp;|&nbsp; <a href="cashel.html">Cashel (Wednesdays)</a> &nbsp;|&nbsp; <a href="keel.html">Keel (Coming Soon)</a></div>
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="https://achillstore.store/logo.png" alt="Achill Island Market logo">Achill Island <span>Market</span></a><div class="nav-links" id="navLinks"><a href="cashel.html#vendors">All Vendors</a><a href="cashel.html">Cashel</a><a href="keel.html">Keel</a><a href="guide.html">How It Works</a><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a><a href="#register" class="nav-cta">Apply Now</a></div><button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button></div></nav>
+
+<!-- HERO -->
+<section class="reg-hero">
+  <div style="margin-bottom:16px"><img src="https://achillstore.store/logo.png" alt="Achill Island Market" style="height:80px;width:80px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06);padding:6px;margin:0 auto;display:block"></div>
+  <h1>Get a Stall at<br>Achill Island <span>Market</span></h1>
+  <p class="sub">Whether you grow it, bake it, make it or create it — there's a spot for you. Apply for Cashel (Wednesdays at Ted's Bar) or Keel (coming soon).</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="#register" class="btn btn-green" style="padding:12px 28px;font-size:1rem">🌿 Apply Now</a>
+    <a href="guide.html" class="btn btn-outline" style="padding:12px 28px;font-size:1rem;border:2px solid rgba(255,255,255,.2);color:#fff;border-radius:var(--radius-pill)">📖 How It Works</a>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section style="background:var(--dark);padding:48px 24px">
+  <div class="inner" style="text-align:center;margin-bottom:28px">
+    <p class="label" style="color:rgba(255,255,255,.5)">Why Sell With Us</p>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:#fff">Everything You Get as a <span style="color:#7ddc7d">Vendor</span></h2>
+  </div>
+  <div class="benefits-strip">
+    <div class="benefit-card"><div class="bc-icon">🌐</div><div class="bc-title">Your Own Vendor Page</div><div class="bc-desc">A dedicated page on achillstore.store with your description, products and location.</div></div>
+    <div class="benefit-card"><div class="bc-icon">📣</div><div class="bc-title">Social Media Promotion</div><div class="bc-desc">We promote every vendor on Facebook and Instagram before market day.</div></div>
+    <div class="benefit-card"><div class="bc-icon">🛒</div><div class="bc-title">Online Sales (Coming Soon)</div><div class="bc-desc">Customers can pre-order online and collect at the market or get items posted.</div></div>
+    <div class="benefit-card"><div class="bc-icon">📍</div><div class="bc-title">Two Locations</div><div class="bc-desc">Apply for Cashel (Wednesdays at Ted's Bar) and/or Keel (opening soon).</div></div>
+    <div class="benefit-card"><div class="bc-icon">🎬</div><div class="bc-title">Video Features</div><div class="bc-desc">Video showcase of your stall on our website and social channels.</div></div>
+    <div class="benefit-card"><div class="bc-icon">🚗</div><div class="bc-title">Large Carpark</div><div class="bc-desc">Easy for customers to park. Facilities, food and bar on-site at Ted's.</div></div>
+  </div>
+</section>
+
+<!-- STALL TYPE PICKER -->
+<section style="background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);padding:48px 24px" id="register">
+  <div class="inner">
+    <div style="text-align:center;margin-bottom:28px">
+      <p class="label" style="color:rgba(255,255,255,.5)">Step 1 — What do you sell?</p>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff">Pick Your <span style="color:#7ddc7d">Stall Type</span></h2>
+      <p style="color:rgba(255,255,255,.5);max-width:500px;margin:8px auto 0;font-size:.9rem">Choose the category that best fits. You can describe everything in detail in the form below.</p>
+    </div>
+
+    <div class="stall-types-grid" id="stallTypes">
+      <div class="stall-type" onclick="selectStall(this,'produce','🥕','Fresh Produce / Vegetables')"><div class="st-icon">🥕</div><div class="st-name">Fresh Produce</div><div class="st-desc">Veg, fruit, herbs, plants</div></div>
+      <div class="stall-type" onclick="selectStall(this,'baked','🍞','Baked Goods / Bread')"><div class="st-icon">🍞</div><div class="st-name">Baked Goods</div><div class="st-desc">Bread, cakes, pastries</div></div>
+      <div class="stall-type" onclick="selectStall(this,'food','🍲','Artisan / Hot Food')"><div class="st-icon">🍲</div><div class="st-name">Artisan / Hot Food</div><div class="st-desc">Street food, jams, preserves</div></div>
+      <div class="stall-type" onclick="selectStall(this,'crafts','🎨','Crafts / Handmade')"><div class="st-icon">🎨</div><div class="st-name">Crafts / Handmade</div><div class="st-desc">Wood, ceramic, art, prints</div></div>
+      <div class="stall-type" onclick="selectStall(this,'jewellery','💎','Jewellery / Accessories')"><div class="st-icon">💎</div><div class="st-name">Jewellery</div><div class="st-desc">Handmade, silver, beads</div></div>
+      <div class="stall-type" onclick="selectStall(this,'clothing','🧶','Clothing / Textiles')"><div class="st-icon">🧶</div><div class="st-name">Clothing / Textiles</div><div class="st-desc">Knits, crochet, fashion</div></div>
+      <div class="stall-type" onclick="selectStall(this,'skincare','🧼','Skincare / Wellness')"><div class="st-icon">🧼</div><div class="st-name">Skincare / Wellness</div><div class="st-desc">Soap, candles, oils</div></div>
+      <div class="stall-type" onclick="selectStall(this,'plants','🌱','Plants / Flowers')"><div class="st-icon">🌱</div><div class="st-name">Plants / Flowers</div><div class="st-desc">Potted plants, bouquets</div></div>
+      <div class="stall-type" onclick="selectStall(this,'other','🏪','Something Else')"><div class="st-icon">🏪</div><div class="st-name">Something Else</div><div class="st-desc">Tell us — we'll make it work!</div></div>
+    </div>
+
+    <!-- FORM + PREVIEW -->
+    <div class="reg-layout">
+      <div>
+        <form class="reg-form" id="vendorRegForm" onsubmit="submitVendor(event)">
+          <div class="form-section-head" style="border-top:none;margin-top:0;padding-top:0">🏪 About You &amp; Your Stall</div>
+          <div class="form-2col">
+            <div class="fg"><label>Your Name <span class="req">*</span></label><input type="text" id="vName" placeholder="Full name" required></div>
+            <div class="fg"><label>Business / Stall Name <span class="req">*</span></label><input type="text" id="vBusiness" placeholder="e.g. Achill Fresh Produce" required oninput="updatePreview()"></div>
+          </div>
+          <div class="form-2col">
+            <div class="fg"><label>Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="vPhone" placeholder="085 xxx xxxx" required></div>
+            <div class="fg"><label>Email</label><input type="email" id="vEmail" placeholder="your@email.ie"></div>
+          </div>
+          <div class="fg"><label>Where are you based?</label><input type="text" id="vLocation" placeholder="e.g. Achill Island / Westport / Castlebar"></div>
+          <div class="fg"><label>Describe your stall &amp; products <span class="req">*</span></label>
+            <textarea id="vDesc" rows="3" placeholder="Tell us what you sell, what makes it special, where your products come from..." required oninput="updatePreview()"></textarea>
+          </div>
+
+          <div class="form-section-head">📍 Which Markets?</div>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="location" value="cashel" checked id="chkCashel" onchange="updatePreview()"><span>🌿 Cashel — Wednesdays at Ted's Bar</span></label>
+            <label class="check-item"><input type="checkbox" name="location" value="keel" id="chkKeel" onchange="updatePreview()"><span>🌊 Keel — Coming Soon</span></label>
+          </div>
+          <div class="fg"><label>How often can you attend?</label>
+            <select id="vFrequency" title="Frequency">
+              <option>Every week</option>
+              <option>Most weeks</option>
+              <option>Fortnightly</option>
+              <option>Monthly</option>
+              <option>Occasionally / when available</option>
+            </select>
+          </div>
+
+          <div class="form-section-head">🛒 Online Sales (Optional)</div>
+          <p style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:14px">We're building online ordering so customers can pre-order and collect at the market or get items posted. Would you like to participate?</p>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="online" value="collect" checked><span>📦 Collect at market</span></label>
+            <label class="check-item"><input type="checkbox" name="online" value="post"><span>📮 Post nationwide</span></label>
+            <label class="check-item"><input type="checkbox" name="online" value="not-yet"><span>⏳ Not right now</span></label>
+          </div>
+
+          <div class="form-section-head">📣 Promotion Preferences</div>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="promo" value="website" checked><span>🌐 Vendor page on website</span></label>
+            <label class="check-item"><input type="checkbox" name="promo" value="facebook" checked><span>📘 Facebook promotion</span></label>
+            <label class="check-item"><input type="checkbox" name="promo" value="instagram" checked><span>📷 Instagram feature</span></label>
+            <label class="check-item"><input type="checkbox" name="promo" value="video"><span>🎬 Video showcase</span></label>
+          </div>
+
+          <div class="form-section-head">📝 Anything Else</div>
+          <div class="fg"><label>Social media / website (optional)</label>
+            <input type="text" id="vSocial" placeholder="e.g. facebook.com/yourpage or @yourinstagram">
+          </div>
+          <div class="fg"><label>Anything else we should know?</label>
+            <textarea id="vNotes" rows="2" placeholder="Special requirements, questions, ideas..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">🌿 Submit My Application</button>
+          <p style="text-align:center;color:rgba(255,255,255,.3);font-size:11px;margin-top:10px">Free to apply. We'll review and get in touch within 48 hours.</p>
+        </form>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <div>
+        <div class="preview-card">
+          <h3>👀 Your Stall Preview</h3>
+          <div class="pv-icon" id="previewIcon">🏪</div>
+          <div class="pv-name" id="previewName">Your Stall Name</div>
+          <div class="pv-type" id="previewType">Market Vendor</div>
+          <div class="pv-desc" id="previewDesc">Your stall description will appear here as you type...</div>
+          <div class="pv-loc" id="previewLocs">
+            <span class="pv-badge pv-badge--cashel">📍 Cashel</span>
+          </div>
+          <div class="pv-note">This is how your stall will appear on the website</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS (hidden) -->
+<section id="successSection">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Application Received!</h2>
+    <p class="success-sub">We'll review your application and be in touch within 48 hours to confirm your spot. In the meantime, have a look at who you'll be alongside at the market.</p>
+    <p style="font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:24px">
+      <strong style="color:#7ddc7d">What happens next:</strong><br>
+      ✅ We review your application<br>
+      ✅ We'll call or text to confirm details<br>
+      ✅ We build your vendor page on the website<br>
+      ✅ Promote your stall on social media<br>
+      ✅ You're all set for market day!
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="cashel.html#vendors" class="btn btn-green" style="padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;text-decoration:none">🛍️ See All Vendors</a>
+      <a href="index.html" class="btn btn-outline" style="padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.2);color:#fff">🏠 Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="footer-grid"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><img src="https://achillstore.store/logo.png" alt="Achill Island Market" style="height:44px;width:44px;object-fit:contain;background:rgba(255,255,255,.05);border-radius:8px;padding:3px"><span class="footer-brand" style="margin-bottom:0">Achill Island Market</span></div><p>Two locations on Achill Island: Cashel &amp; Keel.</p></div><div><h4>Market</h4><ul class="footer-links"><li><a href="cashel.html#vendors">All Vendors</a></li><li><a href="register.html">Get a Stall</a></li><li><a href="guide.html">How It Works</a></li><li><a href="cashel.html#getthere">Getting Here</a></li></ul></div><div><h4>Links</h4><ul class="footer-links"><li><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">🍺 Ted's Bar</a></li><li><a href="https://www.facebook.com/tedsachill" target="_blank" rel="noopener">📘 Facebook</a></li><li><a href="https://www.instagram.com/tedsbarachill" target="_blank" rel="noopener">📷 Instagram</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2026 Achill Island Market. All rights reserved.</span><span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span></div></footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const MARKET_API = 'https://dodealswithlee.onrender.com/api/achill-market';
+let selectedStallType = 'other';
+let selectedStallIcon = '🏪';
+let selectedStallName = 'Market Vendor';
+
+function selectStall(el, type, icon, name) {
+  document.querySelectorAll('.stall-type').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedStallType = type;
+  selectedStallIcon = icon;
+  selectedStallName = name;
+  document.getElementById('previewIcon').textContent = icon;
+  document.getElementById('previewType').textContent = name;
+  updatePreview();
+}
+
+function updatePreview() {
+  const name = document.getElementById('vBusiness').value || 'Your Stall Name';
+  const desc = document.getElementById('vDesc').value || 'Your stall description will appear here as you type...';
+  const cashel = document.getElementById('chkCashel').checked;
+  const keel = document.getElementById('chkKeel').checked;
+
+  document.getElementById('previewName').textContent = name;
+  document.getElementById('previewDesc').textContent = desc.slice(0, 140) + (desc.length > 140 ? '...' : '');
+
+  let locs = '';
+  if (cashel) locs += '<span class="pv-badge pv-badge--cashel">📍 Cashel</span>';
+  if (keel) locs += '<span class="pv-badge pv-badge--keel">📍 Keel</span>';
+  if (!cashel && !keel) locs = '<span style="color:rgba(255,255,255,.3);font-size:.75rem">Select a location above</span>';
+  document.getElementById('previewLocs').innerHTML = locs;
+}
+
+function showToast(msg, ok) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = ok ? '#4CAF50' : '#f44336';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+
+function submitVendor(e) {
+  e.preventDefault();
+  const locations = [...document.querySelectorAll('input[name="location"]:checked')].map(c => c.value).join(', ');
+  const online = [...document.querySelectorAll('input[name="online"]:checked')].map(c => c.value).join(', ');
+  const promo = [...document.querySelectorAll('input[name="promo"]:checked')].map(c => c.value).join(', ');
+
+  const contactName = document.getElementById('vName').value;
+  const nameParts = contactName.trim().split(' ');
+
+  const payload = {
+    form_type: 'vendor_stall_application',
+    first_name: nameParts[0] || contactName,
+    last_name: nameParts.slice(1).join(' ') || '',
+    full_name: contactName,
+    phone: document.getElementById('vPhone').value,
+    email: document.getElementById('vEmail').value,
+    company_name: document.getElementById('vBusiness').value,
+    source: 'Achill Island Market — Vendor Registration Page',
+    tags: ['vendor-application', selectedStallType],
+    stall_type: selectedStallName,
+    stall_type_key: selectedStallType,
+    business_name: document.getElementById('vBusiness').value,
+    based_in: document.getElementById('vLocation').value,
+    description: document.getElementById('vDesc').value,
+    market_locations: locations,
+    frequency: document.getElementById('vFrequency').value,
+    online_sales: online,
+    promotion: promo,
+    social: document.getElementById('vSocial').value,
+    notes: document.getElementById('vNotes').value,
+    page: 'Vendor Registration'
+  };
+
+  const btn = document.querySelector('.btn-submit');
+  const orig = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  fetch(MARKET_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('vendorRegForm').closest('section').style.display = 'none';
+    document.getElementById('successSection').style.display = 'block';
+    document.getElementById('successSection').scrollIntoView({ behavior: 'smooth' });
+  })
+  .catch(() => {
+    showToast('❌ Error — please try again or call 098 47234', false);
+    btn.textContent = orig;
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
