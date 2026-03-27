@@ -334,6 +334,8 @@ function showToast(m,ok){const t=document.getElementById('toast');t.textContent=
 document.getElementById('nlForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target,b=f.querySelector('button'),o=b.textContent;b.textContent='Sending...';b.disabled=true;const d=Object.fromEntries(new FormData(f));fetch(MARKET_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form_type:'newsletter_signup',name:d.name,email:d.email,source:'Landing Page'})}).then(()=>{showToast('✅ Subscribed!',true);f.reset()}).catch(()=>showToast('❌ Error — try again',false)).finally(()=>{b.textContent=o;b.disabled=false})});
 document.getElementById('shopWaitlistForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target,b=f.querySelector('button'),o=b.textContent;b.textContent='Joining...';b.disabled=true;const d=Object.fromEntries(new FormData(f));fetch(MARKET_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form_type:'shop_waitlist',name:d.name,email:d.email,source:'Landing Page Shop Waitlist'})}).then(()=>{showToast('✅ You are on the waitlist!',true);f.reset()}).catch(()=>showToast('❌ Error — try again',false)).finally(()=>{b.textContent=o;b.disabled=false})});
 </script>
+<script>window.ACHILL_CHAT_WIDGET_ID = "";</script>
+<script src="assets/js/achill-ai-agent.js" defer></script>
 
 </body>
 </html>
