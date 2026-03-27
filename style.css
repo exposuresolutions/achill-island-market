@@ -63,6 +63,7 @@ button { font-family:var(--font-body) }
   text-align:center; padding:10px 16px;
   font-size:13px; font-weight:600;
   display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;
+  border-bottom:1px solid rgba(245,240,232,.12);
 }
 .top-bar--ocean { background:var(--ocean) }
 .top-bar a { color:var(--cream); font-weight:700 }
@@ -76,12 +77,20 @@ nav {
   border-bottom:1px solid rgba(107,66,38,.3);
   padding:0 24px;
 }
-.nav-inner { max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:64px }
+.nav-inner { max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:68px }
 .nav-logo { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--cream); display:flex; align-items:center; gap:8px }
-.nav-logo img { height:38px; width:38px; object-fit:contain; border-radius:8px }
+.nav-logo img {
+  height:44px;
+  width:auto;
+  max-width:120px;
+  object-fit:contain;
+  border-radius:8px;
+  background:rgba(255,255,255,.06);
+  padding:4px 6px;
+}
 .nav-logo span { color:var(--amber-light) }
 .nav-links { display:flex; gap:22px; align-items:center }
-.nav-links a { color:rgba(245,240,232,.7); font-size:13px; font-weight:500; transition:color var(--transition-fast) }
+.nav-links a { color:rgba(245,240,232,.78); font-size:13px; font-weight:600; transition:color var(--transition-fast) }
 .nav-links a:hover { color:var(--cream) }
 .nav-cta { background:var(--brown)!important; color:var(--cream)!important; padding:8px 20px; border-radius:var(--radius-pill); font-weight:700!important; transition:background var(--transition-fast)!important; border:1px solid rgba(245,240,232,.2)!important }
 .nav-cta:hover { background:var(--brown-light)!important }
@@ -116,7 +125,16 @@ nav {
   pointer-events:none;
 }
 .hero-content { position:relative; z-index:1; max-width:860px; margin:0 auto }
-.hero-logo { height:100px; width:100px; object-fit:contain; border-radius:var(--radius-md); background:rgba(255,255,255,.06); padding:8px; margin:0 auto 24px }
+.hero-logo {
+  height:120px;
+  width:auto;
+  max-width:320px;
+  object-fit:contain;
+  border-radius:var(--radius-md);
+  background:rgba(255,255,255,.06);
+  padding:10px 12px;
+  margin:0 auto 24px;
+}
 .waw-badge {
   display:inline-block;
   background:rgba(107,66,38,.2); border:1px solid rgba(107,66,38,.4);
@@ -407,7 +425,7 @@ footer { background:rgba(44,24,16,.99); color:rgba(245,240,232,.5); padding:56px
 footer p { font-size:13px; line-height:1.7 }
 footer h4 { color:#fff; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px }
 .footer-links { list-style:none; display:flex; flex-direction:column; gap:8px }
-.footer-links a { color:rgba(255,255,255,.4); font-size:13px; transition:color var(--transition-fast) }
+.footer-links a { color:rgba(255,255,255,.55); font-size:13px; transition:color var(--transition-fast) }
 .footer-links a:hover { color:var(--amber-light) }
 .footer-bottom {
   max-width:var(--max-width); margin:24px auto 0;
