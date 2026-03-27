@@ -46,16 +46,16 @@
 :root {
   --green: #4f7a3d;
   --green-light: #6b9357;
-  --green-dark: #1a3d1a;
-  --amber: #c8860a;
-  --amber-light: #e09b12;
-  --cream: #f5f0e8;
-  --dark: #17110d;
-  --text: #3a2a1f;
-  --muted: #736252;
+  --green-dark: #183a4a;
+  --amber: #db9a2e;
+  --amber-light: #e6b25c;
+  --cream: #f3f7fb;
+  --dark: #0f2735;
+  --text: #1e3340;
+  --muted: #5d7280;
   --earth: #8b6914;
-  --ocean: #2f5f72;
-  --ocean-light: #467d93;
+  --ocean: #2d6884;
+  --ocean-light: #3d84a3;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -74,9 +74,9 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 /* ── NAV ── */
 nav{
   position:sticky;top:0;z-index:100;
-  background:rgba(44,24,16,0.97);
+  background:rgba(15,39,53,0.96);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(107,66,38,0.4);
+  border-bottom:1px solid rgba(43,85,105,0.35);
   padding:0 24px;
 }
 .nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px}
@@ -105,7 +105,7 @@ nav{
   .nav-links.open{
     display:flex;flex-direction:column;
     position:fixed;top:103px;left:0;right:0;
-    background:rgba(44,24,16,0.98);
+    background:rgba(15,39,53,0.98);
     padding:20px;gap:16px;align-items:flex-start;
     border-top:1px solid #333;
   }
@@ -114,7 +114,7 @@ nav{
 /* ── HERO ── */
 .hero{
   min-height:88vh;
-  background:linear-gradient(150deg,#1a0e08 0%,#2C1810 50%,#1a0e08 100%);
+  background:linear-gradient(155deg,#f7fbff 0%,#e6f1f8 55%,#f4f8fc 100%);
   display:flex;align-items:center;justify-content:center;
   text-align:center;padding:80px 24px 60px;
   position:relative;overflow:hidden;
@@ -124,12 +124,12 @@ nav{
   opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%);
   pointer-events:none;
 }
-.waw-badge{display:inline-block;background:rgba(26,77,110,.3);border:1px solid rgba(42,106,142,.5);color:#7dcdec;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:14px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,84px);font-weight:800;color:#fff;line-height:1.05;margin-bottom:10px}
-.hero h1 span{color:#e09b12}
-.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,.5);margin-bottom:28px;font-style:italic}
+.waw-badge{display:inline-block;background:rgba(45,104,132,.1);border:1px solid rgba(45,104,132,.25);color:var(--ocean);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:14px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,84px);font-weight:800;color:var(--text);line-height:1.05;margin-bottom:10px}
+.hero h1 span{color:var(--ocean)}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(16px,2.2vw,22px);color:rgba(30,51,64,.66);margin-bottom:28px;font-style:italic}
 .hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:36px}
-.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.82);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:500}
+.pill{background:rgba(255,255,255,.82);border:1px solid rgba(30,51,64,.14);color:var(--text);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:500}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn-brown{background:var(--brown);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-brown:hover{background:var(--brown-light)}
@@ -231,7 +231,7 @@ section{padding:72px 24px}
 .nl-form button:hover{background:var(--brown-light)}
 
 /* ── FOOTER ── */
-footer{background:rgba(44,24,16,0.99);color:rgba(255,255,255,.5);padding:48px 24px 24px}
+footer{background:rgba(15,39,53,0.99);color:rgba(255,255,255,.6);padding:48px 24px 24px}
 .footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
