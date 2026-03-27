@@ -4,22 +4,22 @@
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --brown: #6B4226;
-  --brown-light: #8B5E3C;
-  --brown-dark: #4A2E1A;
-  --brown-glow: rgba(107,66,38,.15);
-  --amber: #c8860a;
-  --amber-light: #e09b12;
-  --cream: #F5F0E8;
-  --cream-dark: #E8DFD0;
-  --cream-light: #FAF7F2;
-  --dark: #2C1810;
-  --dark-card: #3A2418;
-  --text: #3D2B1F;
-  --muted: #7A6555;
-  --earth: #8b6914;
-  --ocean: #2f5f72;
-  --ocean-light: #467d93;
+  --brown: #2b5569;
+  --brown-light: #3d7289;
+  --brown-dark: #183a4a;
+  --brown-glow: rgba(43,85,105,.16);
+  --amber: #db9a2e;
+  --amber-light: #e6b25c;
+  --cream: #f3f7fb;
+  --cream-dark: #e3edf4;
+  --cream-light: #f9fcff;
+  --dark: #0f2735;
+  --dark-card: #123244;
+  --text: #1e3340;
+  --muted: #5d7280;
+  --earth: #8f6f2e;
+  --ocean: #2d6884;
+  --ocean-light: #3d84a3;
   --ocean-glow: rgba(58,107,124,.15);
   --green: #5B8A3C;
   --green-light: #6FA04A;
