@@ -79,39 +79,42 @@
 body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;flex-direction:column;font-size:16px}
 .landing-hero{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:104px 24px 72px;
-  background:radial-gradient(circle at 50% 20%,rgba(200,134,10,.14),transparent 40%),linear-gradient(150deg,#1a0e08 0%,#2C1810 54%,#1a1208 100%);
+  text-align:center;padding:120px 24px 88px;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(200,134,10,.22) 0%, transparent 48%),
+    radial-gradient(ellipse at 15% 90%, rgba(107,66,38,.12) 0%, transparent 55%),
+    linear-gradient(150deg,#140a07 0%,#2C1810 54%,#160c08 100%);
   position:relative;overflow:hidden;
 }
-.landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(107,66,38,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 20%,rgba(200,134,10,.06) 0%,transparent 60%);pointer-events:none}
-.logo-box{margin-bottom:24px;position:relative;z-index:1}
-.logo-box img{height:148px;width:auto;max-width:min(82vw,380px);object-fit:contain;border-radius:16px;background:rgba(245,240,232,.14);padding:10px 12px;box-shadow:0 12px 34px rgba(0,0,0,.28)}
-.landing-hero h1{font-family:var(--font-display);font-size:clamp(44px,7vw,80px);font-weight:800;line-height:1.05;margin-bottom:10px;position:relative;z-index:1}
+.landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(245,240,232,.04) 0%,transparent 55%);pointer-events:none}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(245,240,232,.12);border:1px solid rgba(245,240,232,.25);color:rgba(245,240,232,.88);padding:7px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:20px;position:relative;z-index:1}
+.logo-box{margin-bottom:26px;position:relative;z-index:1}
+.logo-box img{height:152px;width:auto;max-width:min(84vw,400px);object-fit:contain;border-radius:16px;background:rgba(245,240,232,.18);padding:10px 12px;box-shadow:0 16px 44px rgba(0,0,0,.34)}
+.landing-hero h1{font-family:var(--font-display);font-size:clamp(46px,7vw,84px);font-weight:800;line-height:1.03;margin-bottom:10px;position:relative;z-index:1}
 .landing-hero h1 .green{color:var(--amber-light)}
-.landing-hero h1 .ocean{color:#7dcdec}
-.subtitle{font-family:var(--font-display);font-size:clamp(15px,2vw,20px);color:rgba(255,255,255,.45);font-style:italic;margin-bottom:12px;position:relative;z-index:1}
-.tagline{color:rgba(255,255,255,.74);font-size:16px;max-width:640px;line-height:1.75;margin-bottom:24px;position:relative;z-index:1}
-.hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:52px;position:relative;z-index:1}
+.subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);font-style:italic;margin-bottom:14px;position:relative;z-index:1}
+.tagline{color:rgba(245,240,232,.84);font-size:16px;max-width:700px;line-height:1.78;margin-bottom:26px;position:relative;z-index:1}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:56px;position:relative;z-index:1}
 
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;width:100%;position:relative;z-index:1}
 @media(max-width:640px){.cards{grid-template-columns:1fr}}
 .card{
-  border-radius:20px;padding:34px 28px;text-align:left;
+  border-radius:22px;padding:36px 30px;text-align:left;
   transition:transform .3s ease,box-shadow .3s ease;
   text-decoration:none;color:#fff;position:relative;overflow:hidden;
   display:flex;flex-direction:column;gap:14px;
 }
 .card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.card-cashel{background:linear-gradient(150deg,#2C1810,#1a0e08);border:1px solid rgba(200,134,10,.35)}
-.card-keel{background:linear-gradient(150deg,#1a2a35,#0d1a2a);border:1px solid rgba(91,184,224,.45)}
+.card-cashel{background:linear-gradient(150deg,#2C1810,#150c08);border:1px solid rgba(200,134,10,.42)}
+.card-keel{background:linear-gradient(150deg,#193142,#0d1f32);border:1px solid rgba(91,184,224,.48)}
 .card-emoji{font-size:48px}
-.card-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.card-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.78}
 .card h2{font-family:var(--font-display);font-size:26px;font-weight:800;line-height:1.2}
 .card p{color:rgba(255,255,255,.78);font-size:15px;line-height:1.65}
 .card-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .badge-live{background:rgba(107,66,38,.3);border:1px solid rgba(200,134,10,.3);color:var(--amber-light)}
 .badge-coming{background:rgba(200,134,10,.2);border:1px solid rgba(200,134,10,.4);color:#e09b12}
-.card-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;margin-top:auto;align-self:flex-start;transition:all .2s}
+.card-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;margin-top:auto;align-self:flex-start;transition:all .2s;box-shadow:0 8px 18px rgba(0,0,0,.22)}
 .cta-green{background:var(--brown);color:var(--cream)}.cta-green:hover{background:var(--brown-light);box-shadow:0 0 30px rgba(107,66,38,.25)}
 .cta-ocean{background:var(--ocean);color:#fff}.cta-ocean:hover{background:var(--ocean-light);box-shadow:0 0 30px rgba(58,107,124,.25)}
 .card-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -161,6 +164,7 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
 <body>
 
 <section class="landing-hero">
+  <div class="hero-kicker">Wild Atlantic Way Market</div>
   <div class="logo-box"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></div>
   <h1>Achill Island <span class="green">Market</span></h1>
   <p class="subtitle">Two locations on Ireland's Wild Atlantic Way</p>
