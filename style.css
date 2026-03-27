@@ -102,11 +102,11 @@ nav {
   border-radius:10px;
 }
 .logo-plaque--hero{ padding:10px 12px }
-.logo-plaque--hero img{ height:110px; width:auto; max-width:min(82vw,320px) }
+.logo-plaque--hero img{ height:132px; width:auto; max-width:min(84vw,380px) }
 .logo-plaque--nav{ padding:4px 6px; border-radius:10px }
-.logo-plaque--nav img{ height:40px; width:auto; max-width:112px }
+.logo-plaque--nav img{ height:50px; width:auto; max-width:138px }
 .logo-plaque--footer{ padding:3px 4px; border-radius:9px }
-.logo-plaque--footer img{ height:40px; width:40px }
+.logo-plaque--footer img{ height:50px; width:50px }
 .nav-logo span { color:var(--amber-light) }
 .nav-links { display:flex; gap:22px; align-items:center }
 .nav-links a { color:rgba(245,240,232,.78); font-size:13px; font-weight:600; transition:color var(--transition-fast) }
