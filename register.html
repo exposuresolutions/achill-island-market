@@ -19,17 +19,17 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DBRFEEKZYR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DBRFEEKZYR');</script>
 <style>
-.reg-hero{background:linear-gradient(135deg,var(--green-dark) 0%,var(--dark) 60%,var(--green-dark) 100%);padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden}
-.reg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,106,45,.25) 0%,transparent 60%);pointer-events:none}
+.reg-hero{background:linear-gradient(135deg,var(--brown-dark) 0%,var(--dark) 60%,var(--brown-dark) 100%);padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden}
+.reg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(107,66,38,.25) 0%,transparent 60%);pointer-events:none}
 .reg-hero>*{position:relative;z-index:1}
 .reg-hero h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px}
-.reg-hero h1 span{color:#7ddc7d}
+.reg-hero h1 span{color:#c8860a}
 .reg-hero .sub{color:rgba(255,255,255,.6);font-size:16px;max-width:600px;margin:0 auto 24px;line-height:1.7}
 
 .stall-types-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;max-width:900px;margin:0 auto 36px}
 .stall-type{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
-.stall-type:hover{border-color:rgba(45,106,45,.5);transform:translateY(-2px)}
-.stall-type.selected{border-color:var(--green-light);background:rgba(45,106,45,.12)}
+.stall-type:hover{border-color:rgba(107,66,38,.5);transform:translateY(-2px)}
+.stall-type.selected{border-color:var(--brown-light);background:rgba(107,66,38,.12)}
 .st-icon{font-size:2rem;margin-bottom:8px}
 .st-name{font-size:.85rem;font-weight:700;color:#fff}
 .st-desc{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:3px}
@@ -43,7 +43,7 @@
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
 .fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:.9rem;font-family:inherit;transition:border-color .2s}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--green-light)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--brown-light)}
 .fg select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .fg textarea{resize:vertical;min-height:70px}
 .req{color:#e57373}
@@ -54,28 +54,28 @@
 .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 @media(max-width:600px){.check-grid{grid-template-columns:1fr}}
 .check-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;font-size:.82rem;color:rgba(255,255,255,.7);transition:all .2s}
-.check-item:hover{border-color:rgba(45,106,45,.3)}
-.check-item input[type=checkbox]{accent-color:var(--green-light);width:16px;height:16px}
+.check-item:hover{border-color:rgba(107,66,38,.3)}
+.check-item input[type=checkbox]{accent-color:var(--brown-light);width:16px;height:16px}
 
 .preview-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;position:sticky;top:80px}
 .preview-card h3{font-size:.9rem;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:16px}
 .pv-icon{font-size:2.5rem;text-align:center;margin-bottom:10px}
 .pv-name{font-family:var(--font-display);font-size:1.2rem;font-weight:800;color:#fff;text-align:center;margin-bottom:4px}
-.pv-type{font-size:.75rem;color:var(--green-light);text-align:center;margin-bottom:10px}
+.pv-type{font-size:.75rem;color:var(--brown-light);text-align:center;margin-bottom:10px}
 .pv-desc{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px}
 .pv-loc{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
 .pv-badge{font-size:.7rem;padding:4px 10px;border-radius:20px;font-weight:600}
-.pv-badge--cashel{background:rgba(45,106,45,.15);color:#7ddc7d;border:1px solid rgba(45,106,45,.3)}
+.pv-badge--cashel{background:rgba(107,66,38,.15);color:#c8860a;border:1px solid rgba(107,66,38,.3)}
 .pv-badge--keel{background:rgba(26,77,110,.15);color:#5bb8e0;border:1px solid rgba(26,77,110,.3)}
 .pv-note{font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;font-style:italic}
 
-.btn-submit{display:block;width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--green-light),var(--green));color:#fff;font-size:1.1rem;font-weight:800;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:12px}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow-green)}
+.btn-submit{display:block;width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--brown-light),var(--brown));color:#fff;font-size:1.1rem;font-weight:800;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:12px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow-brown)}
 .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 .benefits-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:1000px;margin:0 auto}
 .benefit-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px;text-align:center;transition:all .2s}
-.benefit-card:hover{border-color:rgba(45,106,45,.3);transform:translateY(-2px)}
+.benefit-card:hover{border-color:rgba(107,66,38,.3);transform:translateY(-2px)}
 .bc-icon{font-size:2rem;margin-bottom:8px}
 .bc-title{font-weight:800;font-size:.9rem;color:#fff;margin-bottom:4px}
 .bc-desc{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.5}
@@ -98,7 +98,7 @@
   <h1>Get a Stall at<br>Achill Island <span>Market</span></h1>
   <p class="sub">Whether you grow it, bake it, make it or create it — there's a spot for you. Apply for Cashel (Wednesdays at Ted's Bar) or Keel (Saturdays).</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="#register" class="btn btn-green" style="padding:12px 28px;font-size:1rem">🌿 Apply Now</a>
+    <a href="#register" class="btn btn-brown" style="padding:12px 28px;font-size:1rem">🌿 Apply Now</a>
     <a href="guide.html" class="btn btn-outline" style="padding:12px 28px;font-size:1rem;border:2px solid rgba(255,255,255,.2);color:#fff;border-radius:var(--radius-pill)">📖 How It Works</a>
   </div>
 </section>
@@ -107,7 +107,7 @@
 <section style="background:var(--dark);padding:48px 24px">
   <div class="inner" style="text-align:center;margin-bottom:28px">
     <p class="label" style="color:rgba(255,255,255,.5)">Why Sell With Us</p>
-    <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:#fff">Everything You Get as a <span style="color:#7ddc7d">Vendor</span></h2>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:#fff">Everything You Get as a <span style="color:#c8860a">Vendor</span></h2>
   </div>
   <div class="benefits-strip">
     <div class="benefit-card"><div class="bc-icon">🌐</div><div class="bc-title">Your Own Vendor Page</div><div class="bc-desc">A dedicated page on achillstore.store with your description, products and location.</div></div>
@@ -124,7 +124,7 @@
   <div class="inner">
     <div style="text-align:center;margin-bottom:28px">
       <p class="label" style="color:rgba(255,255,255,.5)">Step 1 — What do you sell?</p>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff">Pick Your <span style="color:#7ddc7d">Stall Type</span></h2>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff">Pick Your <span style="color:#c8860a">Stall Type</span></h2>
       <p style="color:rgba(255,255,255,.5);max-width:500px;margin:8px auto 0;font-size:.9rem">Choose the category that best fits. You can describe everything in detail in the form below.</p>
     </div>
 
@@ -227,7 +227,7 @@
     <h2 class="success-title">Application Received!</h2>
     <p class="success-sub">We'll review your application and be in touch within 48 hours to confirm your spot. In the meantime, have a look at who you'll be alongside at the market.</p>
     <p style="font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:24px">
-      <strong style="color:#7ddc7d">What happens next:</strong><br>
+      <strong style="color:#c8860a">What happens next:</strong><br>
       ✅ We review your application<br>
       ✅ We'll call or text to confirm details<br>
       ✅ We build your vendor page on the website<br>
@@ -235,7 +235,7 @@
       ✅ You're all set for market day!
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="cashel.html#vendors" class="btn btn-green" style="padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;text-decoration:none">🛍️ See All Vendors</a>
+      <a href="cashel.html#vendors" class="btn btn-brown" style="padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;text-decoration:none">🛍️ See All Vendors</a>
       <a href="index.html" class="btn btn-outline" style="padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.2);color:#fff">🏠 Back to Home</a>
     </div>
   </div>
