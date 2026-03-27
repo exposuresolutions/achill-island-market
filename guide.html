@@ -25,6 +25,18 @@
 .guide-hero h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px}
 .guide-hero h1 span{color:#c8860a}
 .guide-hero .sub{color:rgba(255,255,255,.6);font-size:16px;max-width:620px;margin:0 auto 24px;line-height:1.7}
+.logo-plaque{
+  display:inline-flex;align-items:center;justify-content:center;border-radius:10px;
+  background:linear-gradient(145deg,rgba(245,240,232,.95),rgba(232,223,208,.84));
+  border:1px solid rgba(200,134,10,.35);box-shadow:0 8px 22px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.4)
+}
+.logo-plaque img{object-fit:contain;border-radius:8px}
+.logo-plaque--nav{padding:4px 6px}
+.logo-plaque--nav img{height:40px;width:auto;max-width:112px}
+.logo-plaque--hero{padding:8px 10px;border-radius:14px}
+.logo-plaque--hero img{height:74px;width:auto;max-width:min(80vw,210px)}
+.logo-plaque--footer{padding:3px 4px;border-radius:9px}
+.logo-plaque--footer img{height:40px;width:40px}
 
 .guide-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
 .guide-tab{padding:12px 28px;border-radius:var(--radius-pill);font-weight:700;font-size:.95rem;cursor:pointer;border:2px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.5);transition:all .2s;font-family:inherit}
@@ -74,11 +86,11 @@
 <body>
 
 <div class="top-bar">🌿 <strong>Achill Island Market</strong> — Cashel &amp; Keel &nbsp;|&nbsp; <a href="cashel.html">Cashel (Wednesdays)</a> &nbsp;|&nbsp; <a href="keel.html">Keel (Saturdays)</a></div>
-<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo">Achill Island <span>Market</span></a><div class="nav-links" id="navLinks"><a href="cashel.html#vendors">All Vendors</a><a href="cashel.html">Cashel</a><a href="keel.html">Keel</a><a href="guide.html" style="color:#c8860a">How It Works</a><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a><a href="register.html" class="nav-cta">Get a Stall</a></div><button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button></div></nav>
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-plaque logo-plaque--nav"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></span>Achill Island <span>Market</span></a><div class="nav-links" id="navLinks"><a href="cashel.html#vendors">All Vendors</a><a href="cashel.html">Cashel</a><a href="keel.html">Keel</a><a href="guide.html" style="color:#c8860a">How It Works</a><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a><a href="register.html" class="nav-cta">Get a Stall</a></div><button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button></div></nav>
 
 <!-- HERO -->
 <section class="guide-hero">
-  <div style="margin-bottom:16px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:70px;width:70px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06);padding:6px;margin:0 auto;display:block"></div>
+  <div style="margin-bottom:16px"><span class="logo-plaque logo-plaque--hero"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market"></span></div>
   <h1>How <span>Achill Island Market</span> Works</h1>
   <p class="sub">Whether you're a vendor looking to sell or a customer looking to shop — here's everything you need to know.</p>
 </section>
@@ -311,7 +323,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer><div class="footer-grid"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:44px;width:44px;object-fit:contain;background:rgba(255,255,255,.05);border-radius:8px;padding:3px"><span class="footer-brand" style="margin-bottom:0">Achill Island Market</span></div><p>Two locations on Achill Island: Cashel &amp; Keel.</p></div><div><h4>Market</h4><ul class="footer-links"><li><a href="cashel.html#vendors">All Vendors</a></li><li><a href="register.html">Get a Stall</a></li><li><a href="guide.html">How It Works</a></li><li><a href="cashel.html#getthere">Getting Here</a></li></ul></div><div><h4>Links</h4><ul class="footer-links"><li><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">🍺 Ted's Bar</a></li><li><a href="https://www.facebook.com/achillislandmarket" target="_blank" rel="noopener">📘 Facebook</a></li><li><a href="https://www.instagram.com/achillislandmarket" target="_blank" rel="noopener">📷 Instagram</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2026 Achill Island Market. All rights reserved.</span><span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span></div></footer>
+<footer><div class="footer-grid"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span class="logo-plaque logo-plaque--footer"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market"></span><span class="footer-brand" style="margin-bottom:0">Achill Island Market</span></div><p>Two locations on Achill Island: Cashel &amp; Keel.</p></div><div><h4>Market</h4><ul class="footer-links"><li><a href="cashel.html#vendors">All Vendors</a></li><li><a href="register.html">Get a Stall</a></li><li><a href="guide.html">How It Works</a></li><li><a href="cashel.html#getthere">Getting Here</a></li></ul></div><div><h4>Links</h4><ul class="footer-links"><li><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">🍺 Ted's Bar</a></li><li><a href="https://www.facebook.com/achillislandmarket" target="_blank" rel="noopener">📘 Facebook</a></li><li><a href="https://www.instagram.com/achillislandmarket" target="_blank" rel="noopener">📷 Instagram</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2026 Achill Island Market. All rights reserved.</span><span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span></div></footer>
 
 <div class="toast" id="toast"></div>
 

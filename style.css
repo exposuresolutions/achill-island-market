@@ -18,8 +18,8 @@
   --text: #3D2B1F;
   --muted: #7A6555;
   --earth: #8b6914;
-  --ocean: #3A6B7C;
-  --ocean-light: #4A8494;
+  --ocean: #2f5f72;
+  --ocean-light: #467d93;
   --ocean-glow: rgba(58,107,124,.15);
   --green: #5B8A3C;
   --green-light: #6FA04A;
@@ -88,6 +88,25 @@ nav {
   background:rgba(255,255,255,.06);
   padding:4px 6px;
 }
+.logo-plaque{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(245,240,232,.95),rgba(232,223,208,.84));
+  border:1px solid rgba(200,134,10,.35);
+  box-shadow:0 10px 30px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.45);
+}
+.logo-plaque img{
+  object-fit:contain;
+  border-radius:10px;
+}
+.logo-plaque--hero{ padding:10px 12px }
+.logo-plaque--hero img{ height:110px; width:auto; max-width:min(82vw,320px) }
+.logo-plaque--nav{ padding:4px 6px; border-radius:10px }
+.logo-plaque--nav img{ height:40px; width:auto; max-width:112px }
+.logo-plaque--footer{ padding:3px 4px; border-radius:9px }
+.logo-plaque--footer img{ height:40px; width:40px }
 .nav-logo span { color:var(--amber-light) }
 .nav-links { display:flex; gap:22px; align-items:center }
 .nav-links a { color:rgba(245,240,232,.78); font-size:13px; font-weight:600; transition:color var(--transition-fast) }
