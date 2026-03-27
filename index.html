@@ -89,7 +89,13 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
 .landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(245,240,232,.04) 0%,transparent 55%);pointer-events:none}
 .hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(245,240,232,.12);border:1px solid rgba(245,240,232,.25);color:rgba(245,240,232,.88);padding:7px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:20px;position:relative;z-index:1}
 .logo-box{margin-bottom:26px;position:relative;z-index:1}
-.logo-box img{height:152px;width:auto;max-width:min(84vw,400px);object-fit:contain;border-radius:16px;background:rgba(245,240,232,.18);padding:10px 12px;box-shadow:0 16px 44px rgba(0,0,0,.34)}
+.logo-box img{height:152px;width:auto;max-width:min(84vw,400px);object-fit:contain}
+.logo-plaque{
+  display:inline-flex;align-items:center;justify-content:center;border-radius:16px;
+  background:linear-gradient(145deg,rgba(245,240,232,.95),rgba(232,223,208,.84));
+  border:1px solid rgba(200,134,10,.35);padding:10px 12px;
+  box-shadow:0 16px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.42)
+}
 .landing-hero h1{font-family:var(--font-display);font-size:clamp(46px,7vw,84px);font-weight:800;line-height:1.03;margin-bottom:10px;position:relative;z-index:1}
 .landing-hero h1 .green{color:var(--amber-light)}
 .subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);font-style:italic;margin-bottom:14px;position:relative;z-index:1}
@@ -165,7 +171,7 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
 
 <section class="landing-hero">
   <div class="hero-kicker">Wild Atlantic Way Market</div>
-  <div class="logo-box"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></div>
+  <div class="logo-box"><span class="logo-plaque"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></span></div>
   <h1>Achill Island <span class="green">Market</span></h1>
   <p class="subtitle">Two locations on Ireland's Wild Atlantic Way</p>
   <p class="tagline">Local food, handmade crafts, jewellery and artisan goods from producers across Achill Island. Support local — shop Achill.</p>

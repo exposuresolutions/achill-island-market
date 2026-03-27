@@ -44,18 +44,18 @@
 
 <style>
 :root {
-  --green: #2d6a2d;
-  --green-light: #3d8a3d;
+  --green: #4f7a3d;
+  --green-light: #6b9357;
   --green-dark: #1a3d1a;
   --amber: #c8860a;
   --amber-light: #e09b12;
   --cream: #f5f0e8;
-  --dark: #111a11;
-  --text: #1f2e1f;
-  --muted: #5a6e5a;
+  --dark: #17110d;
+  --text: #3a2a1f;
+  --muted: #736252;
   --earth: #8b6914;
-  --ocean: #1a4d6e;
-  --ocean-light: #2a6a8e;
+  --ocean: #2f5f72;
+  --ocean-light: #467d93;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -81,7 +81,18 @@ nav{
 }
 .nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px}
 .nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:#e09b12;text-decoration:none;display:flex;align-items:center;gap:8px}
-.nav-logo img{height:44px;width:auto;max-width:120px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.06);padding:4px 6px}
+.logo-plaque{
+  display:inline-flex;align-items:center;justify-content:center;border-radius:10px;
+  background:linear-gradient(145deg,rgba(245,240,232,.95),rgba(232,223,208,.84));
+  border:1px solid rgba(200,134,10,.35);box-shadow:0 8px 22px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.4)
+}
+.logo-plaque img{object-fit:contain;border-radius:8px}
+.logo-plaque--nav{padding:4px 6px}
+.logo-plaque--nav img{height:40px;width:auto;max-width:112px}
+.logo-plaque--hero{padding:10px 12px;border-radius:14px}
+.logo-plaque--hero img{height:98px;width:auto;max-width:min(82vw,260px)}
+.logo-plaque--footer{padding:3px 4px;border-radius:9px}
+.logo-plaque--footer img{height:40px;width:40px}
 .nav-logo span{color:#fff}
 .nav-links{display:flex;gap:20px;align-items:center}
 .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
@@ -259,7 +270,7 @@ gtag('config','G-DBRFEEKZYR',{page_title:document.title,page_location:window.loc
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo">Achill Island <span>Market</span></a>
+    <a href="#" class="nav-logo"><span class="logo-plaque logo-plaque--nav"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></span>Achill Island <span>Market</span></a>
     <div class="nav-links" id="navLinks">
       <a href="#vendors">Our Vendors</a>
       <a href="#join">Sell Here</a>
@@ -281,7 +292,7 @@ gtag('config','G-DBRFEEKZYR',{page_title:document.title,page_location:window.loc
 <!-- HERO -->
 <section class="hero" id="home">
   <div style="position:relative;z-index:1;max-width:820px;margin:0 auto">
-    <div style="margin-bottom:20px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:90px;width:90px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06);padding:6px"></div>
+    <div class="logo-plaque logo-plaque--hero" style="margin-bottom:20px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market"></div>
     <div class="waw-badge">🌊 Keel, Achill Island, Co. Mayo</div>
     <h1>Achill Island <span>Market</span></h1>
     <p class="hero-sub">Every Saturday, 10am–4pm — Keel Beach Village, Achill Island</p>
@@ -599,7 +610,7 @@ gtag('config','G-DBRFEEKZYR',{page_title:document.title,page_location:window.loc
 <footer>
   <div class="footer-grid">
     <div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:44px;width:44px;object-fit:contain;background:rgba(255,255,255,.05);border-radius:8px;padding:3px"><span class="footer-brand" style="margin-bottom:0">Achill Island Market — Keel</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span class="logo-plaque logo-plaque--footer"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market"></span><span class="footer-brand" style="margin-bottom:0">Achill Island Market — Keel</span></div>
       <p>New market location in Keel, Achill Island, Co. Mayo. Local food, crafts and artisan goods.<br>
       <a href="cashel.html" style="color:#e09b12;font-weight:600">🌿 Also in Cashel — Every Wednesday at Ted's Bar →</a></p>
     </div>
