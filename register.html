@@ -9,9 +9,9 @@
 <meta property="og:title" content="Register Your Stall | Achill Island Market">
 <meta property="og:description" content="Apply for a stall at Achill Island Market — local food, crafts, plants and artisan goods. Two locations on Achill Island.">
 <meta property="og:url" content="https://achillstore.store/register.html">
-<meta property="og:image" content="https://achillstore.store/logo.png">
+<meta property="og:image" content="https://achillstore.store/assets/logo/achill-market-logo.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="https://achillstore.store/logo.png" type="image/png">
+<link rel="icon" href="assets/logo/achill-market-logo.jpg" type="image/png">
 <link rel="canonical" href="https://achillstore.store/register.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -79,6 +79,11 @@
 .bc-icon{font-size:2rem;margin-bottom:8px}
 .bc-title{font-weight:800;font-size:.9rem;color:#fff;margin-bottom:4px}
 .bc-desc{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.5}
+.fee-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:1000px;margin:22px auto 0}
+.fee-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px}
+.fee-card h4{font-size:.9rem;color:#fff;margin-bottom:4px}
+.fee-card p{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.5}
+.fee-price{display:inline-block;margin-bottom:8px;padding:4px 10px;border-radius:999px;background:rgba(200,134,10,.18);color:#e09b12;font-weight:800;font-size:.78rem}
 
 #successSection{display:none}
 .success-box{text-align:center;padding:60px 24px;max-width:600px;margin:0 auto}
@@ -90,11 +95,11 @@
 <body>
 
 <div class="top-bar">🌿 <strong>Achill Island Market</strong> — Cashel &amp; Keel &nbsp;|&nbsp; <a href="cashel.html">Cashel (Wednesdays)</a> &nbsp;|&nbsp; <a href="keel.html">Keel (Saturdays)</a></div>
-<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="https://achillstore.store/logo.png" alt="Achill Island Market logo">Achill Island <span>Market</span></a><div class="nav-links" id="navLinks"><a href="cashel.html#vendors">All Vendors</a><a href="cashel.html">Cashel</a><a href="keel.html">Keel</a><a href="guide.html">How It Works</a><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a><a href="#register" class="nav-cta">Apply Now</a></div><button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button></div></nav>
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo">Achill Island <span>Market</span></a><div class="nav-links" id="navLinks"><a href="cashel.html#vendors">All Vendors</a><a href="cashel.html">Cashel</a><a href="keel.html">Keel</a><a href="guide.html">How It Works</a><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a><a href="#register" class="nav-cta">Apply Now</a></div><button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button></div></nav>
 
 <!-- HERO -->
 <section class="reg-hero">
-  <div style="margin-bottom:16px"><img src="https://achillstore.store/logo.png" alt="Achill Island Market" style="height:80px;width:80px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06);padding:6px;margin:0 auto;display:block"></div>
+  <div style="margin-bottom:16px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:80px;width:80px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06);padding:6px;margin:0 auto;display:block"></div>
   <h1>Get a Stall at<br>Achill Island <span>Market</span></h1>
   <p class="sub">Whether you grow it, bake it, make it or create it — there's a spot for you. Apply for Cashel (Wednesdays at Ted's Bar) or Keel (Saturdays).</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -116,6 +121,16 @@
     <div class="benefit-card"><div class="bc-icon">📍</div><div class="bc-title">Two Locations</div><div class="bc-desc">Apply for Cashel (Wednesdays at Ted's Bar) and/or Keel (opening soon).</div></div>
     <div class="benefit-card"><div class="bc-icon">🎬</div><div class="bc-title">Video Features</div><div class="bc-desc">Video showcase of your stall on our website and social channels.</div></div>
     <div class="benefit-card"><div class="bc-icon">🚗</div><div class="bc-title">Large Carpark</div><div class="bc-desc">Easy for customers to park. Facilities, food and bar on-site at Ted's.</div></div>
+  </div>
+  <div id="fees" class="inner" style="text-align:center;margin:18px auto 0">
+    <p class="label" style="color:rgba(255,255,255,.5)">Stall Fee Options</p>
+    <h3 style="font-family:var(--font-display);font-size:clamp(1.25rem,3.2vw,1.7rem);font-weight:800;color:#fff">Choose Your Vendor Plan</h3>
+    <div class="fee-grid">
+      <article class="fee-card"><span class="fee-price">EUR150 / season</span><h4>Regular Weekly Stall</h4><p>Best value for vendors attending consistently through the season.</p></article>
+      <article class="fee-card"><span class="fee-price">EUR20 / day</span><h4>Drop-In Stall</h4><p>Flexible day-by-day option for occasional or trial attendance.</p></article>
+      <article class="fee-card"><span class="fee-price">EUR200 / season</span><h4>Premium Corner</h4><p>Priority placement in high-footfall market positions.</p></article>
+      <article class="fee-card"><span class="fee-price">EUR120 / season</span><h4>Early Bird</h4><p>Limited-time reduced season rate for early commitment.</p></article>
+    </div>
   </div>
 </section>
 
@@ -172,6 +187,14 @@
               <option>Occasionally / when available</option>
             </select>
           </div>
+          <div class="fg"><label>Preferred stall plan</label>
+            <select id="vPlan" title="Preferred plan">
+              <option value="season_regular">Regular weekly stall (EUR150/season)</option>
+              <option value="drop_in">Drop-in stall (EUR20/day)</option>
+              <option value="premium_corner">Premium corner (EUR200/season)</option>
+              <option value="early_bird">Early bird season pass (EUR120/season)</option>
+            </select>
+          </div>
 
           <div class="form-section-head">🛒 Online Sales (Optional)</div>
           <p style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:14px">We're building online ordering so customers can pre-order and collect at the market or get items posted. Would you like to participate?</p>
@@ -198,7 +221,7 @@
           </div>
 
           <button type="submit" class="btn-submit">🌿 Submit My Application</button>
-          <p style="text-align:center;color:rgba(255,255,255,.3);font-size:11px;margin-top:10px">Free to apply. We'll review and get in touch within 48 hours.</p>
+          <p style="text-align:center;color:rgba(255,255,255,.3);font-size:11px;margin-top:10px">Apply first, then we confirm your stall and send payment steps. We'll review and get in touch within 48 hours.</p>
         </form>
       </div>
 
@@ -242,7 +265,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer><div class="footer-grid"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><img src="https://achillstore.store/logo.png" alt="Achill Island Market" style="height:44px;width:44px;object-fit:contain;background:rgba(255,255,255,.05);border-radius:8px;padding:3px"><span class="footer-brand" style="margin-bottom:0">Achill Island Market</span></div><p>Two locations on Achill Island: Cashel &amp; Keel.</p></div><div><h4>Market</h4><ul class="footer-links"><li><a href="cashel.html#vendors">All Vendors</a></li><li><a href="register.html">Get a Stall</a></li><li><a href="guide.html">How It Works</a></li><li><a href="cashel.html#getthere">Getting Here</a></li></ul></div><div><h4>Links</h4><ul class="footer-links"><li><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">🍺 Ted's Bar</a></li><li><a href="https://www.facebook.com/tedsachill" target="_blank" rel="noopener">📘 Facebook</a></li><li><a href="https://www.instagram.com/tedsbarachill" target="_blank" rel="noopener">📷 Instagram</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2026 Achill Island Market. All rights reserved.</span><span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span></div></footer>
+<footer><div class="footer-grid"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market" style="height:44px;width:44px;object-fit:contain;background:rgba(255,255,255,.05);border-radius:8px;padding:3px"><span class="footer-brand" style="margin-bottom:0">Achill Island Market</span></div><p>Two locations on Achill Island: Cashel &amp; Keel.</p></div><div><h4>Market</h4><ul class="footer-links"><li><a href="cashel.html#vendors">All Vendors</a></li><li><a href="register.html">Get a Stall</a></li><li><a href="guide.html">How It Works</a></li><li><a href="cashel.html#getthere">Getting Here</a></li></ul></div><div><h4>Links</h4><ul class="footer-links"><li><a href="https://www.tedsachill.ie" target="_blank" rel="noopener">🍺 Ted's Bar</a></li><li><a href="https://www.facebook.com/achillislandmarket" target="_blank" rel="noopener">📘 Facebook</a></li><li><a href="https://www.instagram.com/achillislandmarket" target="_blank" rel="noopener">📷 Instagram</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2026 Achill Island Market. All rights reserved.</span><span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span></div></footer>
 
 <div class="toast" id="toast"></div>
 
@@ -313,6 +336,7 @@ function submitVendor(e) {
     description: document.getElementById('vDesc').value,
     market_locations: locations,
     frequency: document.getElementById('vFrequency').value,
+    stall_plan: document.getElementById('vPlan').value,
     online_sales: online,
     promotion: promo,
     social: document.getElementById('vSocial').value,
