@@ -49,8 +49,8 @@
       "@type": "Event",
       "name": "Achill Island Market — Cashel",
       "description": "Weekly market at Ted's Bar, Cashel. Local food, crafts and artisan goods.",
-      "startDate": "2025-07-02T10:00:00+01:00",
-      "endDate": "2025-07-02T16:00:00+01:00",
+      "startDate": "2026-07-01T10:00:00+01:00",
+      "endDate": "2026-07-01T16:00:00+01:00",
       "eventSchedule": {
         "@type": "Schedule",
         "byDay": "https://schema.org/Wednesday",
@@ -64,6 +64,26 @@
         "address": { "@type": "PostalAddress", "addressLocality": "Cashel, Achill Island", "addressRegion": "Co. Mayo", "addressCountry": "IE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 53.951969, "longitude": -9.971466 }
       }
+    },
+    {
+      "@type": "Event",
+      "name": "Achill Island Market — Keel",
+      "description": "Weekly market at Keel Beach Village. Local food, crafts and artisan goods.",
+      "startDate": "2026-07-04T10:00:00+01:00",
+      "endDate": "2026-07-04T16:00:00+01:00",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "https://schema.org/Saturday",
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "repeatFrequency": "P1W"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Keel Beach Village",
+        "address": { "@type": "PostalAddress", "addressLocality": "Keel, Achill Island", "addressRegion": "Co. Mayo", "addressCountry": "IE" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 53.9658, "longitude": -10.0694 }
+      }
     }
   ]
 }
@@ -76,111 +96,277 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DBRFEEKZYR');</script>
 
 <style>
+/* ===== BASE ===== */
 body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;flex-direction:column;font-size:16px}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#6B4226,#3a6b7c,#C8860A);z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0}
+
+/* ===== REVEAL ANIMATIONS ===== */
+[data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+[data-reveal].revealed{opacity:1;transform:none}
+
+/* ===== HERO ===== */
 .landing-hero{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:120px 24px 88px;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(219,154,46,.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 15% 90%, rgba(45,104,132,.1) 0%, transparent 55%),
-    linear-gradient(155deg,#f7fbff 0%,#e9f2f9 55%,#f5f9fd 100%);
+    radial-gradient(ellipse at 50% -10%, rgba(200,134,10,.22) 0%, transparent 48%),
+    radial-gradient(ellipse at 15% 90%, rgba(107,66,38,.12) 0%, transparent 55%),
+    linear-gradient(150deg,#140a07 0%,#2C1810 54%,#160c08 100%);
   position:relative;overflow:hidden;
 }
-.landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 82% 14%,rgba(45,104,132,.08) 0%,transparent 56%);pointer-events:none}
-.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(30,51,64,.06);border:1px solid rgba(30,51,64,.16);color:rgba(30,51,64,.8);padding:7px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:20px;position:relative;z-index:1}
+.landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(245,240,232,.04) 0%,transparent 55%);pointer-events:none}
+.landing-hero::after{content:'';position:absolute;inset:-40%;width:180%;height:180%;background:radial-gradient(ellipse,rgba(200,134,10,.1) 0%,transparent 50%);animation:heroGlow 12s ease-in-out infinite alternate;pointer-events:none}
+@keyframes heroGlow{0%{transform:translate(-15%,-10%) scale(1)}100%{transform:translate(15%,10%) scale(1.15)}}
+
+.hero-float{position:absolute;pointer-events:none;z-index:0;opacity:.7}
+@keyframes floatDrift{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(5deg)}100%{transform:translateY(0) rotate(0deg)}}
+
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(245,240,232,.12);border:1px solid rgba(245,240,232,.25);color:rgba(245,240,232,.88);padding:7px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:20px;position:relative;z-index:1}
 .logo-box{margin-bottom:26px;position:relative;z-index:1}
-.logo-box img{height:190px;width:auto;max-width:min(88vw,470px);object-fit:contain}
+.logo-box img{height:152px;width:auto;max-width:min(84vw,400px);object-fit:contain}
 .logo-plaque{
   display:inline-flex;align-items:center;justify-content:center;border-radius:16px;
-  background:transparent;
-  border:none;padding:10px 12px;
-  box-shadow:none
+  background:linear-gradient(145deg,rgba(245,240,232,.95),rgba(232,223,208,.84));
+  border:1px solid rgba(200,134,10,.35);padding:10px 12px;
+  box-shadow:0 16px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.42)
 }
 .landing-hero h1{font-family:var(--font-display);font-size:clamp(46px,7vw,84px);font-weight:800;line-height:1.03;margin-bottom:10px;position:relative;z-index:1}
-.landing-hero h1{color:var(--text)}
-.landing-hero h1 .green{color:var(--ocean)}
-.subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,21px);color:rgba(30,51,64,.66);font-style:italic;margin-bottom:14px;position:relative;z-index:1}
-.tagline{color:rgba(30,51,64,.86);font-size:16px;max-width:700px;line-height:1.78;margin-bottom:26px;position:relative;z-index:1}
-.landing-hero .pill{
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(30,51,64,.12);
-  color:var(--text);
-}
+.landing-hero h1 .green{color:var(--amber-light)}
+.subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);font-style:italic;margin-bottom:14px;position:relative;z-index:1}
+
+/* Typed text */
+.typed-wrap{position:relative;z-index:1;min-height:36px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:2px}
+.typed-text{font-family:var(--font-display);font-size:clamp(18px,2.5vw,28px);font-weight:700;color:var(--amber-light);display:inline}
+.typed-cursor{font-weight:300;font-size:clamp(20px,2.8vw,32px);color:var(--amber-light);animation:cursorBlink .7s step-end infinite}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+.tagline{color:rgba(245,240,232,.84);font-size:16px;max-width:700px;line-height:1.78;margin-bottom:20px;position:relative;z-index:1}
+
+/* Countdown bar */
+.countdown-bar{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;background:rgba(200,134,10,.12);border:1px solid rgba(200,134,10,.3);border-radius:999px;padding:10px 22px;margin-bottom:26px;font-size:14px;color:rgba(245,240,232,.9);font-weight:600;backdrop-filter:blur(8px)}
+.countdown-bar .cd-live{display:inline-block;width:8px;height:8px;background:#4CAF50;border-radius:50%;animation:cdPulse 2s ease-in-out infinite}
+@keyframes cdPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
 .hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:56px;position:relative;z-index:1}
 
+/* Scroll indicator */
+.scroll-indicator{position:relative;z-index:1;margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(245,240,232,.4);font-size:11px;letter-spacing:.1em;text-transform:uppercase;animation:scrollBounce 2.5s ease-in-out infinite}
+.scroll-indicator svg{width:20px;height:20px;stroke:rgba(245,240,232,.35)}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ===== MARKET CARDS ===== */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;width:100%;position:relative;z-index:1}
 @media(max-width:640px){.cards{grid-template-columns:1fr}}
 .card{
   border-radius:22px;padding:36px 30px;text-align:left;
   transition:transform .3s ease,box-shadow .3s ease;
-  text-decoration:none;color:var(--text);position:relative;overflow:hidden;
+  text-decoration:none;color:#fff;position:relative;overflow:hidden;
   display:flex;flex-direction:column;gap:14px;
 }
-.card:hover{transform:translateY(-6px);box-shadow:0 16px 38px rgba(29,59,76,.14)}
-.card-cashel{background:linear-gradient(150deg,#ffffff,#eef4f9);border:1px solid rgba(45,104,132,.2)}
-.card-keel{background:linear-gradient(150deg,#f8fcff,#e6f1f8);border:1px solid rgba(61,132,163,.28)}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.card-cashel{background:linear-gradient(150deg,#2C1810,#150c08);border:1px solid rgba(200,134,10,.42)}
+.card-keel{background:linear-gradient(150deg,#193142,#0d1f32);border:1px solid rgba(91,184,224,.48)}
 .card-emoji{font-size:48px}
 .card-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.78}
 .card h2{font-family:var(--font-display);font-size:26px;font-weight:800;line-height:1.2}
-.card p{color:var(--muted);font-size:15px;line-height:1.65}
+.card p{color:rgba(255,255,255,.78);font-size:15px;line-height:1.65}
 .card-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.badge-live{background:rgba(43,85,105,.1);border:1px solid rgba(43,85,105,.2);color:var(--brown)}
+.badge-live{background:rgba(107,66,38,.3);border:1px solid rgba(200,134,10,.3);color:var(--amber-light)}
 .badge-coming{background:rgba(200,134,10,.2);border:1px solid rgba(200,134,10,.4);color:#e09b12}
 .card-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;margin-top:auto;align-self:flex-start;transition:all .2s;box-shadow:0 8px 18px rgba(0,0,0,.22)}
 .cta-green{background:var(--brown);color:var(--cream)}.cta-green:hover{background:var(--brown-light);box-shadow:0 0 30px rgba(107,66,38,.25)}
 .cta-ocean{background:var(--ocean);color:#fff}.cta-ocean:hover{background:var(--ocean-light);box-shadow:0 0 30px rgba(58,107,124,.25)}
 .card-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 
+/* ===== STATS COUNTER ===== */
+.stats-section{background:linear-gradient(145deg,#1a0e08,#2C1810);padding:56px 24px;border-bottom:1px solid rgba(200,134,10,.12)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:800px;margin:0 auto;text-align:center}
+.stat-item{padding:20px 12px}
+.stat-number{font-family:var(--font-display);font-size:clamp(36px,5vw,52px);font-weight:800;color:var(--amber-light);line-height:1;margin-bottom:6px}
+.stat-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.5)}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== VENDOR SPOTLIGHT ===== */
+.vendor-spotlight{background:var(--cream);padding:72px 24px;text-align:center}
+.spotlight-card{max-width:620px;margin:0 auto;background:#fff;border:2px solid rgba(200,134,10,.25);border-radius:24px;padding:40px 32px;box-shadow:0 12px 40px rgba(74,46,26,.08);position:relative;overflow:hidden}
+.spotlight-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6B4226,#C8860A,#3a6b7c)}
+.spotlight-emoji{font-size:56px;margin-bottom:14px}
+.spotlight-badge{display:inline-block;padding:4px 14px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(200,134,10,.1);border:1px solid rgba(200,134,10,.25);color:#8B5E3C;margin-bottom:14px}
+.spotlight-card h3{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--text);margin-bottom:10px}
+.spotlight-card>p{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:20px}
+
+/* ===== VENDOR PREVIEW ===== */
 .vendor-preview{background:var(--cream-light);padding:72px 24px;text-align:center}
 .vendor-preview h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:8px}
-.vendor-preview p{color:var(--muted);font-size:15px;margin-bottom:36px}
+.vendor-preview>p{color:var(--muted);font-size:15px;margin-bottom:36px}
 .vendor-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 24px 16px;max-width:1140px;margin:0 auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .vendor-scroll::-webkit-scrollbar{height:6px}.vendor-scroll::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
-.vp-card{flex:0 0 220px;scroll-snap-align:start;background:#fff;border:1px solid var(--cream-dark);border-radius:16px;padding:24px 18px;text-align:center;text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s}
-.vp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.vp-card{flex:0 0 220px;scroll-snap-align:start;background:#fff;border:1px solid var(--cream-dark);border-radius:16px;padding:24px 18px;text-align:center;text-decoration:none;color:var(--text);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1),background .35s ease}
+.vp-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(74,46,26,.12);background:rgba(255,252,247,1)}
 .vp-card .v-icon{font-size:36px;margin-bottom:10px}
 .vp-card h3{font-family:var(--font-display);font-size:15px;font-weight:700;margin-bottom:4px}
-.vp-card p{font-size:12px;color:var(--muted);line-height:1.5}
+.vp-card p{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.vp-badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.vp-badge-food{background:rgba(76,175,80,.1);color:#388E3C;border:1px solid rgba(76,175,80,.2)}
+.vp-badge-craft{background:rgba(200,134,10,.1);color:#8B5E3C;border:1px solid rgba(200,134,10,.2)}
+.vp-badge-jewellery{background:rgba(156,39,176,.08);color:#7B1FA2;border:1px solid rgba(156,39,176,.15)}
+.vp-badge-skincare{background:rgba(233,30,99,.08);color:#C2185B;border:1px solid rgba(233,30,99,.15)}
+.vp-badge-books{background:rgba(33,150,243,.08);color:#1565C0;border:1px solid rgba(33,150,243,.15)}
+.vp-badge-knitwear{background:rgba(255,152,0,.1);color:#E65100;border:1px solid rgba(255,152,0,.2)}
 
+/* ===== GIFT BOXES ===== */
+.gift-section{background:#fff;padding:72px 24px;text-align:center;border-top:1px solid var(--cream-dark)}
+.gift-section h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:8px}
+.gift-section>p{color:var(--muted);font-size:15px;margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto 36px}
+@media(max-width:768px){.gift-grid{grid-template-columns:1fr}}
+.gift-card{background:var(--cream-light);border:1px solid var(--cream-dark);border-radius:20px;padding:32px 24px;text-align:center;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1)}
+.gift-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(74,46,26,.1)}
+.gift-card.featured{border-color:rgba(200,134,10,.4);background:linear-gradient(165deg,#FFF8F0,#F5F0E8)}
+.gift-card h3{font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px}
+.gift-price{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--brown);margin-bottom:10px}
+.gift-card ul{list-style:none;padding:0;margin:0 0 18px;text-align:left}
+.gift-card li{font-size:13px;color:var(--muted);padding:5px 0;border-bottom:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:8px}
+.gift-card li::before{content:'✓';color:#4CAF50;font-weight:700;font-size:12px}
+.gift-select-btn{display:inline-block;padding:10px 22px;border-radius:999px;font-weight:700;font-size:13px;cursor:pointer;border:1px solid var(--cream-dark);background:#fff;color:var(--text);transition:all .2s}
+.gift-select-btn:hover{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+.gift-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:660px;margin:0 auto}
+.gift-form select,.gift-form input{padding:13px 16px;border:1px solid var(--cream-dark);border-radius:999px;font-size:14px;background:#fff;transition:border-color .3s,box-shadow .3s}
+.gift-form select:focus,.gift-form input:focus{outline:none;border-color:rgba(200,134,10,.5);box-shadow:0 0 0 3px rgba(200,134,10,.1)}
+.gift-form select{min-width:200px}.gift-form input{min-width:180px}
+.gift-form button{border:none}
+.gift-box-svg{display:block;margin:0 auto 24px}
+
+/* ===== MARKET DAY GUIDE ===== */
+.guide-section{background:var(--cream-light);padding:72px 24px;text-align:center;border-top:1px solid var(--cream-dark)}
+.guide-section h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:8px}
+.guide-section>p{color:var(--muted);font-size:15px;margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1000px;margin:0 auto}
+.guide-card{background:#fff;border:1px solid var(--cream-dark);border-radius:16px;padding:28px 22px;text-align:left;transition:transform .3s ease,box-shadow .3s ease}
+.guide-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(74,46,26,.07)}
+.guide-card .gc-icon{font-size:32px;margin-bottom:10px}
+.guide-card h3{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.guide-card p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ===== GAME ZONE ===== */
+.game-zone-mini{background:linear-gradient(140deg,rgba(44,24,16,.92),rgba(26,14,8,.96));padding:44px 24px;text-align:center;border-top:1px solid rgba(200,134,10,.15);border-bottom:1px solid rgba(200,134,10,.12)}
+.game-zone-mini .gz-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,134,10,.85);margin-bottom:10px}
+.game-zone-mini h2{font-family:var(--font-display);font-size:clamp(20px,2.8vw,28px);font-weight:800;color:#fff;margin-bottom:10px}
+.game-zone-mini p{color:rgba(245,240,232,.62);font-size:15px;line-height:1.6;margin-bottom:18px;max-width:520px;margin-left:auto;margin-right:auto}
+.game-zone-mini a{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;background:rgba(200,134,10,.18);border:1px solid rgba(200,134,10,.4);color:var(--amber-light);text-decoration:none;transition:background .2s,border-color .2s,transform .2s}
+.game-zone-mini a:hover{background:rgba(200,134,10,.28);border-color:rgba(200,134,10,.55);transform:translateY(-1px)}
+
+/* ===== JOIN BANNER ===== */
 .join-banner{background:linear-gradient(140deg,var(--brown),var(--brown-dark));padding:56px 24px;text-align:center}
 .join-banner h2{font-family:var(--font-display);font-size:clamp(22px,3vw,34px);font-weight:800;color:#fff;margin-bottom:12px}
 .join-banner p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:24px;max-width:560px;margin-left:auto;margin-right:auto}
 .join-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ===== REVENUE STRIP ===== */
 .revenue-strip{background:#fff;padding:64px 24px;border-top:1px solid var(--cream-dark)}
 .revenue-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.revenue-card{border:1px solid var(--cream-dark);border-radius:16px;padding:22px;background:#fff;box-shadow:0 6px 18px rgba(74,46,26,.05)}
+.revenue-card{border:1px solid var(--cream-dark);border-radius:16px;padding:22px;background:#fff;box-shadow:0 6px 18px rgba(74,46,26,.05);transition:transform .3s ease,box-shadow .3s ease}
+.revenue-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(74,46,26,.1)}
 .revenue-card h3{font-family:var(--font-display);font-size:20px;color:var(--text);margin-bottom:6px}
 .revenue-card p{font-size:14px;color:var(--muted);line-height:1.6}
-.sponsor-strip{background:linear-gradient(140deg,#2C1810,#1a0e08);padding:64px 24px;text-align:center}
-.sponsor-strip h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);color:#fff;margin-bottom:10px}
-.sponsor-strip p{color:rgba(255,255,255,.6);max-width:680px;margin:0 auto 20px}
-.sponsor-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+
+/* ===== SHOP STRIP ===== */
 .shop-strip{background:#fff;padding:64px 24px;text-align:center}
 .shop-strip h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);color:var(--text);margin-bottom:8px}
 .shop-strip p{max-width:680px;margin:0 auto 24px;color:var(--muted)}
 .shop-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:620px;margin:0 auto}
-.shop-form input{padding:13px 16px;border:1px solid var(--cream-dark);border-radius:999px;min-width:220px}
+.shop-form input{padding:13px 16px;border:1px solid var(--cream-dark);border-radius:999px;min-width:220px;transition:border-color .3s,box-shadow .3s}
+.shop-form input:focus{outline:none;border-color:rgba(200,134,10,.5);box-shadow:0 0 0 3px rgba(200,134,10,.1)}
 .shop-form button{border:none}
+
+/* ===== COMMUNITY BOARD ===== */
+.community-section{background:linear-gradient(145deg,#1a0e08,#2C1810);padding:72px 24px;text-align:center}
+.community-section h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:#fff;margin-bottom:8px}
+.community-section>p{color:rgba(245,240,232,.55);font-size:15px;margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto}
+.community-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:960px;margin:0 auto}
+.comm-card{background:rgba(245,240,232,.06);border:1px solid rgba(245,240,232,.1);border-radius:16px;padding:24px 20px;text-align:center;text-decoration:none;color:#fff;transition:transform .3s ease,background .3s ease,border-color .3s ease}
+.comm-card:hover{transform:translateY(-4px);background:rgba(245,240,232,.1);border-color:rgba(200,134,10,.3)}
+.comm-card .cc-icon{font-size:32px;margin-bottom:10px}
+.comm-card h3{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:4px}
+.comm-card p{font-size:12px;color:rgba(245,240,232,.5);line-height:1.5}
+
+/* ===== INSTAGRAM GALLERY ===== */
+.insta-section{background:var(--cream);padding:72px 24px;text-align:center;border-top:1px solid var(--cream-dark)}
+.insta-section h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:8px}
+.insta-section>p{color:var(--muted);font-size:15px;margin-bottom:32px}
+.insta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:700px;margin:0 auto}
+@media(max-width:640px){.insta-grid{grid-template-columns:repeat(2,1fr)}}
+.insta-placeholder{aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .3s ease,filter .3s ease;cursor:pointer;position:relative;overflow:hidden}
+.insta-placeholder::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s ease}
+.insta-placeholder:hover{transform:scale(1.04)}.insta-placeholder:hover::after{background:rgba(0,0,0,.1)}
+
+/* ===== SPONSOR STRIP ===== */
+.sponsor-strip{background:linear-gradient(140deg,#2C1810,#1a0e08);padding:64px 24px;text-align:center}
+.sponsor-strip h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);color:#fff;margin-bottom:10px}
+.sponsor-strip p{color:rgba(255,255,255,.6);max-width:680px;margin:0 auto 20px}
+.sponsor-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+
+/* ===== PREMIUM FORM EFFECTS ===== */
+.nl-form input:focus,.nl-form button:focus{box-shadow:0 0 0 3px rgba(200,134,10,.15)}
+.form-success{animation:formPop .5s cubic-bezier(.16,1,.3,1)}
+@keyframes formPop{0%{transform:scale(.95);opacity:.6}100%{transform:scale(1);opacity:1}}
+
+/* ===== FOOTER ===== */
+.landing-footer{text-align:center;padding:24px;background:rgba(44,24,16,.99);border-top:1px solid rgba(245,240,232,.06);color:rgba(245,240,232,.35);font-size:12px}
+.landing-footer a{color:rgba(245,240,232,.35);text-decoration:none}.landing-footer a:hover{color:var(--amber-light)}
+.lf-links{display:flex;gap:16px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+
+/* ===== RESPONSIVE ===== */
 @media(max-width:640px){
   .landing-hero{padding-top:92px}
-  .logo-box img{height:154px}
+  .logo-box img{height:124px}
   .card{padding:28px 22px}
   .shop-form input{width:100%}
+  .gift-form input,.gift-form select{width:100%;min-width:0}
 }
 
-.landing-footer{text-align:center;padding:24px;background:var(--dark);border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.55);font-size:12px}
-.landing-footer a{color:rgba(255,255,255,.68);text-decoration:none}.landing-footer a:hover{color:#fff}
-.lf-links{display:flex;gap:16px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  [data-reveal]{opacity:1;transform:none}
+  .hero-float,.scroll-indicator{display:none}
+  .typed-cursor{animation:none;opacity:1}
+  .scroll-progress{transition:none}
+}
 </style>
 </head>
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===== HERO ===== -->
 <section class="landing-hero">
+  <!-- Floating botanical SVGs -->
+  <svg class="hero-float" style="top:8%;left:6%;width:60px;height:90px;animation:floatDrift 9s ease-in-out infinite" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 0C30 15 35 35 20 60 5 35 10 15 20 0Z" fill="rgba(200,134,10,.07)"/></svg>
+  <svg class="hero-float" style="top:18%;right:8%;width:50px;height:50px;animation:floatDrift 11s ease-in-out infinite 2s" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5" fill="rgba(200,134,10,.1)"/><circle cx="20" cy="10" r="6" fill="rgba(200,134,10,.05)"/><circle cx="28" cy="16" r="6" fill="rgba(200,134,10,.05)"/><circle cx="26" cy="26" r="6" fill="rgba(200,134,10,.05)"/><circle cx="14" cy="26" r="6" fill="rgba(200,134,10,.05)"/><circle cx="12" cy="16" r="6" fill="rgba(200,134,10,.05)"/></svg>
+  <svg class="hero-float" style="bottom:20%;left:10%;width:45px;height:75px;animation:floatDrift 10s ease-in-out infinite 1s" viewBox="0 0 30 50" aria-hidden="true"><path d="M15 0Q22 8 26 16T15 50Q8 32 4 16T15 0Z" fill="rgba(91,184,224,.05)"/></svg>
+  <svg class="hero-float" style="top:55%;right:5%;width:55px;height:80px;animation:floatDrift 13s ease-in-out infinite 3s" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 0C30 15 35 35 20 60 5 35 10 15 20 0Z" fill="rgba(107,66,38,.06)"/></svg>
+  <svg class="hero-float" style="bottom:10%;right:18%;width:35px;height:35px;animation:floatDrift 8s ease-in-out infinite 4s" viewBox="0 0 30 30" aria-hidden="true"><circle cx="8" cy="8" r="4" fill="rgba(200,134,10,.06)"/><circle cx="22" cy="12" r="3" fill="rgba(200,134,10,.05)"/><circle cx="14" cy="22" r="5" fill="rgba(200,134,10,.04)"/></svg>
+
   <div class="hero-kicker">Wild Atlantic Way Market</div>
   <div class="logo-box"><span class="logo-plaque"><img src="assets/logo/achill-market-logo.jpg" alt="Achill Island Market logo"></span></div>
   <h1>Achill Island <span class="green">Market</span></h1>
   <p class="subtitle">Two locations on Ireland's Wild Atlantic Way</p>
+
+  <div class="typed-wrap" aria-live="polite">
+    <span class="typed-text" id="typedText"></span><span class="typed-cursor" aria-hidden="true">|</span>
+  </div>
+
   <p class="tagline">Local food, handmade crafts, jewellery and artisan goods from producers across Achill Island. Support local — shop Achill.</p>
+
+  <div class="countdown-bar" id="countdownBar">
+    <span class="cd-live"></span>
+    <span id="countdownText">Loading next market…</span>
+  </div>
+
   <div class="hero-pills">
     <span class="pill">🥕 Fresh Produce</span>
     <span class="pill">🪵 Woodwork</span>
@@ -192,7 +378,7 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   </div>
 
   <div class="cards">
-    <a href="cashel.html" class="card card-cashel">
+    <a href="cashel.html" class="card card-cashel" data-reveal>
       <div class="card-emoji">🌿</div>
       <div class="card-label">Original Location</div>
       <h2>Cashel Market</h2>
@@ -207,7 +393,7 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
       <span class="card-cta cta-green">Visit Cashel Market →</span>
     </a>
 
-    <a href="keel.html" class="card card-keel">
+    <a href="keel.html" class="card card-keel" data-reveal style="--reveal-delay:.15s">
       <div class="card-emoji">🌊</div>
       <div class="card-label">Beach Village</div>
       <h2>Keel Market</h2>
@@ -221,28 +407,184 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
       <span class="card-cta cta-ocean">Visit Keel Market →</span>
     </a>
   </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll to explore</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
 </section>
 
-<section class="vendor-preview">
+<!-- ===== STATS COUNTER ===== -->
+<section class="stats-section" data-reveal>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number" data-count="15">0</div>
+      <div class="stat-label">Local Vendors</div>
+    </div>
+    <div class="stat-item" data-reveal style="--reveal-delay:.1s">
+      <div class="stat-number" data-count="2">0</div>
+      <div class="stat-label">Market Locations</div>
+    </div>
+    <div class="stat-item" data-reveal style="--reveal-delay:.2s">
+      <div class="stat-number" data-count="52">0</div>
+      <div class="stat-label">Markets per Year</div>
+    </div>
+    <div class="stat-item" data-reveal style="--reveal-delay:.3s">
+      <div class="stat-number" data-count="2024" data-no-plus="true">0</div>
+      <div class="stat-label">Established</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VENDOR OF THE WEEK ===== -->
+<section class="vendor-spotlight" data-reveal id="vendor-spotlight">
+  <p class="label">Featured This Week</p>
+  <h2 style="font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:32px">Vendor of the Week</h2>
+  <div class="spotlight-card" id="spotlightCard">
+    <div class="spotlight-emoji" id="spotlightEmoji">🪵</div>
+    <span class="spotlight-badge" id="spotlightBadge">Woodwork</span>
+    <h3 id="spotlightName">Achill Wood Crafts</h3>
+    <p id="spotlightDesc">Hand-turned bowls, clocks and cups from locally sourced timber. Real Achill craftsmanship.</p>
+    <a id="spotlightLink" href="vendors/achill-wood-crafts.html" class="btn btn-brown" style="display:inline-flex;align-items:center;gap:8px">Visit Their Stall This Saturday →</a>
+  </div>
+</section>
+
+<!-- ===== VENDOR SHOWCASE ===== -->
+<section class="vendor-preview" data-reveal>
   <p class="label">Meet the Makers</p>
   <h2>Our Vendors</h2>
   <p>Talented local makers, producers and artisans from across Achill Island and Mayo.</p>
   <div class="vendor-scroll">
-    <a href="vendors/achill-wood-crafts.html" class="vp-card"><div class="v-icon">🪵</div><h3>Achill Wood Crafts</h3><p>Hand-turned bowls, clocks &amp; cups</p></a>
-    <a href="vendors/achill-fresh-produce.html" class="vp-card"><div class="v-icon">🥦</div><h3>Achill Fresh Produce</h3><p>Farm-fresh veg, jams &amp; bread</p></a>
-    <a href="vendors/morgans-emerald.html" class="vp-card"><div class="v-icon">💎</div><h3>Morgan's Emerald</h3><p>Bohemian jewellery &amp; charms</p></a>
-    <a href="vendors/celtic-silver-jewellery.html" class="vp-card"><div class="v-icon">☘️</div><h3>Celtic Silver</h3><p>Sterling silver Celtic pieces</p></a>
-    <a href="vendors/rinrobe-natural-skincare.html" class="vp-card"><div class="v-icon">🧼</div><h3>Rinrobe Skincare</h3><p>Natural soap &amp; shampoo bars</p></a>
-    <a href="vendors/handmade-knits-crochet.html" class="vp-card"><div class="v-icon">🧶</div><h3>Handmade Knits</h3><p>Cosy hats, blankets &amp; wraps</p></a>
-    <a href="vendors/thread-sewn.html" class="vp-card"><div class="v-icon">📖</div><h3>Thread Sewn</h3><p>Books, prints &amp; creative works</p></a>
-    <a href="vendors/rainbow-jewellery.html" class="vp-card"><div class="v-icon">🌈</div><h3>Rainbow Jewellery</h3><p>Colourful stainless steel pieces</p></a>
-    <a href="vendors/occasion-cards-gifts.html" class="vp-card"><div class="v-icon">🎴</div><h3>Occasion Cards</h3><p>Handmade greeting cards</p></a>
-    <a href="vendors/mayo-crafts.html" class="vp-card"><div class="v-icon">🎨</div><h3>Mayo Crafts</h3><p>Local handcrafted goods</p></a>
-    <a href="vendors/achill-handmade-jewellery.html" class="vp-card"><div class="v-icon">📿</div><h3>Achill Jewellery</h3><p>Nature-inspired pendants</p></a>
+    <a href="vendors/achill-wood-crafts.html" class="vp-card" data-reveal style="--reveal-delay:.05s"><div class="v-icon">🪵</div><h3>Achill Wood Crafts</h3><p>Hand-turned bowls, clocks &amp; cups</p><span class="vp-badge vp-badge-craft">Woodwork</span></a>
+    <a href="vendors/achill-fresh-produce.html" class="vp-card" data-reveal style="--reveal-delay:.1s"><div class="v-icon">🥦</div><h3>Achill Fresh Produce</h3><p>Farm-fresh veg, jams &amp; bread</p><span class="vp-badge vp-badge-food">Food</span></a>
+    <a href="vendors/morgans-emerald.html" class="vp-card" data-reveal style="--reveal-delay:.15s"><div class="v-icon">💎</div><h3>Morgan's Emerald</h3><p>Bohemian jewellery &amp; charms</p><span class="vp-badge vp-badge-jewellery">Jewellery</span></a>
+    <a href="vendors/celtic-silver-jewellery.html" class="vp-card" data-reveal style="--reveal-delay:.2s"><div class="v-icon">☘️</div><h3>Celtic Silver</h3><p>Sterling silver Celtic pieces</p><span class="vp-badge vp-badge-jewellery">Jewellery</span></a>
+    <a href="vendors/rinrobe-natural-skincare.html" class="vp-card" data-reveal style="--reveal-delay:.25s"><div class="v-icon">🧼</div><h3>Rinrobe Skincare</h3><p>Natural soap &amp; shampoo bars</p><span class="vp-badge vp-badge-skincare">Skincare</span></a>
+    <a href="vendors/handmade-knits-crochet.html" class="vp-card" data-reveal style="--reveal-delay:.3s"><div class="v-icon">🧶</div><h3>Handmade Knits</h3><p>Cosy hats, blankets &amp; wraps</p><span class="vp-badge vp-badge-knitwear">Knitwear</span></a>
+    <a href="vendors/thread-sewn.html" class="vp-card" data-reveal style="--reveal-delay:.35s"><div class="v-icon">📖</div><h3>Thread Sewn</h3><p>Books, prints &amp; creative works</p><span class="vp-badge vp-badge-books">Books</span></a>
+    <a href="vendors/rainbow-jewellery.html" class="vp-card" data-reveal style="--reveal-delay:.4s"><div class="v-icon">🌈</div><h3>Rainbow Jewellery</h3><p>Colourful stainless steel pieces</p><span class="vp-badge vp-badge-jewellery">Jewellery</span></a>
+    <a href="vendors/occasion-cards-gifts.html" class="vp-card" data-reveal style="--reveal-delay:.45s"><div class="v-icon">🎴</div><h3>Occasion Cards</h3><p>Handmade greeting cards</p><span class="vp-badge vp-badge-craft">Crafts</span></a>
+    <a href="vendors/mayo-crafts.html" class="vp-card" data-reveal style="--reveal-delay:.5s"><div class="v-icon">🎨</div><h3>Mayo Crafts</h3><p>Local handcrafted goods</p><span class="vp-badge vp-badge-craft">Crafts</span></a>
+    <a href="vendors/achill-handmade-jewellery.html" class="vp-card" data-reveal style="--reveal-delay:.55s"><div class="v-icon">📿</div><h3>Achill Jewellery</h3><p>Nature-inspired pendants</p><span class="vp-badge vp-badge-jewellery">Jewellery</span></a>
   </div>
 </section>
 
-<section class="join-banner">
+<!-- ===== GIFT BOXES ===== -->
+<section class="gift-section" data-reveal id="gift-boxes">
+  <p class="label">New for 2026</p>
+  <h2>Achill Island Gift Boxes</h2>
+  <p>Curated boxes of local produce and handmade crafts — the taste of Achill, delivered anywhere in Ireland.</p>
+
+  <svg viewBox="0 0 120 110" width="100" class="gift-box-svg" aria-hidden="true">
+    <rect x="18" y="50" width="84" height="52" rx="5" fill="#6B4226"/>
+    <rect x="12" y="36" width="96" height="18" rx="5" fill="#8B5E3C"/>
+    <rect x="52" y="36" width="16" height="66" fill="rgba(200,134,10,.65)" rx="2"/>
+    <rect x="18" y="68" width="84" height="14" fill="rgba(200,134,10,.65)" rx="2"/>
+    <ellipse cx="48" cy="32" rx="14" ry="10" fill="rgba(200,134,10,.75)" transform="rotate(-15 48 32)"/>
+    <ellipse cx="72" cy="32" rx="14" ry="10" fill="rgba(200,134,10,.75)" transform="rotate(15 72 32)"/>
+    <circle cx="60" cy="36" r="6" fill="#C8860A"/>
+  </svg>
+
+  <div class="gift-grid">
+    <div class="gift-card" data-reveal style="--reveal-delay:.05s">
+      <h3>The Taster</h3>
+      <div class="gift-price">€25</div>
+      <ul>
+        <li>Artisan jam or chutney</li>
+        <li>Handmade soap bar</li>
+        <li>Market greeting card</li>
+        <li>Achill Island sticker</li>
+      </ul>
+      <button class="gift-select-btn" onclick="selectGift('taster')">Pre-order →</button>
+    </div>
+    <div class="gift-card featured" data-reveal style="--reveal-delay:.15s">
+      <h3>The Explorer</h3>
+      <div class="gift-price">€50</div>
+      <ul>
+        <li>Everything in The Taster</li>
+        <li>Handcrafted wooden item</li>
+        <li>Natural skincare set</li>
+        <li>Local honey jar</li>
+        <li>Hand-knitted accessory</li>
+      </ul>
+      <button class="gift-select-btn" onclick="selectGift('explorer')">Pre-order →</button>
+    </div>
+    <div class="gift-card" data-reveal style="--reveal-delay:.25s">
+      <h3>The Full Achill</h3>
+      <div class="gift-price">€100</div>
+      <ul>
+        <li>Everything in The Explorer</li>
+        <li>Sterling silver Celtic piece</li>
+        <li>Premium produce hamper</li>
+        <li>Hand-sewn book or print</li>
+        <li>Free delivery in Ireland</li>
+      </ul>
+      <button class="gift-select-btn" onclick="selectGift('full-achill')">Pre-order →</button>
+    </div>
+  </div>
+
+  <form class="gift-form" id="giftBoxForm">
+    <select name="tier" id="giftTierSelect" required>
+      <option value="">Choose your gift box…</option>
+      <option value="taster">The Taster — €25</option>
+      <option value="explorer">The Explorer — €50</option>
+      <option value="full-achill">The Full Achill — €100</option>
+    </select>
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Email address" required>
+    <button type="submit" class="btn btn-brown">Pre-order Gift Box</button>
+  </form>
+</section>
+
+<!-- ===== MARKET DAY GUIDE ===== -->
+<section class="guide-section" data-reveal id="market-guide">
+  <p class="label">Plan Your Visit</p>
+  <h2>Your First Market Day</h2>
+  <p>Everything you need to know before your first visit to Achill Island Market.</p>
+  <div class="guide-grid">
+    <div class="guide-card" data-reveal style="--reveal-delay:.05s">
+      <div class="gc-icon">🅿️</div>
+      <h3>Parking</h3>
+      <p>Cashel: free car park beside Ted's Bar. Keel: public car park at Keel Beach, two-minute walk. Both have disabled access parking.</p>
+    </div>
+    <div class="guide-card" data-reveal style="--reveal-delay:.1s">
+      <div class="gc-icon">⏰</div>
+      <h3>Best Time to Arrive</h3>
+      <p>Gates open at 10am. For the best selection, arrive before 11am. The lunch rush at noon brings the liveliest atmosphere.</p>
+    </div>
+    <div class="guide-card" data-reveal style="--reveal-delay:.15s">
+      <div class="gc-icon">🎒</div>
+      <h3>What to Bring</h3>
+      <p>Reusable bags, cash (some vendors are card-only, some cash-only), layers for the weather, and an appetite for local food.</p>
+    </div>
+    <div class="guide-card" data-reveal style="--reveal-delay:.2s">
+      <div class="gc-icon">📍</div>
+      <h3>Finding Us</h3>
+      <p>Cashel: Ted's Bar on the R319 — look for the market flags. Keel: at the heart of Keel village, beside the beach car park.</p>
+    </div>
+    <div class="guide-card" data-reveal style="--reveal-delay:.25s">
+      <div class="gc-icon">👨‍👩‍👧‍👦</div>
+      <h3>Family Friendly</h3>
+      <p>Buggy-accessible paths, kids love the craft stalls, and there's always treats and hot chocolate. A proper family morning out.</p>
+    </div>
+    <div class="guide-card" data-reveal style="--reveal-delay:.3s">
+      <div class="gc-icon">🐕</div>
+      <h3>Pet Policy</h3>
+      <p>Well-behaved dogs are welcome on a lead. Water bowls available. Please clean up after your pet — bags provided at the entrance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GAME ZONE ===== -->
+<section class="game-zone-mini" data-reveal aria-label="Game Zone">
+  <div class="gz-label">While you browse</div>
+  <h2>🎮 Game Zone</h2>
+  <p>Try AI quizzes, icebreakers and quick games themed for the market — fun on your phone before or after market day.</p>
+  <a href="https://exposuresolutions.ie/games-hub.html?venue=achill-market" target="_blank" rel="noopener">Open Game Zone →</a>
+</section>
+
+<!-- ===== JOIN BANNER ===== -->
+<section class="join-banner" data-reveal>
   <h2>Sell at Achill Island Market</h2>
   <p>Got a product to sell? We're looking for local food producers, craft makers and artisans to join us at Cashel and Keel. Season, premium and drop-in stall options are now available.</p>
   <div class="join-btns">
@@ -252,21 +594,23 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   </div>
 </section>
 
-<section class="revenue-strip">
+<!-- ===== VENDOR PLANS ===== -->
+<section class="revenue-strip" data-reveal>
   <div style="text-align:center;max-width:740px;margin:0 auto 24px">
     <p class="label">Now Live</p>
     <h2 style="font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);margin-bottom:8px">Vendor Plans &amp; Fee Tiers</h2>
     <p style="color:var(--muted)">Choose the setup that fits your business. Every plan includes your vendor profile on the market site and priority weekly mentions.</p>
   </div>
   <div class="revenue-grid">
-    <article class="revenue-card"><h3>Season Pass</h3><p><strong>EUR150</strong> for full season access. Best value for regular vendors.</p></article>
-    <article class="revenue-card"><h3>Drop-In Stall</h3><p><strong>EUR20</strong> per day. Ideal for occasional attendance and test runs.</p></article>
-    <article class="revenue-card"><h3>Premium Corner</h3><p><strong>EUR200</strong> for season premium placement at high-footfall spots.</p></article>
-    <article class="revenue-card"><h3>Early Bird</h3><p><strong>EUR120</strong> season rate for early confirmations before seasonal cutoff.</p></article>
+    <article class="revenue-card" data-reveal style="--reveal-delay:.05s"><h3>Season Pass</h3><p><strong>EUR150</strong> for full season access. Best value for regular vendors.</p></article>
+    <article class="revenue-card" data-reveal style="--reveal-delay:.1s"><h3>Drop-In Stall</h3><p><strong>EUR20</strong> per day. Ideal for occasional attendance and test runs.</p></article>
+    <article class="revenue-card" data-reveal style="--reveal-delay:.15s"><h3>Premium Corner</h3><p><strong>EUR200</strong> for season premium placement at high-footfall spots.</p></article>
+    <article class="revenue-card" data-reveal style="--reveal-delay:.2s"><h3>Early Bird</h3><p><strong>EUR120</strong> season rate for early confirmations before seasonal cutoff.</p></article>
   </div>
 </section>
 
-<section class="shop-strip" id="shop-prelaunch">
+<!-- ===== SHOP WAITLIST ===== -->
+<section class="shop-strip" data-reveal id="shop-prelaunch">
   <p class="label">Coming Next</p>
   <h2>Online Shop &amp; Achill Gift Boxes</h2>
   <p>We're launching online ordering, curated gift boxes, and nationwide shipping options. Join the waitlist for first access and launch offers.</p>
@@ -277,7 +621,55 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   </form>
 </section>
 
-<section class="sponsor-strip" id="sponsors">
+<!-- ===== COMMUNITY BOARD ===== -->
+<section class="community-section" data-reveal id="community">
+  <p class="label" style="color:var(--amber-light)">Beyond the Market</p>
+  <h2>What's On in Achill</h2>
+  <p>The island is alive with things to do. Here's what's happening around Achill this week.</p>
+  <div class="community-grid">
+    <a href="https://www.tedsachill.ie" target="_blank" rel="noopener" class="comm-card" data-reveal style="--reveal-delay:.05s">
+      <div class="cc-icon">🍺</div>
+      <h3>Ted's Bar</h3>
+      <p>Market venue, pub grub &amp; live music in Cashel village.</p>
+    </a>
+    <a href="https://www.facebook.com/GieltysClewBayHotel" target="_blank" rel="noopener" class="comm-card" data-reveal style="--reveal-delay:.1s">
+      <div class="cc-icon">🎵</div>
+      <h3>Gielty's Clew Bay</h3>
+      <p>Live music sessions, traditional Irish nights &amp; events.</p>
+    </a>
+    <a href="https://achilltourism.com" target="_blank" rel="noopener" class="comm-card" data-reveal style="--reveal-delay:.15s">
+      <div class="cc-icon">🏔️</div>
+      <h3>Achill Walks &amp; Trails</h3>
+      <p>Guided walks, Croaghaun cliffs, Slievemore &amp; Keem Bay.</p>
+    </a>
+    <a href="https://www.achilloutdoor.com" target="_blank" rel="noopener" class="comm-card" data-reveal style="--reveal-delay:.2s">
+      <div class="cc-icon">🏄</div>
+      <h3>Outdoor Adventures</h3>
+      <p>Surfing, kayaking, coasteering &amp; water sports for all ages.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ===== INSTAGRAM GALLERY ===== -->
+<section class="insta-section" data-reveal id="gallery">
+  <p class="label">From the Market</p>
+  <h2>Market Moments</h2>
+  <p>A taste of what market day looks like on Achill Island.</p>
+  <div class="insta-grid">
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.05s;background:linear-gradient(135deg,#8B5E3C,#C8860A)"><span>🥕</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.1s;background:linear-gradient(135deg,#1a4d6e,#5BB8E0)"><span>🌊</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.15s;background:linear-gradient(135deg,#6B4226,#9B7040)"><span>🪵</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.2s;background:linear-gradient(135deg,#3a6b7c,#8BCEE2)"><span>💎</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.25s;background:linear-gradient(135deg,#2C1810,#6B4226)"><span>🧶</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.3s;background:linear-gradient(135deg,#5BB8E0,#3a6b7c)"><span>☕</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.35s;background:linear-gradient(135deg,#C8860A,#8B5E3C)"><span>🌿</span></div>
+    <div class="insta-placeholder" data-reveal style="--reveal-delay:.4s;background:linear-gradient(135deg,#193142,#3a6b7c)"><span>🎨</span></div>
+  </div>
+  <a href="https://www.instagram.com/achillislandmarket" target="_blank" rel="noopener" class="btn btn-brown" style="margin-top:28px;display:inline-flex;align-items:center;gap:8px">Follow @achillislandmarket →</a>
+</section>
+
+<!-- ===== SPONSORSHIP ===== -->
+<section class="sponsor-strip" data-reveal id="sponsors">
   <p class="label" style="color:var(--amber-light)">Partner With Us</p>
   <h2>Sponsorship Now Open</h2>
   <p>Market Day Sponsors, website placements, and newsletter sponsor slots are open for local businesses that want consistent visibility with Achill market traffic.</p>
@@ -290,7 +682,8 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   <a href="mailto:hello@exposuresolutions.me?subject=Achill%20Market%20Sponsorship" class="btn btn-amber">Request Sponsor Pack</a>
 </section>
 
-<section class="newsletter" id="newsletter">
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter" data-reveal id="newsletter">
   <div class="inner">
     <h2>Never Miss a Market Day</h2>
     <p>Get the weekly vendor lineup, special events and market news straight to your inbox.</p>
@@ -302,7 +695,8 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   </div>
 </section>
 
-<div class="teds-bridge">
+<!-- ===== TED'S BAR BRIDGE ===== -->
+<div class="teds-bridge" data-reveal>
   <div class="teds-bridge-inner">
     <div class="teds-bridge-text">
       <div class="teds-bridge-label">Market Venue Partner</div>
@@ -313,11 +707,15 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   </div>
 </div>
 
+<!-- ===== FOOTER ===== -->
 <footer class="landing-footer">
   <div class="lf-links">
     <a href="cashel.html">Cashel Market</a>
     <a href="keel.html">Keel Market</a>
+    <a href="https://exposuresolutions.ie/games-hub.html?venue=achill-market" target="_blank" rel="noopener">Game Zone</a>
     <a href="cashel.html#vendors">All Vendors</a>
+    <a href="#gift-boxes">Gift Boxes</a>
+    <a href="#market-guide">Visitor Guide</a>
     <a href="https://www.tedsachill.ie" target="_blank" rel="noopener">Ted's Bar</a>
     <a href="https://www.facebook.com/achillislandmarket" target="_blank" rel="noopener">Facebook</a>
     <a href="https://www.instagram.com/achillislandmarket" target="_blank" rel="noopener">Instagram</a>
@@ -326,16 +724,200 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   <span>Built by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></span>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Chatbot widget -->
+<script src="https://dodealswithlee.onrender.com/assets/es-chatbot-widget.js" data-client="achill-market"></script>
 
 <script>
 const MARKET_API='https://dodealswithlee.onrender.com/api/achill-market';
-function showToast(m,ok){const t=document.getElementById('toast');t.textContent=m;t.style.borderColor=ok?'#4CAF50':'#f44336';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500)}
-document.getElementById('nlForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target,b=f.querySelector('button'),o=b.textContent;b.textContent='Sending...';b.disabled=true;const d=Object.fromEntries(new FormData(f));fetch(MARKET_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form_type:'newsletter_signup',name:d.name,email:d.email,source:'Landing Page'})}).then(()=>{showToast('✅ Subscribed!',true);f.reset()}).catch(()=>showToast('❌ Error — try again',false)).finally(()=>{b.textContent=o;b.disabled=false})});
-document.getElementById('shopWaitlistForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target,b=f.querySelector('button'),o=b.textContent;b.textContent='Joining...';b.disabled=true;const d=Object.fromEntries(new FormData(f));fetch(MARKET_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form_type:'shop_waitlist',name:d.name,email:d.email,source:'Landing Page Shop Waitlist'})}).then(()=>{showToast('✅ You are on the waitlist!',true);f.reset()}).catch(()=>showToast('❌ Error — try again',false)).finally(()=>{b.textContent=o;b.disabled=false})});
+const CLIENT_FORM_API='https://dodealswithlee.onrender.com/api/client-form';
+const reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ===== TOAST ===== */
+function showToast(m,ok){const t=document.getElementById('toast');t.textContent=m;t.dataset.state=ok?'ok':'err';t.style.borderColor=ok?'#4CAF50':'#f44336';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500)}
+function postForm(url,body){return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json().catch(function(){return{}});})}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+const progressBar=document.getElementById('scrollProgress');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  progressBar.style.width=pct+'%';
+},{passive:true});
+
+/* ===== REVEAL ANIMATIONS ===== */
+(function(){
+  const els=document.querySelectorAll('[data-reveal]');
+  if(reducedMotion){els.forEach(e=>e.classList.add('revealed'));return}
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const delay=getComputedStyle(entry.target).getPropertyValue('--reveal-delay');
+        if(delay&&delay.trim()!=='0s'){
+          entry.target.style.transitionDelay=delay.trim();
+        }
+        entry.target.classList.add('revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>obs.observe(el));
+})();
+
+/* ===== TYPED TEXT ===== */
+(function(){
+  const phrases=['Local Food','Handmade Crafts','Community Spirit','Fresh from Achill'];
+  const el=document.getElementById('typedText');
+  if(!el)return;
+  if(reducedMotion){el.textContent=phrases[0];return}
+  let phraseIdx=0,charIdx=0,deleting=false;
+  function tick(){
+    const current=phrases[phraseIdx];
+    if(!deleting){
+      el.textContent=current.slice(0,charIdx+1);
+      charIdx++;
+      if(charIdx===current.length){setTimeout(()=>{deleting=true;tick()},2200);return}
+      setTimeout(tick,65+Math.random()*40);
+    }else{
+      el.textContent=current.slice(0,charIdx);
+      charIdx--;
+      if(charIdx<0){deleting=false;charIdx=0;phraseIdx=(phraseIdx+1)%phrases.length;setTimeout(tick,400);return}
+      setTimeout(tick,35+Math.random()*20);
+    }
+  }
+  setTimeout(tick,800);
+})();
+
+/* ===== COUNTDOWN TIMER ===== */
+(function(){
+  const textEl=document.getElementById('countdownText');
+  if(!textEl)return;
+  function getNext(){
+    const now=new Date();
+    const day=now.getDay(),hr=now.getHours();
+    let dW=(3-day+7)%7,dS=(6-day+7)%7;
+    if(dW===0&&hr>=16)dW=7;
+    if(dS===0&&hr>=16)dS=7;
+    const wDate=new Date(now);wDate.setDate(wDate.getDate()+dW);wDate.setHours(10,0,0,0);
+    const sDate=new Date(now);sDate.setDate(sDate.getDate()+dS);sDate.setHours(10,0,0,0);
+    if(wDate<=sDate)return{date:wDate,name:'Wednesday',loc:'Cashel at Ted\u2019s Bar'};
+    return{date:sDate,name:'Saturday',loc:'Keel Beach Village'};
+  }
+  function update(){
+    const m=getNext(),now=new Date(),diff=m.date-now;
+    if(diff<=0&&diff>-6*3600000){
+      textEl.innerHTML='<strong>Market Day!</strong> '+m.name+' at '+m.loc+' \u2014 open now until 4pm';
+      return;
+    }
+    const days=Math.floor(diff/864e5),hrs=Math.floor((diff%864e5)/36e5),mins=Math.floor((diff%36e5)/6e4);
+    let parts=[];
+    if(days>0)parts.push(days+(days===1?' day':' days'));
+    if(hrs>0)parts.push(hrs+(hrs===1?' hour':' hours'));
+    if(days===0&&mins>0)parts.push(mins+(mins===1?' min':' mins'));
+    textEl.innerHTML='Next Market: <strong>'+m.name+'</strong> at '+m.loc+' \u2014 in '+parts.join(', ');
+  }
+  update();setInterval(update,60000);
+})();
+
+/* ===== STATS COUNTER ===== */
+(function(){
+  const counters=document.querySelectorAll('[data-count]');
+  if(reducedMotion){counters.forEach(c=>{const t=+c.dataset.count;c.textContent=c.dataset.noPlus?t:t+'+'});return}
+  let animated=false;
+  const obs=new IntersectionObserver((entries)=>{
+    if(animated)return;
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        animated=true;
+        counters.forEach(c=>{
+          const target=+c.dataset.count,noPlus=c.dataset.noPlus;
+          const duration=target>100?1800:1200;
+          const start=performance.now();
+          function step(ts){
+            const progress=Math.min((ts-start)/duration,1);
+            const ease=1-Math.pow(1-progress,3);
+            const val=Math.round(ease*target);
+            c.textContent=noPlus?val:val+'+';
+            if(progress<1)requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+        obs.disconnect();
+      }
+    });
+  },{threshold:.3});
+  const sec=document.querySelector('.stats-section');
+  if(sec)obs.observe(sec);
+})();
+
+/* ===== VENDOR OF THE WEEK ===== */
+(function(){
+  const vendors=[
+    {name:'Achill Wood Crafts',emoji:'\u{1FAB5}',desc:'Hand-turned bowls, clocks and cups from locally sourced Achill timber. Real island craftsmanship you can hold.',cat:'Woodwork',link:'vendors/achill-wood-crafts.html'},
+    {name:'Morgan\u2019s Emerald',emoji:'\uD83D\uDC8E',desc:'Bohemian jewellery and nature-inspired charms. Each piece tells a story of the Wild Atlantic Way.',cat:'Jewellery',link:'vendors/morgans-emerald.html'},
+    {name:'Achill Fresh Produce',emoji:'\uD83E\uDD66',desc:'Farm-fresh vegetables, homemade jams and artisan bread. Straight from Achill soil to your table.',cat:'Food',link:'vendors/achill-fresh-produce.html'},
+    {name:'Celtic Silver',emoji:'\u2618\uFE0F',desc:'Handcrafted sterling silver jewellery with authentic Celtic knotwork designs.',cat:'Jewellery',link:'vendors/celtic-silver-jewellery.html'},
+    {name:'Rinrobe Skincare',emoji:'\uD83E\uDDFC',desc:'Natural handmade soaps, shampoo bars and skincare. Made with wild Achill botanicals.',cat:'Skincare',link:'vendors/rinrobe-natural-skincare.html'},
+    {name:'Handmade Knits & Crochet',emoji:'\uD83E\uDDF6',desc:'Cosy hand-knitted hats, blankets, scarves and wraps. Perfect for those Atlantic winds.',cat:'Knitwear',link:'vendors/handmade-knits-crochet.html'},
+    {name:'Thread Sewn',emoji:'\uD83D\uDCD6',desc:'Unique handmade books, prints and creative works. Beautiful pieces for readers and art lovers.',cat:'Books & Prints',link:'vendors/thread-sewn.html'}
+  ];
+  const idx=new Date().getDay();
+  const v=vendors[idx%vendors.length];
+  const isWed=idx===3,isSat=idx===6;
+  const stallDay=isSat?'This Saturday':isWed?'Today at Cashel':'This Saturday';
+  document.getElementById('spotlightEmoji').textContent=v.emoji;
+  document.getElementById('spotlightBadge').textContent=v.cat;
+  document.getElementById('spotlightName').textContent=v.name;
+  document.getElementById('spotlightDesc').textContent=v.desc;
+  const link=document.getElementById('spotlightLink');
+  link.href=v.link;
+  link.textContent='Visit Their Stall '+stallDay+' \u2192';
+})();
+
+/* ===== GIFT BOX FORM ===== */
+function selectGift(tier){
+  const sel=document.getElementById('giftTierSelect');
+  if(sel){sel.value=tier;sel.scrollIntoView({behavior:'smooth',block:'center'})}
+}
+document.getElementById('giftBoxForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const f=e.target,b=f.querySelector('button'),o=b.textContent;
+  b.textContent='Sending\u2026';b.disabled=true;
+  const d=Object.fromEntries(new FormData(f));
+  postForm(CLIENT_FORM_API,{
+    client:'achill-market',form_type:'gift-box',tier:d.tier,name:d.name,email:d.email,source:'Landing Page Gift Box'
+  }).then(()=>{showToast('\u2705 Gift box pre-order received!',true);f.reset();f.classList.add('form-success')})
+  .catch(()=>showToast('\u274C Error \u2014 try again',false))
+  .finally(()=>{b.textContent=o;b.disabled=false;setTimeout(()=>f.classList.remove('form-success'),600)});
+});
+
+/* ===== NEWSLETTER FORM ===== */
+document.getElementById('nlForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const f=e.target,b=f.querySelector('button'),o=b.textContent;
+  b.textContent='Sending\u2026';b.disabled=true;
+  const d=Object.fromEntries(new FormData(f));
+  postForm(MARKET_API,{
+    form_type:'newsletter_signup',name:d.name,email:d.email,source:'Landing Page'
+  }).then(()=>{showToast('\u2705 Subscribed!',true);f.reset();f.classList.add('form-success')})
+  .catch(()=>showToast('\u274C Error \u2014 try again',false))
+  .finally(()=>{b.textContent=o;b.disabled=false;setTimeout(()=>f.classList.remove('form-success'),600)});
+});
+
+/* ===== SHOP WAITLIST FORM ===== */
+document.getElementById('shopWaitlistForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const f=e.target,b=f.querySelector('button'),o=b.textContent;
+  b.textContent='Joining\u2026';b.disabled=true;
+  const d=Object.fromEntries(new FormData(f));
+  postForm(MARKET_API,{
+    form_type:'shop_waitlist',name:d.name,email:d.email,source:'Landing Page Shop Waitlist'
+  }).then(()=>{showToast('\u2705 You are on the waitlist!',true);f.reset();f.classList.add('form-success')})
+  .catch(()=>showToast('\u274C Error \u2014 try again',false))
+  .finally(()=>{b.textContent=o;b.disabled=false;setTimeout(()=>f.classList.remove('form-success'),600)});
+});
 </script>
-<script>window.ACHILL_CHAT_WIDGET_ID = "";</script>
-<script src="assets/js/achill-ai-agent.js" defer></script>
 
 </body>
 </html>
