@@ -506,3 +506,19 @@ footer h4 { color:#fff; font-size:12px; font-weight:700; text-transform:uppercas
   body { background:#fff; color:#000 }
   .hero { min-height:auto; padding:40px 24px }
 }
+
+/* ── FOCUS & MOTION (a11y) ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ocean);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-progress { transition: none !important; }
+  [data-reveal] { transition: none !important; }
+  .fade-in, .slide-up { transition: none !important; }
+}
