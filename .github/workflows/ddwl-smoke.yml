@@ -1,0 +1,31 @@
+# Public smoke tests for https://dodealswithlee.onrender.com — no secrets required.
+# Telegram step is skipped in CI (--skip-telegram).
+
+name: DDWL smoke
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 6 hours UTC
+    - cron: '0 */6 * * *'
+  push:
+    branches: [main, es-chat-api-deploy-20260328]
+    paths:
+      - 'scripts/ddwl-ops.mjs'
+      - '.github/workflows/ddwl-smoke.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Health + ask-lilly (Kimi path)
+        run: node scripts/ddwl-ops.mjs verify --skip-telegram --base-url https://dodealswithlee.onrender.com

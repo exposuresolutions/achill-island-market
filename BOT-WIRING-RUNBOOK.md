@@ -111,5 +111,6 @@ You still create Moonshot and Telegram secrets yourself; these tools push to Ren
 - **PowerShell:** `scripts/ddwl-ops.ps1` — `-Action Verify` (health + ask-lilly + Telegram), `PushEnv`, `Deploy`, `All`. Optional `-EnvFile .\scripts\ddwl.local.env` after copying `scripts/ddwl.local.env.example`.
 - **Node:** `node scripts/ddwl-ops.mjs verify` — same smoke tests; `push-env`, `deploy`, `all` with env vars set.
 - **n8n:** Import workflows under [`ops/n8n/`](ops/n8n/README.md) — smoke test (no secrets) and Render deploy trigger.
+- **GitHub Actions:** [`.github/workflows/ddwl-smoke.yml`](.github/workflows/ddwl-smoke.yml) runs `node scripts/ddwl-ops.mjs verify` on a schedule (no secrets). Enable Actions on the repo; use **Actions → DDWL smoke → Run workflow** for a manual run.
 
 **API reference:** [Render public API](https://api-docs.render.com/reference).
