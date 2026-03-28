@@ -111,9 +111,9 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:120px 24px 88px;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(200,134,10,.22) 0%, transparent 48%),
-    radial-gradient(ellipse at 15% 90%, rgba(107,66,38,.12) 0%, transparent 55%),
-    linear-gradient(150deg,#140a07 0%,#2C1810 54%,#160c08 100%);
+    radial-gradient(ellipse at 50% -10%, rgba(219,154,46,.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 90%, rgba(45,104,132,.1) 0%, transparent 55%),
+    linear-gradient(155deg,#f7fbff 0%,#e9f2f9 55%,#f5f9fd 100%);
   position:relative;overflow:hidden;
 }
 .landing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(245,240,232,.04) 0%,transparent 55%);pointer-events:none}
@@ -162,18 +162,18 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
 .card{
   border-radius:22px;padding:36px 30px;text-align:left;
   transition:transform .3s ease,box-shadow .3s ease;
-  text-decoration:none;color:#fff;position:relative;overflow:hidden;
+  text-decoration:none;color:var(--text);position:relative;overflow:hidden;
   display:flex;flex-direction:column;gap:14px;
 }
-.card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.card-cashel{background:linear-gradient(150deg,#2C1810,#150c08);border:1px solid rgba(200,134,10,.42)}
-.card-keel{background:linear-gradient(150deg,#193142,#0d1f32);border:1px solid rgba(91,184,224,.48)}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 38px rgba(29,59,76,.14)}
+.card-cashel{background:linear-gradient(150deg,#ffffff,#eef4f9);border:1px solid rgba(45,104,132,.2)}
+.card-keel{background:linear-gradient(150deg,#f8fcff,#e6f1f8);border:1px solid rgba(61,132,163,.28)}
 .card-emoji{font-size:48px}
 .card-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.78}
 .card h2{font-family:var(--font-display);font-size:26px;font-weight:800;line-height:1.2}
-.card p{color:rgba(255,255,255,.78);font-size:15px;line-height:1.65}
+.card p{color:var(--muted);font-size:15px;line-height:1.65}
 .card-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.badge-live{background:rgba(107,66,38,.3);border:1px solid rgba(200,134,10,.3);color:var(--amber-light)}
+.badge-live{background:rgba(43,85,105,.1);border:1px solid rgba(43,85,105,.2);color:var(--brown)}
 .badge-coming{background:rgba(200,134,10,.2);border:1px solid rgba(200,134,10,.4);color:#e09b12}
 .card-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;margin-top:auto;align-self:flex-start;transition:all .2s;box-shadow:0 8px 18px rgba(0,0,0,.22)}
 .cta-green{background:var(--brown);color:var(--cream)}.cta-green:hover{background:var(--brown-light);box-shadow:0 0 30px rgba(107,66,38,.25)}
@@ -321,7 +321,7 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
 /* ===== RESPONSIVE ===== */
 @media(max-width:640px){
   .landing-hero{padding-top:92px}
-  .logo-box img{height:124px}
+  .logo-box img{height:154px}
   .card{padding:28px 22px}
   .shop-form input{width:100%}
   .gift-form input,.gift-form select{width:100%;min-width:0}
@@ -918,6 +918,8 @@ document.getElementById('shopWaitlistForm').addEventListener('submit',function(e
   .finally(()=>{b.textContent=o;b.disabled=false;setTimeout(()=>f.classList.remove('form-success'),600)});
 });
 </script>
+<script>window.ACHILL_CHAT_WIDGET_ID = "";</script>
+<script src="assets/js/achill-ai-agent.js" defer></script>
 
 </body>
 </html>
