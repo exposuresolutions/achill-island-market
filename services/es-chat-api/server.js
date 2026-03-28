@@ -120,7 +120,7 @@ const ALLOWED_ORIGINS = [
   'https://fantasyminigolf.com', 'https://www.fantasyminigolf.com',
   'https://laganasflavors.com', 'https://www.laganasflavors.com',
   'https://achillquest.com', 'https://achillcoaches.com',
-  'https://gieltyscafe.com', 'https://exposuresolutions.ie',
+  'https://gieltyscafe.com', 'https://exposuresolutions.me',
   'http://localhost:8080', 'http://127.0.0.1:8080',
   'http://localhost:3000', 'http://localhost:5500',
   'http://localhost:9876', 'http://127.0.0.1:9876'
