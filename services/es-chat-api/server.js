@@ -15,22 +15,46 @@ const TG_API = TG_TOKEN ? `https://api.telegram.org/bot${TG_TOKEN}` : null;
 
 const pendingQuestions = new Map();
 
+/** Rolling Kimi conversation for admin Telegram (system + last turns). */
+const TG_CONVO_MAX = 18;
+let tgConvoMessages = [
+  {
+    role: 'system',
+    content: `You are Lilly, the Exposure Solutions ops assistant on Telegram. The operator is Lee. Be concise, warm, and practical. You help with deployments, client sites (Achill, Zante), n8n, Render, and quick decisions. If you are unsure, say so. Keep replies under 140 words unless Lee asks for detail.`
+  }
+];
+
+function tgAdminMatches(chatId) {
+  if (!TG_ADMIN) return false;
+  return String(chatId).trim() === String(TG_ADMIN).trim();
+}
+
 async function tgSend(text, opts = {}) {
   if (!TG_API || !TG_ADMIN) return null;
-  try {
-    const body = {
-      chat_id: TG_ADMIN,
-      text,
-      parse_mode: opts.parse_mode || 'Markdown',
-      ...(opts.reply_markup && { reply_markup: opts.reply_markup })
-    };
+  const wantMarkdown = opts.markdown === true;
+  const base = {
+    chat_id: TG_ADMIN,
+    text: String(text).slice(0, 4090),
+    ...(opts.reply_markup && { reply_markup: opts.reply_markup })
+  };
+  const tryOnce = async (payload) => {
     const r = await fetch(`${TG_API}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(payload)
     });
-    const data = await r.json();
-    return data.ok ? data.result.message_id : null;
+    return r.json();
+  };
+  try {
+    let data = await tryOnce(wantMarkdown ? { ...base, parse_mode: 'Markdown' } : base);
+    if (!data.ok && wantMarkdown && /parse|entities/i.test(String(data.description || ''))) {
+      data = await tryOnce(base);
+    }
+    if (!data.ok) {
+      console.error('[TG] sendMessage:', data.description || data);
+      return null;
+    }
+    return data.result.message_id;
   } catch (e) {
     console.error('[TG] Send failed:', e.message);
     return null;
@@ -43,9 +67,10 @@ async function tgAsk(question, options = []) {
     ? { inline_keyboard: [options.map((o, i) => ({ text: o, callback_data: `answer_${id}_${i}` }))] }
     : undefined;
 
-  const msgId = await tgSend(`❓ *Question from ES System*\n\n${question}${options.length ? '\n\n_Tap a button or type your reply:_' : '\n\n_Reply to this message:_'}`, {
-    reply_markup: keyboard
-  });
+  const msgId = await tgSend(
+    `❓ *Question from ES System*\n\n${String(question).slice(0, 3500)}${options.length ? '\n\n_Tap a button or type your reply:_' : '\n\n_Reply to this message:_'}`,
+    { reply_markup: keyboard, markdown: true }
+  );
 
   if (!msgId) return null;
 
@@ -63,7 +88,7 @@ async function tgNotify(category, message) {
     form: '📋', error: '🚨', lead: '💰', alert: '⚠️',
     info: 'ℹ️', game: '🎮', site: '🌐', deploy: '🚀'
   };
-  return tgSend(`${icons[category] || '📌'} *${category.toUpperCase()}*\n\n${message}`);
+  return tgSend(`${icons[category] || '📌'} *${category.toUpperCase()}*\n\n${message}`, { markdown: true });
 }
 
 const ALLOWED_ORIGINS = [
@@ -191,6 +216,33 @@ async function askKimi(systemPrompt, userPrompt, opts = {}) {
   return data.choices[0].message.content;
 }
 
+async function askKimiMessages(messages, opts = {}) {
+  const { temperature = 0.7, max_tokens = 700 } = opts;
+  if (!KIMI_API_KEY) throw new Error('KIMI_API_KEY not set');
+  const response = await fetch(KIMI_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${KIMI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: KIMI_MODEL,
+      messages,
+      temperature,
+      max_tokens
+    })
+  });
+  if (!response.ok) {
+    let errText = '';
+    try {
+      errText = await response.text();
+    } catch (e) { /* ignore */ }
+    throw new Error(`Kimi ${response.status} ${errText.slice(0, 200)}`);
+  }
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+
 const SUPPORTED_CLIENT_KEYS = Object.keys(CLIENTS);
 
 // ========== HEALTH ==========
@@ -199,7 +251,7 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'es-chat-api',
-    version: '3.0.1',
+    version: '3.0.2',
     uptime: process.uptime(),
     requests: requestCount,
     kimi: KIMI_API_KEY ? 'configured' : 'MISSING',
@@ -211,10 +263,10 @@ app.get('/health', (req, res) => {
 app.get('/api/status', (req, res) => {
   res.json({
     status: 'ok',
-    version: '3.0.1',
+    version: '3.0.2',
     clients: SUPPORTED_CLIENT_KEYS,
     kimi: KIMI_API_KEY ? 'configured' : 'not-configured',
-    features: ['chat', 'forms', 'trivia', 'icebreakers', 'stories', 'challenges'],
+    features: ['chat', 'forms', 'trivia', 'icebreakers', 'stories', 'challenges', 'telegram-kimi-chat'],
     uptime: process.uptime()
   });
 });
@@ -353,7 +405,7 @@ async function handleClientForm(req, res) {
       submission.message && `💬 _${submission.message.slice(0, 200)}_`,
       aiAnalysis && `\n🤖 AI: ${aiAnalysis.summary}\n⚡ Action: ${aiAnalysis.action}`
     ].filter(Boolean).join('\n');
-    tgSend(lines).catch(() => {});
+    tgSend(lines, { markdown: true }).catch(() => {});
   }
 
   res.json({
@@ -621,37 +673,66 @@ function getFallbackChallenges() {
 }
 
 // ========== TELEGRAM WEBHOOK ==========
+// Note: Telegram allows one webhook URL per bot. If n8n "Telegram Trigger" is active, it steals
+// updates from this endpoint — disable that workflow or use a separate bot token for n8n.
+
+async function handleTgConversation(userText) {
+  if (!KIMI_API_KEY) {
+    await tgSend('Kimi is not configured. Add KIMI_API_KEY on Render.');
+    return;
+  }
+  tgConvoMessages.push({ role: 'user', content: userText });
+  while (tgConvoMessages.length > TG_CONVO_MAX) {
+    const sys = tgConvoMessages[0];
+    tgConvoMessages = [sys, ...tgConvoMessages.slice(-(TG_CONVO_MAX - 1))];
+  }
+  try {
+    const reply = await askKimiMessages(tgConvoMessages, { max_tokens: 900 });
+    tgConvoMessages.push({ role: 'assistant', content: reply });
+    while (tgConvoMessages.length > TG_CONVO_MAX) {
+      const sys = tgConvoMessages[0];
+      tgConvoMessages = [sys, ...tgConvoMessages.slice(-(TG_CONVO_MAX - 1))];
+    }
+    await tgSend(`🤖 ${reply}`);
+  } catch (e) {
+    console.error('[TG] Kimi conversation:', e.message);
+    tgConvoMessages.pop();
+    await tgSend(`❌ Kimi error: ${e.message}`);
+  }
+}
 
 app.post('/api/telegram/webhook', async (req, res) => {
   res.sendStatus(200);
   const update = req.body;
 
   if (update.callback_query) {
-    const data = update.callback_query.data;
-    const match = data.match(/^answer_(\w+)_(\d+)$/);
+    const data = String(update.callback_query.data || '');
+    const match = data.match(/^answer_([a-z0-9]+)_(\d+)$/i);
     if (match) {
       const [, qId, optIdx] = match;
       const pending = pendingQuestions.get(qId);
       if (pending) {
         clearTimeout(pending.timeout);
         pendingQuestions.delete(qId);
-        pending.resolve({ type: 'button', index: parseInt(optIdx), text: update.callback_query.data });
+        pending.resolve({ type: 'button', index: parseInt(optIdx, 10), text: data });
       }
     }
     try {
-      await fetch(`${TG_API}/answerCallbackQuery`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ callback_query_id: update.callback_query.id, text: '✓ Got it' })
-      });
+      if (TG_API) {
+        await fetch(`${TG_API}/answerCallbackQuery`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ callback_query_id: update.callback_query.id, text: '✓ Got it' })
+        });
+      }
     } catch (e) { /* swallow */ }
     return;
   }
 
   if (update.message?.text) {
     const text = update.message.text.trim();
-    const chatId = String(update.message.chat.id);
-    if (chatId !== TG_ADMIN) return;
+    const chatId = update.message.chat.id;
+    if (!tgAdminMatches(chatId)) return;
 
     if (text.startsWith('/')) {
       await handleTgCommand(text, chatId);
@@ -661,7 +742,8 @@ app.post('/api/telegram/webhook', async (req, res) => {
     const reply = update.message.reply_to_message;
     if (reply) {
       for (const [qId, pending] of pendingQuestions) {
-        if (pending.msgId === reply.message_id) {
+        if (pending.msgId == null) continue;
+        if (Number(pending.msgId) === Number(reply.message_id)) {
           clearTimeout(pending.timeout);
           pendingQuestions.delete(qId);
           pending.resolve({ type: 'text', text });
@@ -670,7 +752,7 @@ app.post('/api/telegram/webhook', async (req, res) => {
       }
     }
 
-    await tgSend(`✅ Received: "${text}"\n\nUse /help to see commands.`);
+    await handleTgConversation(text);
   }
 });
 
@@ -680,15 +762,22 @@ async function handleTgCommand(text, chatId) {
     case '/help':
       await tgSend(
         `🤖 *ES System Commands*\n\n` +
-        `/status — System health check\n` +
+        `Type any message — *Kimi* replies and keeps context.\n` +
+        `/clear or /new — Reset conversation\n\n` +
+        `/status — Health check\n` +
         `/leads — Recent form submissions\n` +
         `/stats — Usage statistics\n` +
-        `/sites — Check all sites\n` +
-        `/games — Game usage stats\n` +
-        `/report — Full daily report\n` +
-        `/ask — Ask Kimi AI a question\n` +
-        `/broadcast — Send to all site chatbots`
+        `/sites — Ping client sites\n` +
+        `/report — Daily report\n` +
+        `/ask <question> — One-shot question to Kimi`,
+        { markdown: true }
       );
+      break;
+    case '/clear':
+    case '/new':
+    case '/reset':
+      tgConvoMessages = [tgConvoMessages[0]];
+      await tgSend('Conversation cleared. Send another message to chat with Kimi.');
       break;
     case '/status':
       await tgSend(
@@ -698,7 +787,8 @@ async function handleTgCommand(text, chatId) {
         `🤖 Kimi: ${KIMI_API_KEY ? '✅ Connected' : '❌ Not configured'}\n` +
         `📋 Forms cached: ${formSubmissions.length}\n` +
         `🔌 Telegram: ✅ Active\n` +
-        `⏰ ${new Date().toISOString()}`
+        `⏰ ${new Date().toISOString()}`,
+        { markdown: true }
       );
       break;
     case '/leads': {
@@ -710,7 +800,7 @@ async function handleTgCommand(text, chatId) {
       const lines = recent.map(s =>
         `• *${s.client || '?'}* — ${s.name || 'anon'} (${s.email || 'no email'}) — ${s.form_type || 'form'} — ${new Date(s.timestamp).toLocaleString('en-IE')}`
       );
-      await tgSend(`📋 *Recent Leads (last 5)*\n\n${lines.join('\n')}`);
+      await tgSend(`📋 *Recent Leads (last 5)*\n\n${lines.join('\n')}`, { markdown: true });
       break;
     }
     case '/stats':
@@ -720,7 +810,8 @@ async function handleTgCommand(text, chatId) {
         `Forms: ${formSubmissions.length}\n` +
         `Active rate limits: ${Object.keys(RATE_LIMIT).length}\n` +
         `Pending TG questions: ${pendingQuestions.size}\n` +
-        `Memory: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`
+        `Memory: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+        { markdown: true }
       );
       break;
     case '/sites': {
@@ -742,7 +833,7 @@ async function handleTgCommand(text, chatId) {
           report += `🔴 ${site.name} — DOWN (${e.message})\n`;
         }
       }
-      await tgSend(report);
+      await tgSend(report, { markdown: true });
       break;
     }
     case '/ask': {
@@ -755,7 +846,13 @@ async function handleTgCommand(text, chatId) {
           question,
           { temperature: 0.7, max_tokens: 600 }
         );
-        await tgSend(`🤖 *Kimi says:*\n\n${answer}`);
+        tgConvoMessages.push({ role: 'user', content: question });
+        tgConvoMessages.push({ role: 'assistant', content: answer });
+        while (tgConvoMessages.length > TG_CONVO_MAX) {
+          const sys = tgConvoMessages[0];
+          tgConvoMessages = [sys, ...tgConvoMessages.slice(-(TG_CONVO_MAX - 1))];
+        }
+        await tgSend(`🤖 Kimi says:\n\n${answer}`);
       } catch (e) {
         await tgSend(`❌ Kimi error: ${e.message}`);
       }
@@ -775,7 +872,7 @@ async function handleTgCommand(text, chatId) {
         for (const [c, n] of Object.entries(byClient)) report += `  • ${c}: ${n}\n`;
       }
       report += `\n💾 Memory: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`;
-      await tgSend(report);
+      await tgSend(report, { markdown: true });
       break;
     }
     default:
@@ -839,13 +936,13 @@ app.get('/api/admin/dashboard', (req, res) => {
 // ========== LISTEN ==========
 
 app.listen(PORT, async () => {
-  console.log(`ES Chat API v3.0 running on port ${PORT}`);
+  console.log(`ES Chat API v3.0.2 running on port ${PORT}`);
   console.log(`Kimi: ${KIMI_API_KEY ? 'CONNECTED' : 'NOT SET'} | Model: ${KIMI_MODEL}`);
   console.log(`Telegram: ${TG_API ? 'CONNECTED' : 'NOT SET'}`);
   console.log(`Clients: ${Object.keys(CLIENTS).join(', ')}`);
 
   if (TG_API) {
-    tgNotify('deploy', `*ES Chat API v3.0 started*\n\n🤖 Kimi: ${KIMI_API_KEY ? '✅' : '❌'}\n📋 Clients: ${Object.keys(CLIENTS).length}\n🎮 Games: 5 endpoints\n📡 Telegram: ✅`).catch(() => {});
+    tgNotify('deploy', `*ES Chat API v3.0.2 started*\n\n🤖 Kimi: ${KIMI_API_KEY ? '✅' : '❌'}\n📋 Clients: ${Object.keys(CLIENTS).length}\n💬 Telegram: reply with plain text — Kimi keeps context. /clear to reset.\n📡 Webhook ok`).catch(() => {});
 
     try {
       const webhookUrl = process.env.RENDER_EXTERNAL_URL
