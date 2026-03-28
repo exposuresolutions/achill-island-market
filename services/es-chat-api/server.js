@@ -119,6 +119,7 @@ const ALLOWED_ORIGINS = [
   'https://achillislandmarket.com', 'https://www.achillislandmarket.com',
   'https://fantasyminigolf.com', 'https://www.fantasyminigolf.com',
   'https://laganasflavors.com', 'https://www.laganasflavors.com',
+  'https://flavorsdaiquiribar.com', 'https://www.flavorsdaiquiribar.com',
   'https://achillquest.com', 'https://achillcoaches.com',
   'https://gieltyscafe.com', 'https://exposuresolutions.me',
   'http://localhost:8080', 'http://127.0.0.1:8080',
