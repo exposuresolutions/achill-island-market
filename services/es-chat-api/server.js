@@ -13,6 +13,27 @@ const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TG_ADMIN = process.env.TELEGRAM_ADMIN_CHAT_ID;
 const TG_API = TG_TOKEN ? `https://api.telegram.org/bot${TG_TOKEN}` : null;
 
+/** Plain-text footer so you know which bot sent the message (getMe or TELEGRAM_BOT_LABEL). */
+let TG_OUTBOUND_SIGNATURE = '';
+
+async function resolveEsChatTgSignature() {
+  const manual = process.env.TELEGRAM_BOT_LABEL;
+  if (manual) {
+    TG_OUTBOUND_SIGNATURE = `\n\n— ${manual}`;
+    return;
+  }
+  if (!TG_TOKEN) return;
+  try {
+    const r = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/getMe`);
+    const d = await r.json();
+    const u = d?.result?.username;
+    if (u) TG_OUTBOUND_SIGNATURE = `\n\n— @${u} · ES Chat API`;
+    else if (d?.result?.first_name) TG_OUTBOUND_SIGNATURE = `\n\n— ${d.result.first_name} · ES Chat API`;
+  } catch (e) {
+    console.error('[TG] getMe:', e.message);
+  }
+}
+
 const pendingQuestions = new Map();
 
 /** Rolling Kimi conversation for admin Telegram (system + last turns). */
@@ -32,9 +53,10 @@ function tgAdminMatches(chatId) {
 async function tgSend(text, opts = {}) {
   if (!TG_API || !TG_ADMIN) return null;
   const wantMarkdown = opts.markdown === true;
+  const raw = String(text) + (opts.skipSignature ? '' : (TG_OUTBOUND_SIGNATURE || ''));
   const base = {
     chat_id: TG_ADMIN,
-    text: String(text).slice(0, 4090),
+    text: raw.slice(0, 4090),
     ...(opts.reply_markup && { reply_markup: opts.reply_markup })
   };
   const tryOnce = async (payload) => {
@@ -936,6 +958,9 @@ app.get('/api/admin/dashboard', (req, res) => {
 // ========== LISTEN ==========
 
 app.listen(PORT, async () => {
+  await resolveEsChatTgSignature();
+  if (TG_OUTBOUND_SIGNATURE) console.log(`[TG] Outbound signature:${TG_OUTBOUND_SIGNATURE.replace(/\n/g, ' ')}`);
+
   console.log(`ES Chat API v3.0.2 running on port ${PORT}`);
   console.log(`Kimi: ${KIMI_API_KEY ? 'CONNECTED' : 'NOT SET'} | Model: ${KIMI_MODEL}`);
   console.log(`Telegram: ${TG_API ? 'CONNECTED' : 'NOT SET'}`);
