@@ -1,0 +1,44 @@
+{
+  "name": "DDWL Render — trigger deploy",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d4e5f6a7-b8c9-0123-def0-234567890123",
+      "name": "Run deploy",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.render.com/v1/services/{{ $env.RENDER_SERVICE_ID }}/deploys",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"clearCache\":\"do_not_clear\"}",
+        "options": { "timeout": 60000 }
+      },
+      "id": "f6a7b8c9-d0e1-2345-f012-456789012345",
+      "name": "POST Render deploy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [240, 0],
+      "notesInFlow": true,
+      "notes": "1) Set env RENDER_SERVICE_ID in n8n (Settings → Variables) or host env.\n2) On this node add Authentication → Header Auth: Authorization = Bearer YOUR_KEY\n3) API key: https://dashboard.render.com/u/settings#api-keys\n4) Docs: https://api-docs.render.com/reference/create-deploy"
+    }
+  ],
+  "connections": {
+    "Run deploy": {
+      "main": [[{ "node": "POST Render deploy", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": { "executionOrder": "v1" },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "active": false,
+  "meta": { "templateCredsSetupCompleted": false },
+  "versionId": "00000000-0000-4000-8000-000000000002",
+  "id": "ddwl-render-deploy"
+}

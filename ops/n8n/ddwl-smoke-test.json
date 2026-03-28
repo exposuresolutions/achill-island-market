@@ -1,0 +1,56 @@
+{
+  "name": "DDWL Smoke (health + ask-lilly)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Run smoke",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://dodealswithlee.onrender.com/health",
+        "options": { "timeout": 40000 }
+      },
+      "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "name": "GET health",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://dodealswithlee.onrender.com/ask-lilly",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"question\":\"Reply with one word: OK\"}",
+        "options": { "timeout": 90000 }
+      },
+      "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "name": "POST ask-lilly",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    }
+  ],
+  "connections": {
+    "Run smoke": {
+      "main": [[{ "node": "GET health", "type": "main", "index": 0 }]]
+    },
+    "GET health": {
+      "main": [[{ "node": "POST ask-lilly", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": { "executionOrder": "v1" },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "active": false,
+  "meta": { "templateCredsSetupCompleted": false },
+  "versionId": "00000000-0000-4000-8000-000000000001",
+  "id": "ddwl-smoke-test"
+}

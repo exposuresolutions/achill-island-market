@@ -102,3 +102,14 @@ Only you can set secrets and approve access. Use this order after each deploy:
 5. **Smoke tests:** open `https://dodealswithlee.onrender.com/health` (expect `status: ok`); POST `/ask-lilly` with `{"question":"hi"}` (expect `provider: kimi` when Kimi is set); in Telegram send a **non-command** message to the bot tied to `TG_BOT_TOKEN` and confirm a reply plus footer.
 
 **ES Chat API (separate Render service, if you use it):** `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ADMIN_CHAT_ID`, `KIMI_API_KEY`, optional `TELEGRAM_BOT_LABEL`.
+
+## 7) Automation (scripts + n8n)
+
+You still create Moonshot and Telegram secrets yourself; these tools push to Render and verify.
+
+- **Render API key:** [Dashboard → API keys](https://dashboard.render.com/u/settings#api-keys) — set `RENDER_API_KEY` (and `RENDER_SERVICE_ID` from the service **Settings** page, or rely on name lookup via `RENDER_SERVICE_NAME=dodealswithlee`).
+- **PowerShell:** `scripts/ddwl-ops.ps1` — `-Action Verify` (health + ask-lilly + Telegram), `PushEnv`, `Deploy`, `All`. Optional `-EnvFile .\scripts\ddwl.local.env` after copying `scripts/ddwl.local.env.example`.
+- **Node:** `node scripts/ddwl-ops.mjs verify` — same smoke tests; `push-env`, `deploy`, `all` with env vars set.
+- **n8n:** Import workflows under [`ops/n8n/`](ops/n8n/README.md) — smoke test (no secrets) and Render deploy trigger.
+
+**API reference:** [Render public API](https://api-docs.render.com/reference).
