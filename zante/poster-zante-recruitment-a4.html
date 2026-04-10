@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zante recruitment poster — A4 print</title>
+  <meta name="apply-canonical-url" content="https://exposuresolutions.me/zante-jobs">
+  <style>
+    @page { size: A4; margin: 12mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #1a0a24;
+      color: #f8fafc;
+      min-height: 100vh;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 14mm 16mm;
+      background: linear-gradient(165deg, #1a0a24 0%, #3d1a4d 45%, #0f172a 100%);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .kicker {
+      font-size: 9pt;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(196,181,253,.9);
+      margin-bottom: 6mm;
+    }
+    h1 {
+      font-size: 26pt;
+      line-height: 1.08;
+      font-weight: 900;
+      margin: 0 0 5mm;
+      letter-spacing: -.02em;
+    }
+    h1 span { color: #e9d5ff; }
+    .sub {
+      font-size: 11pt;
+      color: rgba(248,250,252,.78);
+      line-height: 1.45;
+      margin-bottom: 7mm;
+      max-width: 165mm;
+    }
+    ul {
+      margin: 0 0 7mm;
+      padding-left: 4.5mm;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      color: rgba(248,250,252,.9);
+    }
+    ul li { margin-bottom: 2mm; }
+    ul strong { color: #f0abfc; }
+    .highlight {
+      background: rgba(168,85,247,.18);
+      border-left: 3px solid #a855f7;
+      padding: 3mm 4mm;
+      margin-bottom: 6mm;
+      font-size: 10pt;
+      line-height: 1.45;
+      color: rgba(248,250,252,.88);
+    }
+    .qr-row {
+      display: flex;
+      align-items: center;
+      gap: 8mm;
+      margin-top: 4mm;
+      padding-top: 5mm;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .qr-box {
+      flex-shrink: 0;
+      background: #fff;
+      padding: 2.5mm;
+      border-radius: 2mm;
+    }
+    .qr-box img { display: block; width: 38mm; height: 38mm; }
+    .qr-text { font-size: 9pt; color: rgba(248,250,252,.65); line-height: 1.4; }
+    .qr-text strong { color: #c4b5fd; display: block; margin-bottom: 1mm; font-size: 10pt; }
+    .footer {
+      margin-top: auto;
+      padding-top: 5mm;
+      font-size: 7.5pt;
+      color: rgba(255,255,255,.45);
+      line-height: 1.35;
+    }
+    .footer strong { color: rgba(255,255,255,.55); }
+    .logo-line { font-size: 10pt; font-weight: 800; color: #e9d5ff; margin-bottom: 3mm; }
+    @media print {
+      body { background: #fff; }
+      .sheet { border: none; margin: 0; }
+    }
+    @media screen {
+      body { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="kicker">Zakynthos · Summer 2026</div>
+    <div class="logo-line">Flavors · Fantasy Mini Golf · Flying Dutchman</div>
+    <h1>Work in <span>Zante</span> this season</h1>
+    <p class="sub">We’re hiring <strong>6</strong> outgoing team members — <strong>Irish &amp; Dutch</strong> focus. Daiquiri bars, mini golf &amp; more. <strong>May – end of October.</strong> Virtual interviews · fast hire process.</p>
+
+    <ul>
+      <li><strong>Greece experience?</strong> Huge plus — you already get the vibe.</li>
+      <li><strong>Got a Greek AFM?</strong> Optional on application — can speed up onboarding paperwork.</li>
+      <li><strong>6 days</strong> · <strong>accommodation included</strong> · crew that works hard &amp; plays hard</li>
+      <li>Selected hires: <strong>flight support</strong> — see offer / contract for details</li>
+      <li><strong>Scan the QR</strong> — short video pitch + apply (season quest)</li>
+    </ul>
+
+    <div class="highlight">Season quest: apply online, co-op interview, then show your skills on the floor in Zante. Happy, friendly people who know Greek hospitality energy.</div>
+
+    <div class="qr-row">
+      <div class="qr-box">
+        <img id="posterQr" width="144" height="144" alt="Apply QR">
+      </div>
+      <div class="qr-text">
+        <strong>Scan to apply</strong>
+        <span id="posterUrl"></span>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>Recruitment by Exposure Solutions</strong> for partner venues in Zakynthos.<br>
+      Eligibility, flights, accommodation &amp; bonuses subject to offer letter / contract. Equal opportunities employer.<br>
+      <em>Owners: use this file for print (A4) or screenshot for WhatsApp. Replace logo block in Canva when you have final brand artwork.</em>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var meta = document.querySelector('meta[name="apply-canonical-url"]');
+    var raw = meta && meta.getAttribute('content') ? meta.getAttribute('content').trim() : '';
+    var base;
+    try {
+      base = raw ? new URL(raw) : new URL(window.location.origin + '/zante-jobs');
+    } catch (e) {
+      base = new URL('https://exposuresolutions.me/zante-jobs');
+    }
+    base.searchParams.set('utm_source', 'poster');
+    base.searchParams.set('utm_medium', 'qr');
+    base.searchParams.set('utm_campaign', 'zante26');
+    var u = base.toString();
+    document.getElementById('posterQr').src =
+      'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=4&data=' + encodeURIComponent(u);
+    document.getElementById('posterUrl').textContent = u;
+  })();
+  </script>
+</body>
+</html>

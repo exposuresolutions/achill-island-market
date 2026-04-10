@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zante season quest — apply (Exposure Solutions)</title>
+  <meta name="description" content="Gamified seasonal recruitment for Zante: Flavors, Fantasy Mini Golf & Flying Dutchman. Apply with a short video pitch — rounds through to a real-world skills moment on the island.">
+  <!-- QR codes and sharing use this URL when set (live jobs page). Leave empty to use the current page URL. -->
+  <meta name="apply-canonical-url" content="https://exposuresolutions.me/zante-jobs">
+  <!-- Preferred canonical (Exposure-owned): <link rel="canonical" href="https://exposuresolutions.me/zante-jobs"> -->
+  <style>
+    :root {
+      --bg: #1a0a24;
+      --card: rgba(255,255,255,.06);
+      --text: #f8fafc;
+      --muted: rgba(248,250,252,.72);
+      --accent: #a855f7;
+      --accent2: #7c1c7c;
+      --ok: #22c55e;
+      --err: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(160deg, #1a0a24 0%, #2d1040 40%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 24px 18px 80px; }
+    .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(196,181,253,.85); margin: 0 0 10px;
+    }
+    h1 { font-size: 1.65rem; font-weight: 800; margin: 0 0 8px; letter-spacing: -.02em; }
+    .sub { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .badges span {
+      font-size: 12px; font-weight: 600;
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(168,85,247,.2); color: #e9d5ff; border: 1px solid rgba(168,85,247,.35);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+    label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 6px; color: var(--muted); }
+    label .req { color: #f472b6; }
+    input, select, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(0,0,0,.25); color: var(--text); font-size: 16px;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    fieldset {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px; padding: 12px 14px 14px; margin: 16px 0 0;
+    }
+    legend { font-size: 13px; font-weight: 700; padding: 0 8px; color: var(--muted); }
+    .checks label { display: flex; align-items: flex-start; gap: 10px; font-weight: 500; margin: 10px 0 0; cursor: pointer; }
+    .checks input { width: auto; margin-top: 4px; }
+    button[type="submit"] {
+      width: 100%; margin-top: 22px; padding: 16px; border: none; border-radius: 12px;
+      font-size: 17px; font-weight: 800; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff;
+      box-shadow: 0 8px 28px rgba(124,28,124,.4);
+    }
+    button[type="submit"]:disabled { opacity: .6; cursor: not-allowed; }
+    .fine { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 14px; text-align: center; }
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px);
+      padding: 14px 22px; border-radius: 12px; font-weight: 600; z-index: 100000;
+      transition: transform .35s ease; border: 2px solid var(--ok); background: #0f172a;
+      box-shadow: 0 10px 40px rgba(0,0,0,.4);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.err { border-color: var(--err); }
+    .done { text-align: center; padding: 28px 12px; }
+    .done h2 { margin: 0 0 10px; font-size: 1.35rem; }
+    footer { margin-top: 32px; font-size: 12px; color: rgba(255,255,255,.4); text-align: center; }
+    footer a { color: #c4b5fd; }
+    .qr-card { text-align: center; margin-bottom: 20px; padding: 18px 16px; }
+    .qr-title { font-size: 12px; font-weight: 800; margin: 0 0 10px; color: rgba(196,181,253,.9); text-transform: uppercase; letter-spacing: .1em; }
+    #applyQr { display: block; margin: 0 auto 10px; border-radius: 12px; background: #fff; padding: 8px; }
+    .qr-url { font-size: 11px; word-break: break-all; color: rgba(255,255,255,.48); margin: 0; line-height: 1.4; }
+    .qr-hint { font-size: 11px; color: rgba(255,255,255,.42); margin: 10px 0 0; }
+    .form-section-head {
+      font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(196,181,253,.95); margin: 22px 0 6px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .form-section-head:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .hint { font-size: 12px; color: rgba(248,250,252,.55); margin: 4px 0 0; line-height: 1.45; }
+    /* Season quest map */
+    .quest-card { margin-bottom: 20px; border: 1px solid rgba(168,85,247,.35); background: linear-gradient(165deg, rgba(124,28,124,.15), rgba(15,23,42,.5)); }
+    .quest-card h2 { font-size: 1rem; font-weight: 800; margin: 0 0 6px; letter-spacing: -.02em; }
+    .quest-lede { font-size: 13px; color: var(--muted); margin: 0 0 16px; line-height: 1.5; }
+    .quest-stages { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+    .quest-stage {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+      padding: 12px 14px; border-radius: 12px; background: rgba(0,0,0,.2); border: 1px solid rgba(255,255,255,.08);
+    }
+    .quest-stage--current { border-color: rgba(34,197,94,.45); box-shadow: 0 0 0 1px rgba(34,197,94,.12); }
+    .quest-stage--future { opacity: .88; }
+    .quest-num {
+      font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; flex-shrink: 0;
+    }
+    .quest-stage--current .quest-num { background: linear-gradient(135deg, #15803d, #22c55e); }
+    .quest-stage h3 { font-size: 14px; font-weight: 800; margin: 0 0 4px; color: #f8fafc; }
+    .quest-stage p { font-size: 12px; color: rgba(248,250,252,.62); margin: 0; line-height: 1.45; }
+    .boss-tag { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fbbf24; }
+    .progress-rail { display: flex; gap: 6px; margin-bottom: 18px; }
+    .progress-rail span { flex: 1; height: 6px; border-radius: 99px; background: rgba(255,255,255,.1); }
+    .progress-rail span.on { background: linear-gradient(90deg, #22c55e, #a855f7); box-shadow: 0 0 12px rgba(168,85,247,.35); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Exposure Solutions · season quest</p>
+    <h1>Your Zante season quest</h1>
+    <p class="sub">Getting through the rounds is a bit like levelling up in a game — each stage is clear, fast, and fair. The end goal? Land in <strong>Zakynthos</strong>, join <strong>Flavors</strong>, <strong>Fantasy Mini Golf</strong> &amp; <strong>Flying Dutchman</strong>, and prove on the floor you belong. <strong>6 days</strong>, <strong>accommodation included</strong>, crew that works hard and plays hard.</p>
+    <div class="badges">
+      <span>May – Oct season</span>
+      <span>IE &amp; NL focus</span>
+      <span>4 quest stages</span>
+      <span>Final round = Zante IRL</span>
+    </div>
+
+    <div class="progress-rail" aria-hidden="true" title="Progress">
+      <span class="on"></span><span class="on"></span><span></span><span></span>
+    </div>
+
+    <div class="card quest-card" id="questMap">
+      <h2>How the quest works</h2>
+      <p class="quest-lede">You always know what’s next. Interviews are a two-way briefing: <strong>we say what we expect</strong>, <strong>you say what you need</strong> — then you <strong>show us</strong> you can do the job.</p>
+      <ol class="quest-stages">
+        <li class="quest-stage quest-stage--current">
+          <span class="quest-num" aria-hidden="true">1–2</span>
+          <div>
+            <h3>Stages 1 &amp; 2 — Online checkpoint</h3>
+            <p><strong>Stage 1:</strong> This form — who you are, venues, Greece XP.<br><strong>Stage 2:</strong> Your video + written pitch (why you, why us, what you add, why Zante). You’re here now — finish the form to save your checkpoint.</p>
+          </div>
+        </li>
+        <li class="quest-stage quest-stage--future">
+          <span class="quest-num" aria-hidden="true">3</span>
+          <div>
+            <h3>Stage 3 — Co-op interview</h3>
+            <p>Virtual call: expectations on both sides, culture fit, availability, and straight answers. No tricks — just clarity before anyone flies.</p>
+          </div>
+        </li>
+        <li class="quest-stage quest-stage--future">
+          <span class="quest-num" aria-hidden="true">4</span>
+          <div>
+            <h3>Stage 4 — Boss stage (in Zante)</h3>
+            <p>Come to the island and meet the team for real. On-site trial / floor moment: <strong>show your skills</strong> — welcome, energy, service instinct, how you read a busy room. That’s the “final boss” — real customers, real venue, real you.</p>
+            <span class="boss-tag">Final round · in person</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="card qr-card" aria-label="QR code to open this application">
+      <p class="qr-title">Scan to start the quest</p>
+      <img id="applyQr" width="220" height="220" alt="QR code — apply for Zante seasonal team">
+      <p class="qr-url" id="qrUrlDisplay"></p>
+      <p class="qr-hint">Use this on posters &amp; screens. Screenshot or save the image. URL includes tracking so we know scans came from QR.</p>
+    </div>
+
+    <div class="card" id="formCard">
+      <form id="zanteJobForm">
+        <div class="form-section-head">Stage 1 — Character sheet</div>
+        <p class="hint" style="margin-bottom:12px">Basics + where you want to play. Honest answers = faster match to the right venue.</p>
+
+        <label>Full name <span class="req">*</span></label>
+        <input name="name" type="text" required placeholder="Your full name" autocomplete="name">
+
+        <label>Email <span class="req">*</span></label>
+        <input name="email" type="email" required placeholder="you@email.com" autocomplete="email">
+
+        <label>Phone / WhatsApp <span class="req">*</span></label>
+        <input name="phone" type="tel" required placeholder="+353… or +31…" autocomplete="tel">
+
+        <label>Nationality / passport <span class="req">*</span></label>
+        <select name="nationality" required title="Nationality">
+          <option value="">Select…</option>
+          <option value="IE">Irish</option>
+          <option value="NL">Dutch</option>
+          <option value="IE_NL_DUAL">Irish &amp; Dutch (dual)</option>
+          <option value="OTHER_EU">Other EU / EEA</option>
+          <option value="OTHER">Other (explain in experience box)</option>
+        </select>
+
+        <label>EU / Irish passport suitable for Greece work? <span class="req">*</span></label>
+        <select name="passport_eu" required title="Passport">
+          <option value="">Select…</option>
+          <option value="yes">Yes</option>
+          <option value="no">No / not sure</option>
+        </select>
+
+        <fieldset class="checks">
+          <legend>Where you’d like to work (tick all that apply)</legend>
+          <label><input type="checkbox" name="venue" value="flavors_laganas"> Flavors — Laganas</label>
+          <label><input type="checkbox" name="venue" value="flavors_tsilivi"> Flavors — Tsilivi</label>
+          <label><input type="checkbox" name="venue" value="fantasy_mini_golf"> Fantasy Mini Golf</label>
+          <label><input type="checkbox" name="venue" value="flying_dutchman"> Flying Dutchman</label>
+        </fieldset>
+
+        <label>Your Greece / island experience <span class="req">*</span></label>
+        <p class="hint" style="margin-bottom:8px">Previous seasons in Greece are a <strong>huge plus</strong> — we prioritise people who already get the pace, the hospitality vibe, and island life.</p>
+        <textarea name="greece_experience" required placeholder="Seasons, islands, venues, what you learned about Greek hospitality…"></textarea>
+
+        <label>Greek tax number (AFM / ΑΦΜ) — optional</label>
+        <p class="hint" style="margin-bottom:8px">If you <strong>already have</strong> a Greek <strong>AFM</strong> (nine-digit tax ID, Αριθμός Φορολογικού Μητρώου), enter it below — we can often <strong>fast-track admin and onboarding</strong> for shortlisted hires. Leave blank if you don’t have one yet.</p>
+        <input name="greek_afm" type="text" inputmode="numeric" maxlength="9" placeholder="9 digits only, or leave empty" autocomplete="off" title="Optional: 9-digit Greek AFM">
+        <p class="hint">We use this only for recruitment and payroll-related onboarding with the hiring venue. Not required to apply.</p>
+
+        <label>Earliest start date</label>
+        <input name="availability_start" type="date" title="Start date">
+
+        <div class="form-section-head">Stage 2 — Highlight reel + backup save</div>
+        <p class="hint">Your video is your <strong>trailer</strong> — we watch how you show up before we meet in co-op (Stage 3). Record a <strong>short clip (about 60–90 seconds)</strong>. Steady camera, quiet spot, real personality. Upload to <strong>Google Drive</strong> (anyone with link), <strong>YouTube</strong> (unlisted), <strong>Instagram / TikTok</strong>, or <strong>Loom</strong> — paste the link below.</p>
+        <p class="hint" style="margin-top:10px">In the video, answer these out loud:</p>
+        <ul class="hint" style="margin:6px 0 12px 18px;padding:0">
+          <li>Why are you the <strong>Flavors / Fantasy Mini Golf</strong> person we want?</li>
+          <li><strong>Why join our team</strong> — what draws you to us?</li>
+          <li><strong>What will you add</strong> — energy, skills, languages, floor craft?</li>
+          <li><strong>Why Zante</strong> — why this island, this summer?</li>
+        </ul>
+
+        <label>Link to your pitch video <span class="req">*</span></label>
+        <input name="pitch_video_url" type="url" required placeholder="https://… (Drive, YouTube unlisted, TikTok, IG, Loom…)" autocomplete="off">
+
+        <label>Why are you the person we want? <span class="req">*</span></label>
+        <p class="hint">Same idea as the video — in writing (2–5 sentences).</p>
+        <textarea name="why_you" required placeholder="What makes you right for Flavors, Fantasy Mini Golf & our crew?"></textarea>
+
+        <label>What will you add to the team? <span class="req">*</span></label>
+        <textarea name="what_you_add" required placeholder="Hospitality style, languages, banter, reliability, upselling, keeping the buzz…"></textarea>
+
+        <label>Why Zante — why this season, for you? <span class="req">*</span></label>
+        <textarea name="why_zante" required placeholder="Greece experience, energy for the strip, why you’re coming back or trying it for real…"></textarea>
+
+        <button type="submit" id="submitBtn">Save checkpoint — complete Stages 1 &amp; 2</button>
+        <p class="fine">By sending this you confirm your details are accurate. Flights, accommodation, and bonuses stay subject to contract and role. Next ping: <strong>Stage 3</strong> (virtual) if you’re shortlisted — then <strong>Stage 4</strong> on the ground in Zante.</p>
+      </form>
+    </div>
+
+    <div class="card done" id="thankYou" hidden>
+      <p class="eyebrow" style="margin-bottom:8px">Checkpoint saved</p>
+      <h2>Stages 1 &amp; 2 — cleared</h2>
+      <p class="sub" style="margin:0">Your quest log is updated. We’ll hit you on email / WhatsApp for <strong>Stage 3</strong> (co-op interview) if you’re moving forward. After that, the map leads to Zante for <strong>Stage 4</strong> — show us the skills in the real venue.</p>
+    </div>
+
+    <footer>
+      <strong>Exposure Solutions</strong> runs this application process for partner venues in Zakynthos.<br>
+      <a href="https://exposuresolutions.me" target="_blank" rel="noopener">exposuresolutions.me</a>
+      · Applications are stored securely for recruitment only.
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Shared chat API; widget branded as Exposure (custom profile works without redeploying the script bundle). -->
+  <script src="https://dodealswithlee.onrender.com/assets/es-chatbot-widget.js"
+    data-client="custom"
+    data-name="Exposure — Zante quest"
+    data-greeting="Hey — I’m here for the Zante season quest: stages, what happens in the interview rounds, or how to nail your video pitch. What do you want to know?"
+    data-color="#0f172a"
+    data-color-light="#2563eb"
+    data-icon="✨"
+    defer></script>
+
+  <script>
+  (function () {
+    var CLIENT_FORM_API = 'https://dodealswithlee.onrender.com/api/client-form';
+
+    function applyPageUrlForQr() {
+      var meta = document.querySelector('meta[name="apply-canonical-url"]');
+      var raw = meta && meta.getAttribute('content') ? meta.getAttribute('content').trim() : '';
+      var base;
+      try {
+        base = raw ? new URL(raw) : new URL(window.location.href);
+      } catch (e) {
+        base = new URL(window.location.href);
+      }
+      base.searchParams.set('utm_source', 'qr');
+      base.searchParams.set('utm_medium', 'scan');
+      base.searchParams.set('utm_campaign', 'zante26');
+      return base.toString();
+    }
+
+    (function initQr() {
+      var target = applyPageUrlForQr();
+      var img = document.getElementById('applyQr');
+      var line = document.getElementById('qrUrlDisplay');
+      if (img) {
+        img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=' + encodeURIComponent(target);
+      }
+      if (line) {
+        line.textContent = target;
+      }
+    })();
+
+    function qs() {
+      var p = new URLSearchParams(window.location.search);
+      return {
+        utm_source: p.get('utm_source') || '',
+        utm_medium: p.get('utm_medium') || '',
+        utm_campaign: p.get('utm_campaign') || '',
+        utm_content: p.get('utm_content') || ''
+      };
+    }
+
+    function pageSourceLabel() {
+      var h = (window.location.hostname || '').toLowerCase();
+      var via = 'exposure site';
+      if (h.indexOf('flavor') !== -1) via = 'Flavors site';
+      else if (h.indexOf('fantasy') !== -1 || h.indexOf('golf') !== -1) via = 'Fantasy Mini Golf site';
+      else if (h.indexOf('dutchman') !== -1) via = 'Flying Dutchman site';
+      else if (h.indexOf('exposure') !== -1) via = 'Exposure Solutions site';
+      return 'Exposure — Zante jobs (via ' + via + ')';
+    }
+
+    function showToast(msg, ok) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.toggle('err', !ok);
+      t.classList.add('show');
+      setTimeout(function () { t.classList.remove('show'); }, 4500);
+    }
+
+    document.getElementById('zanteJobForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var btn = document.getElementById('submitBtn');
+      var orig = btn.textContent;
+      var fd = new FormData(form);
+      var venues = [].slice.call(form.querySelectorAll('input[name="venue"]:checked')).map(function (c) { return c.value; });
+      if (venues.length === 0) {
+        showToast('Please tick at least one venue.', false);
+        return;
+      }
+      var videoUrl = (fd.get('pitch_video_url') || '').trim();
+      if (videoUrl.length < 12) {
+        showToast('Please add a valid link to your pitch video.', false);
+        return;
+      }
+
+      var afmRaw = (fd.get('greek_afm') || '').replace(/\s/g, '');
+      if (afmRaw.length > 0 && !/^[0-9]{9}$/.test(afmRaw)) {
+        showToast('AFM must be exactly 9 digits, or leave the field empty.', false);
+        return;
+      }
+
+      var utm = qs();
+      var payload = {
+        client: 'exposure-zante',
+        form_type: 'zante_seasonal_staff',
+        name: (fd.get('name') || '').trim(),
+        email: (fd.get('email') || '').trim(),
+        phone: (fd.get('phone') || '').trim(),
+        nationality: fd.get('nationality'),
+        passport_eu: fd.get('passport_eu'),
+        venues: venues,
+        greece_experience: (fd.get('greece_experience') || '').trim(),
+        availability_start: fd.get('availability_start') || '',
+        pitch_video_url: videoUrl,
+        intro_video_url: videoUrl,
+        why_you: (fd.get('why_you') || '').trim(),
+        what_you_add: (fd.get('what_you_add') || '').trim(),
+        why_zante: (fd.get('why_zante') || '').trim(),
+        greek_afm: afmRaw,
+        has_greek_afm: afmRaw.length === 9,
+        recruitment_quest_version: 'zante_quest_v1',
+        source: pageSourceLabel(),
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content
+      };
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      fetch(CLIENT_FORM_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('bad status');
+          form.reset();
+          document.getElementById('formCard').hidden = true;
+          document.getElementById('thankYou').hidden = false;
+          showToast('Checkpoint saved — Stages 1 & 2 done!', true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(function () {
+          showToast('Could not send — try again or WhatsApp us.', false);
+        })
+        .finally(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+        });
+    });
+  })();
+  </script>
+</body>
+</html>
