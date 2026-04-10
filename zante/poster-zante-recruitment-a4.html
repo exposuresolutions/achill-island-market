@@ -15,18 +15,22 @@
       --flavors-2: #a855f7;
       --flavors-mid: #9333ea;
       --fmg-yellow: #ffe500;
-      --fmg-black: #141414;
-      --fmg-charcoal: #252525;
-      --ink: #0f172a;
-      --ink-soft: #334155;
+      --fmg-black: #0a0a0a;
+      --fmg-charcoal: #1a1a1a;
+      /* One canvas: header + body share the same dark base */
+      --canvas: #0a0a0a;
+      --canvas-mid: #0d0d0d;
+      --text: #f8fafc;
+      --text-muted: rgba(248, 250, 252, 0.72);
+      --text-dim: rgba(148, 163, 184, 0.9);
     }
     @page { size: A4; margin: 10mm; }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
       font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: #e2e8f0;
-      color: var(--ink);
+      background: var(--canvas);
+      color: var(--text);
       min-height: 100vh;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -35,13 +39,12 @@
       width: 210mm;
       min-height: 297mm;
       margin: 0 auto;
-      /* Warm yellow wash (FMG) + soft lavender (Flavors) — matches venue sites, not generic mint */
       background:
-        radial-gradient(120% 80% at 12% -10%, rgba(255, 229, 0, 0.22) 0%, transparent 42%),
-        radial-gradient(90% 70% at 88% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 45%),
-        linear-gradient(168deg, #fffef6 0%, #fffbeb 22%, #faf8ff 52%, #fefce8 100%);
-      border: 1px solid rgba(20, 20, 20, 0.06);
-      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+        radial-gradient(ellipse 85% 55% at 0% 0%, rgba(91, 26, 105, 0.35) 0%, transparent 52%),
+        radial-gradient(ellipse 70% 45% at 100% 0%, rgba(255, 229, 0, 0.08) 0%, transparent 48%),
+        linear-gradient(180deg, #121212 0%, var(--canvas-mid) 14%, var(--canvas) 42%, #080808 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -59,9 +62,11 @@
       align-items: center;
       justify-content: center;
       padding: 3mm 4mm;
-      background: linear-gradient(145deg, var(--flavors-1) 0%, var(--flavors-mid) 45%, var(--flavors-2) 100%);
+      /* Deep purple that reads as same “night” canvas as the body */
+      background: linear-gradient(165deg, rgba(45, 12, 58, 0.95) 0%, rgba(20, 8, 28, 0.92) 50%, rgba(12, 10, 16, 0.98) 100%);
       color: #fff;
       text-align: center;
+      border-bottom: 2px solid rgba(168, 85, 247, 0.35);
     }
     .brand-ribbon__fantasy {
       flex: 1;
@@ -70,11 +75,11 @@
       align-items: center;
       justify-content: center;
       padding: 3.5mm 4mm 4mm;
-      background: linear-gradient(180deg, var(--fmg-charcoal) 0%, var(--fmg-black) 100%);
+      background: linear-gradient(165deg, rgba(28, 28, 28, 0.98) 0%, rgba(10, 10, 10, 0.99) 100%);
       color: #fff;
       text-align: center;
       border-bottom: 3px solid var(--fmg-yellow);
-      box-shadow: inset 0 1px 0 rgba(255, 229, 0, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 229, 0, 0.1);
     }
     .brand-ribbon__flavors img,
     .brand-ribbon__fantasy img {
@@ -94,33 +99,36 @@
     .brand-ribbon__sub {
       font-size: 7.5pt;
       font-weight: 600;
-      opacity: 0.92;
+      opacity: 0.88;
       margin-top: 1mm;
       letter-spacing: 0.02em;
+      color: rgba(248, 250, 252, 0.88);
     }
     .sheet-body {
       padding: 10mm 14mm 12mm;
       flex: 1;
       display: flex;
       flex-direction: column;
+      background: transparent;
+      color: var(--text);
     }
     .kicker {
       font-size: 8.5pt;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: var(--text-dim);
       margin-bottom: 4mm;
     }
     .tagline-row {
       font-size: 9.5pt;
       font-weight: 700;
-      color: var(--ink-soft);
+      color: var(--text-muted);
       margin-bottom: 5mm;
       line-height: 1.35;
     }
-    .tagline-row .dot-flavors { color: var(--flavors-mid); }
-    .tagline-row .dot-fantasy { color: var(--fmg-black); }
+    .tagline-row .dot-flavors { color: #c084fc; }
+    .tagline-row .dot-fantasy { color: var(--fmg-yellow); }
     h1 {
       font-family: Outfit, system-ui, sans-serif;
       font-size: 23pt;
@@ -128,30 +136,29 @@
       line-height: 1.08;
       margin: 0 0 5mm;
       letter-spacing: -0.03em;
-      color: var(--ink);
+      color: var(--text);
     }
     h1 .wm-flavors {
-      color: var(--flavors-1);
-      background: linear-gradient(120deg, var(--flavors-1), var(--flavors-2));
+      background: linear-gradient(120deg, #e9d5ff, #c084fc, #a855f7);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
     h1 .wm-fantasy {
-      background: linear-gradient(120deg, #1a1a1a 0%, #422006 40%, #ca8a04 100%);
+      background: linear-gradient(120deg, #fef9c3, #fde047, #facc15);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
     h1 .wm-zante {
-      color: var(--fmg-black);
+      color: #f1f5f9;
       font-weight: 800;
     }
     .sub {
       font-size: 10.5pt;
-      color: var(--ink-soft);
+      color: var(--text-muted);
       line-height: 1.5;
       margin-bottom: 6mm;
       max-width: 168mm;
@@ -159,7 +166,7 @@
     .sub em {
       font-style: normal;
       font-weight: 700;
-      color: #854d0e;
+      color: #fde047;
     }
     ul {
       margin: 0 0 6mm;
@@ -167,7 +174,7 @@
       list-style: none;
       font-size: 10pt;
       line-height: 1.48;
-      color: var(--ink);
+      color: rgba(248, 250, 252, 0.92);
     }
     ul li {
       margin-bottom: 2.5mm;
@@ -184,18 +191,18 @@
       border-radius: 50%;
       background: linear-gradient(135deg, var(--flavors-2), var(--fmg-yellow));
     }
-    ul strong { color: var(--ink); }
+    ul strong { color: #fff; }
     .highlight {
       border-radius: 3mm;
       padding: 3.5mm 4.5mm;
       margin-bottom: 5mm;
       font-size: 9.5pt;
       line-height: 1.45;
-      color: var(--ink);
-      background: linear-gradient(135deg, rgba(255, 229, 0, 0.2), rgba(168, 85, 247, 0.1));
-      border: 1px solid rgba(20, 20, 20, 0.1);
+      color: rgba(248, 250, 252, 0.94);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-left: 4px solid var(--fmg-yellow);
-      box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.06);
+      box-shadow: inset 0 1px 0 rgba(168, 85, 247, 0.12);
     }
     .qr-row {
       display: flex;
@@ -220,42 +227,44 @@
       background: #fff;
       padding: 2.5mm;
       border-radius: 2.5mm;
-      border: 2px solid var(--fmg-black);
-      box-shadow: 0 0 0 1px var(--fmg-yellow), 0 4px 14px rgba(0, 0, 0, 0.12);
+      border: 2px solid rgba(10, 10, 10, 0.9);
+      box-shadow: 0 0 0 1px var(--fmg-yellow), 0 6px 24px rgba(0, 0, 0, 0.45);
     }
     .qr-box img { display: block; width: 36mm; height: 36mm; }
-    .qr-text { font-size: 8.5pt; color: var(--ink-soft); line-height: 1.4; }
+    .qr-text { font-size: 8.5pt; color: var(--text-muted); line-height: 1.4; }
     .qr-text strong {
       font-family: Outfit, sans-serif;
       display: block;
       margin-bottom: 1mm;
       font-size: 10pt;
       font-weight: 800;
-      color: var(--fmg-black);
+      color: var(--fmg-yellow);
       letter-spacing: 0.02em;
     }
     .footer {
       margin-top: 4mm;
       padding-top: 3mm;
       font-size: 7pt;
-      color: #64748b;
+      color: var(--text-dim);
       line-height: 1.4;
-      border-top: 1px solid rgba(15, 23, 42, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .footer strong { color: var(--ink-soft); }
+    .footer strong { color: rgba(226, 232, 240, 0.95); }
+    .footer a { color: #93c5fd; }
+    .footer code { color: #cbd5e1; font-size: 6.5pt; }
     @media print {
-      body { background: #fff; }
-      .sheet { box-shadow: none; border: none; margin: 0; }
-      /* Solid fallbacks — gradient text fills often drop in PDF engines */
+      body { background: #0a0a0a; }
+      .sheet { box-shadow: none; border: 1px solid rgba(255,255,255,.06); margin: 0; }
+      /* Solid fallbacks if gradient text fails in PDF */
       h1 .wm-flavors {
         background: none !important;
-        -webkit-text-fill-color: #5b1a69 !important;
-        color: #5b1a69 !important;
+        -webkit-text-fill-color: #e9d5ff !important;
+        color: #e9d5ff !important;
       }
       h1 .wm-fantasy {
         background: none !important;
-        -webkit-text-fill-color: #1a1a1a !important;
-        color: #1a1a1a !important;
+        -webkit-text-fill-color: #fde047 !important;
+        color: #fde047 !important;
       }
     }
     @media screen {
@@ -280,7 +289,7 @@
       <div class="kicker">Zakynthos · Summer 2026 · Ireland &amp; Netherlands</div>
       <p class="tagline-row">
         <span class="dot-flavors">■</span> Bar &amp; floor energy
-        <span style="opacity:.35">&nbsp;·&nbsp;</span>
+        <span style="opacity:.4;color:rgba(248,250,252,.35)">&nbsp;·&nbsp;</span>
         <span class="dot-fantasy">■</span> Mini golf hospitality
       </p>
       <h1>Work at <span class="wm-flavors">Flavors</span> &amp; <span class="wm-fantasy">Fantasy Mini Golf</span> — <span class="wm-zante">Zante</span> 2026</h1>
