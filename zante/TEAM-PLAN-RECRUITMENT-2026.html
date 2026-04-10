@@ -221,7 +221,12 @@
     .brand-card img { max-height: 52px; max-width: min(200px, 88%); object-fit: contain; }
     .brand-card .tag { font-size: 10px; opacity: .9; font-weight: 600; }
     .brand-flavors { background: linear-gradient(145deg, var(--flavors-1), var(--flavors-2)); }
-    .brand-fantasy { background: linear-gradient(145deg, var(--fantasy-1), var(--fantasy-2)); }
+    /* Fantasy Mini Golf site look: black + #FFE500 (see fantasyminigolf.com) */
+    .brand-fantasy {
+      background: linear-gradient(180deg, #2d2d2d 0%, #121212 100%);
+      border: 1px solid rgba(255, 229, 0, 0.45);
+      box-shadow: inset 0 -3px 0 #ffe500;
+    }
     .brand-dutch { background: linear-gradient(145deg, var(--dutch-1), var(--dutch-2)); }
     .metrics {
       display: grid;
@@ -387,7 +392,7 @@
               <span class="tag">Frozen daiquiri · Laganas &amp; Tsilivi</span>
             </div>
             <div class="brand-card brand-fantasy">
-              <img src="logos/fantasy.svg" alt="Fantasy Mini Golf">
+              <img src="logos/fantasy.png" alt="Fantasy Mini Golf">
               <span class="tag">Flagship mini golf · Zante</span>
             </div>
           </div>
@@ -395,7 +400,7 @@
             <img src="logos/dutchman.png" alt="Flying Dutchman" onerror="this.remove()">
             <span><strong>Flying Dutchman</strong> — same quest, same standards; tick it on the form if that’s your lane too.</span>
           </div>
-          <p class="footer-note" style="border:none;padding:0;margin-top:12px"><strong>Logos:</strong> <code>flavors.png</code> from live Flavors Zante header; <code>fantasy.svg</code> emerald wordmark — swap in official Fantasy PNG/SVG when you have it (<code>logos/README.txt</code>).</p>
+          <p class="footer-note" style="border:none;padding:0;margin-top:12px"><strong>Logos:</strong> <code>flavors.png</code> (Flavors Zante header); <code>fantasy.png</code> from <a href="https://www.fantasyminigolf.com/images/logo.png" target="_blank" rel="noopener">fantasyminigolf.com</a> — refresh from source if updated.</p>
         </div>
       </section>
 
