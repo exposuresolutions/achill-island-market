@@ -1,7 +1,7 @@
-Zante recruitment — brand logos for TEAM-PLAN-RECRUITMENT-2026.html
-=======================================================================
+Flavors + Fantasy Mini Golf — logos for TEAM-PLAN-RECRUITMENT-2026.html
+========================================================================
 
-Drop files here and update the <img src> paths in that HTML if you want real logos:
+Drop files here (deck slide 1 shows Flavors + Fantasy as the hero pair; Flying Dutchman in the partner strip below):
 
   flavors.png   (or .svg)  — Flavors Frozen Daiquiri
   fantasy.png              — Fantasy Mini Golf

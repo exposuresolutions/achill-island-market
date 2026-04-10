@@ -21,11 +21,11 @@ Those files must be **in git and pushed** to the branch Cloudflare Pages builds 
 ## WhatsApp (copy-paste)
 
 ```
-Hey — Zante summer hiring deck (when you have 2 min, on your phone is fine):
+Hey — Flavors + Fantasy Mini Golf summer hiring deck (2 min on your phone is fine):
 
 https://achillstore.store/zante-deck.html
 
-Tap the arrows at the bottom or swipe. 8 slides — goals, ads, 7-day plan, who does what.
+Tap the arrows or swipe. 8 slides — goals, ads, 7-day plan, who does what. Dutchman is on the same campaign if people fit there too.
 
 We’ll wire the apply form to GHL next; this is the team plan so we’re aligned.
 ```
@@ -34,7 +34,7 @@ We’ll wire the apply form to GHL next; this is the team plan so we’re aligne
 
 ## Email (short subject + body)
 
-**Subject:** Zante recruitment — 2 min deck (no meeting needed)
+**Subject:** Flavors & Fantasy Mini Golf — recruitment deck (2 min, no meeting)
 
 **Body:**
 
@@ -46,7 +46,7 @@ https://achillstore.store/zante-deck.html
 
 Use the arrows or swipe between slides. No need to sit at a laptop — open when you get a gap.
 
-Summary: one apply URL for Flavors + Fantasy Mini Golf + Flying Dutchman, Ireland/Netherlands focus, fast replies, 7-day launch sprint. Slide 6 is who does what (you + managers + Exposure).
+Summary: **Flavors & Fantasy Mini Golf** lead the campaign; **Flying Dutchman** uses the same apply URL. Ireland/Netherlands focus, fast replies, 7-day launch sprint. Slide 6 is who does what (you + managers + Exposure).
 
 Any questions, reply on WhatsApp.
 
