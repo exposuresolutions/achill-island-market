@@ -5,14 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Flavors & Fantasy Mini Golf — recruitment poster (A4)</title>
   <meta name="apply-canonical-url" content="https://exposuresolutions.me/zante-jobs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
-    @page { size: A4; margin: 12mm; }
+    /* Brand tokens — same family as zante/TEAM-PLAN-RECRUITMENT-2026.html + Fantasy poster notes */
+    :root {
+      --flavors-1: #5b1a69;
+      --flavors-2: #a855f7;
+      --flavors-mid: #9333ea;
+      --fantasy-1: #065f46;
+      --fantasy-2: #10b981;
+      --fantasy-mid: #059669;
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --paper: #fffefb;
+      --paper-2: #f0fdf4;
+    }
+    @page { size: A4; margin: 10mm; }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: #1a0a24;
-      color: #f8fafc;
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #e2e8f0;
+      color: var(--ink);
       min-height: 100vh;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -21,117 +37,280 @@
       width: 210mm;
       min-height: 297mm;
       margin: 0 auto;
-      padding: 14mm 16mm;
-      background: linear-gradient(165deg, #1a0a24 0%, #3d1a4d 45%, #0f172a 100%);
-      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(165deg, var(--paper) 0%, #f8fafc 38%, var(--paper-2) 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Dual brand ribbon — Flavors | Fantasy Mini Golf */
+    .brand-ribbon {
+      display: flex;
+      min-height: 22mm;
+      width: 100%;
+    }
+    .brand-ribbon__flavors {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3mm 4mm;
+      background: linear-gradient(145deg, var(--flavors-1) 0%, var(--flavors-mid) 45%, var(--flavors-2) 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .brand-ribbon__fantasy {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3mm 4mm;
+      background: linear-gradient(145deg, var(--fantasy-1) 0%, var(--fantasy-mid) 40%, var(--fantasy-2) 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .brand-ribbon__flavors img,
+    .brand-ribbon__fantasy img {
+      max-height: 11mm;
+      max-width: 42mm;
+      object-fit: contain;
+      margin-bottom: 1mm;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.2));
+    }
+    .brand-ribbon__word {
+      font-family: Outfit, system-ui, sans-serif;
+      font-weight: 900;
+      font-size: 11pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.15;
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    }
+    .brand-ribbon__sub {
+      font-size: 7.5pt;
+      font-weight: 600;
+      opacity: 0.92;
+      margin-top: 1mm;
+      letter-spacing: 0.02em;
+    }
+    .sheet-body {
+      padding: 10mm 14mm 12mm;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .kicker {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 800;
-      letter-spacing: .14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(196,181,253,.9);
-      margin-bottom: 6mm;
+      color: var(--ink-soft);
+      margin-bottom: 4mm;
     }
+    .tagline-row {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-bottom: 5mm;
+      line-height: 1.35;
+    }
+    .tagline-row .dot-flavors { color: var(--flavors-mid); }
+    .tagline-row .dot-fantasy { color: var(--fantasy-mid); }
     h1 {
-      font-size: 26pt;
-      line-height: 1.08;
+      font-family: Outfit, system-ui, sans-serif;
+      font-size: 23pt;
       font-weight: 900;
+      line-height: 1.08;
       margin: 0 0 5mm;
-      letter-spacing: -.02em;
+      letter-spacing: -0.03em;
+      color: var(--ink);
     }
-    h1 span { color: #e9d5ff; }
+    h1 .wm-flavors {
+      color: var(--flavors-1);
+      background: linear-gradient(120deg, var(--flavors-1), var(--flavors-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    h1 .wm-fantasy {
+      background: linear-gradient(120deg, var(--fantasy-1), var(--fantasy-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    h1 .wm-zante {
+      color: var(--fantasy-1);
+      font-weight: 800;
+    }
     .sub {
-      font-size: 11pt;
-      color: rgba(248,250,252,.78);
-      line-height: 1.45;
-      margin-bottom: 7mm;
-      max-width: 165mm;
+      font-size: 10.5pt;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin-bottom: 6mm;
+      max-width: 168mm;
+    }
+    .sub em {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--fantasy-1);
     }
     ul {
-      margin: 0 0 7mm;
-      padding-left: 4.5mm;
-      font-size: 10.5pt;
-      line-height: 1.5;
-      color: rgba(248,250,252,.9);
-    }
-    ul li { margin-bottom: 2mm; }
-    ul strong { color: #f0abfc; }
-    .highlight {
-      background: rgba(168,85,247,.18);
-      border-left: 3px solid #a855f7;
-      padding: 3mm 4mm;
-      margin-bottom: 6mm;
+      margin: 0 0 6mm;
+      padding-left: 0;
+      list-style: none;
       font-size: 10pt;
+      line-height: 1.48;
+      color: var(--ink);
+    }
+    ul li {
+      margin-bottom: 2.5mm;
+      padding-left: 5.5mm;
+      position: relative;
+    }
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 2.8mm;
+      height: 2.8mm;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--flavors-2), var(--fantasy-2));
+    }
+    ul strong { color: var(--ink); }
+    .highlight {
+      border-radius: 3mm;
+      padding: 3.5mm 4.5mm;
+      margin-bottom: 5mm;
+      font-size: 9.5pt;
       line-height: 1.45;
-      color: rgba(248,250,252,.88);
+      color: var(--ink);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(16, 185, 129, 0.14));
+      border: 1px solid rgba(5, 150, 105, 0.22);
+      border-left: 4px solid var(--fantasy-mid);
+      box-shadow: inset 0 0 0 1px rgba(147, 51, 234, 0.08);
     }
     .qr-row {
       display: flex;
       align-items: center;
-      gap: 8mm;
-      margin-top: 4mm;
-      padding-top: 5mm;
-      border-top: 1px solid rgba(255,255,255,.12);
+      gap: 7mm;
+      margin-top: auto;
+      padding-top: 5.5mm;
+      position: relative;
+    }
+    .qr-row::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--flavors-2), var(--fantasy-2));
     }
     .qr-box {
       flex-shrink: 0;
       background: #fff;
       padding: 2.5mm;
-      border-radius: 2mm;
+      border-radius: 2.5mm;
+      border: 2px solid var(--fantasy-mid);
+      box-shadow: 0 4px 14px rgba(6, 95, 70, 0.12);
     }
-    .qr-box img { display: block; width: 38mm; height: 38mm; }
-    .qr-text { font-size: 9pt; color: rgba(248,250,252,.65); line-height: 1.4; }
-    .qr-text strong { color: #c4b5fd; display: block; margin-bottom: 1mm; font-size: 10pt; }
+    .qr-box img { display: block; width: 36mm; height: 36mm; }
+    .qr-text { font-size: 8.5pt; color: var(--ink-soft); line-height: 1.4; }
+    .qr-text strong {
+      font-family: Outfit, sans-serif;
+      display: block;
+      margin-bottom: 1mm;
+      font-size: 10pt;
+      font-weight: 800;
+      color: var(--fantasy-1);
+      letter-spacing: 0.02em;
+    }
     .footer {
-      margin-top: auto;
-      padding-top: 5mm;
-      font-size: 7.5pt;
-      color: rgba(255,255,255,.45);
-      line-height: 1.35;
+      margin-top: 4mm;
+      padding-top: 3mm;
+      font-size: 7pt;
+      color: #64748b;
+      line-height: 1.4;
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
     }
-    .footer strong { color: rgba(255,255,255,.55); }
-    .logo-line { font-size: 10pt; font-weight: 800; color: #e9d5ff; margin-bottom: 3mm; }
+    .footer strong { color: var(--ink-soft); }
     @media print {
       body { background: #fff; }
-      .sheet { border: none; margin: 0; }
+      .sheet { box-shadow: none; border: none; margin: 0; }
+      /* Solid fallbacks — gradient text fills often drop in PDF engines */
+      h1 .wm-flavors {
+        background: none !important;
+        -webkit-text-fill-color: #5b1a69 !important;
+        color: #5b1a69 !important;
+      }
+      h1 .wm-fantasy {
+        background: none !important;
+        -webkit-text-fill-color: #065f46 !important;
+        color: #065f46 !important;
+      }
     }
     @media screen {
-      body { padding: 12px; }
+      body { padding: 16px; }
     }
   </style>
 </head>
 <body>
   <div class="sheet">
-    <div class="kicker">Flavors + Fantasy Mini Golf · Zakynthos · Summer 2026</div>
-    <div class="logo-line">Daiquiri bars (Laganas &amp; Tsilivi) · flagship mini golf</div>
-    <h1>Work at <span>Flavors</span> &amp; <span>Fantasy Mini Golf</span> — <span>Zante</span> 2026</h1>
-    <p class="sub"><strong>6</strong> roles — <strong>Irish &amp; Dutch</strong> focus. Bar energy + mini golf hospitality. <strong>May – end of October.</strong> Virtual interviews · fast hire. <em>Flying Dutchman</em> — tick on the form if you’re a fit there too.</p>
-
-    <ul>
-      <li><strong>Greece experience?</strong> Huge plus — you already get the vibe.</li>
-      <li><strong>Got a Greek AFM?</strong> Optional on application — can speed up onboarding paperwork.</li>
-      <li><strong>6 days</strong> · <strong>accommodation included</strong> · crew that works hard &amp; plays hard</li>
-      <li>Selected hires: <strong>flight support</strong> — see offer / contract for details</li>
-      <li><strong>Scan the QR</strong> — short video pitch + apply (season quest)</li>
-    </ul>
-
-    <div class="highlight">Season quest: apply online, co-op interview, then show your skills on the floor in Zante. Happy, friendly people who know Greek hospitality energy.</div>
-
-    <div class="qr-row">
-      <div class="qr-box">
-        <img id="posterQr" width="144" height="144" alt="Apply QR">
+    <div class="brand-ribbon" role="banner" aria-label="Flavors and Fantasy Mini Golf">
+      <div class="brand-ribbon__flavors">
+        <img src="logos/flavors.png" alt="Flavors" onerror="this.style.display='none'">
+        <span class="brand-ribbon__word">Flavors</span>
+        <span class="brand-ribbon__sub">Frozen daiquiri · Laganas &amp; Tsilivi</span>
       </div>
-      <div class="qr-text">
-        <strong>Scan to apply</strong>
-        <span id="posterUrl"></span>
+      <div class="brand-ribbon__fantasy">
+        <img src="logos/fantasy.png" alt="Fantasy Mini Golf" onerror="this.style.display='none'">
+        <span class="brand-ribbon__word">Fantasy Mini Golf</span>
+        <span class="brand-ribbon__sub">Zakynthos · summer team</span>
       </div>
     </div>
 
-    <div class="footer">
-      <strong>Recruitment by Exposure Solutions</strong> for <strong>Flavors</strong>, <strong>Fantasy Mini Golf</strong>, and selected partner venues in Zakynthos.<br>
-      Eligibility, flights, accommodation &amp; bonuses subject to offer letter / contract. Equal opportunities employer.<br>
-      <em>Owners: use this file for print (A4) or screenshot for WhatsApp. Replace logo block in Canva when you have final brand artwork.</em>
+    <div class="sheet-body">
+      <div class="kicker">Zakynthos · Summer 2026 · Ireland &amp; Netherlands</div>
+      <p class="tagline-row">
+        <span class="dot-flavors">■</span> Bar &amp; floor energy
+        <span style="opacity:.35">&nbsp;·&nbsp;</span>
+        <span class="dot-fantasy">■</span> Mini golf hospitality
+      </p>
+      <h1>Work at <span class="wm-flavors">Flavors</span> &amp; <span class="wm-fantasy">Fantasy Mini Golf</span> — <span class="wm-zante">Zante</span> 2026</h1>
+      <p class="sub"><strong>6</strong> roles · <strong>Irish &amp; Dutch</strong> focus · <strong>May – end of October</strong> · virtual interviews, fast hire. <em>Flying Dutchman</em> — same form if that’s your fit.</p>
+
+      <ul>
+        <li><strong>Greece experience?</strong> Huge plus — you already get the vibe.</li>
+        <li><strong>Greek AFM?</strong> Optional — can speed onboarding paperwork.</li>
+        <li><strong>6 days</strong> · <strong>accommodation included</strong> · crew that works hard &amp; plays hard</li>
+        <li>Selected hires: <strong>flight support</strong> — per offer / contract</li>
+        <li><strong>Scan the QR</strong> — short video pitch + apply (season quest)</li>
+      </ul>
+
+      <div class="highlight">Season quest: apply online, co-op interview, then show your skills on the floor in Zante. Happy, friendly people who bring Greek-hospitality energy.</div>
+
+      <div class="qr-row">
+        <div class="qr-box">
+          <img id="posterQr" width="144" height="144" alt="Apply QR">
+        </div>
+        <div class="qr-text">
+          <strong>Scan to apply</strong>
+          <span id="posterUrl"></span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <strong>Recruitment by Exposure Solutions</strong> for <strong>Flavors</strong>, <strong>Fantasy Mini Golf</strong>, and selected partner venues in Zakynthos.<br>
+        Eligibility, flights, accommodation &amp; bonuses subject to offer letter / contract. Equal opportunities employer.<br>
+        <em>Colours: Flavors purple/magenta · Fantasy Mini Golf emerald — match venue brand packs. Drop logos in zante/logos/ for the ribbon.</em>
+      </div>
     </div>
   </div>
   <script>
