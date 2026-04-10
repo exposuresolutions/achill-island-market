@@ -28,6 +28,34 @@
       color: var(--text);
       line-height: 1.5;
     }
+    .venue-brand {
+      background: linear-gradient(90deg, rgba(124, 28, 124, 0.42) 0%, rgba(15, 23, 42, 0.5) 45%, rgba(6, 95, 70, 0.45) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 16px 18px 14px;
+    }
+    .venue-brand-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .venue-brand img {
+      height: 42px;
+      width: auto;
+      max-width: min(46vw, 200px);
+      object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.35));
+    }
+    .venue-brand img[alt*="Fantasy"] { height: 46px; max-width: min(52vw, 220px); }
+    .venue-amp {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: rgba(248, 250, 252, 0.45);
+      user-select: none;
+    }
     .wrap { max-width: 560px; margin: 0 auto; padding: 24px 18px 80px; }
     .eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
@@ -120,6 +148,13 @@
   </style>
 </head>
 <body>
+  <header class="venue-brand" aria-label="Flavors and Fantasy Mini Golf">
+    <div class="venue-brand-inner">
+      <img src="logos/flavors.png" alt="Flavors Frozen Daiquiri — Zante" width="180" height="42">
+      <span class="venue-amp" aria-hidden="true">&amp;</span>
+      <img src="logos/fantasy.svg" alt="Fantasy Mini Golf" width="200" height="46">
+    </div>
+  </header>
   <div class="wrap">
     <p class="eyebrow">Flavors + Fantasy Mini Golf · Zakynthos</p>
     <h1>Your season quest</h1>

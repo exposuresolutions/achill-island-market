@@ -74,20 +74,17 @@
     }
     .brand-ribbon__flavors img,
     .brand-ribbon__fantasy img {
-      max-height: 11mm;
-      max-width: 42mm;
+      max-height: 16mm;
+      max-width: 52mm;
+      width: auto;
+      height: auto;
       object-fit: contain;
-      margin-bottom: 1mm;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,.2));
+      margin-bottom: 2mm;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,.25));
     }
-    .brand-ribbon__word {
-      font-family: Outfit, system-ui, sans-serif;
-      font-weight: 900;
-      font-size: 11pt;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.15;
-      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    .brand-ribbon__fantasy img {
+      max-width: 58mm;
+      max-height: 14mm;
     }
     .brand-ribbon__sub {
       font-size: 7.5pt;
@@ -265,13 +262,11 @@
   <div class="sheet">
     <div class="brand-ribbon" role="banner" aria-label="Flavors and Fantasy Mini Golf">
       <div class="brand-ribbon__flavors">
-        <img src="logos/flavors.png" alt="Flavors" onerror="this.style.display='none'">
-        <span class="brand-ribbon__word">Flavors</span>
+        <img src="logos/flavors.png" alt="Flavors Frozen Daiquiri — Zante">
         <span class="brand-ribbon__sub">Frozen daiquiri · Laganas &amp; Tsilivi</span>
       </div>
       <div class="brand-ribbon__fantasy">
-        <img src="logos/fantasy.png" alt="Fantasy Mini Golf" onerror="this.style.display='none'">
-        <span class="brand-ribbon__word">Fantasy Mini Golf</span>
+        <img src="logos/fantasy.svg" alt="Fantasy Mini Golf">
         <span class="brand-ribbon__sub">Zakynthos · summer team</span>
       </div>
     </div>
@@ -309,7 +304,7 @@
       <div class="footer">
         <strong>Recruitment by Exposure Solutions</strong> for <strong>Flavors</strong>, <strong>Fantasy Mini Golf</strong>, and selected partner venues in Zakynthos.<br>
         Eligibility, flights, accommodation &amp; bonuses subject to offer letter / contract. Equal opportunities employer.<br>
-        <em>Colours: Flavors purple/magenta · Fantasy Mini Golf emerald — match venue brand packs. Drop logos in zante/logos/ for the ribbon.</em>
+        <em>Logos: <code>zante/logos/flavors.png</code> (live site header) + <code>fantasy.svg</code> (emerald wordmark). Replace with official Fantasy artwork when available.</em>
       </div>
     </div>
   </div>

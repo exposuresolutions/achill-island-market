@@ -1,13 +1,24 @@
-Flavors + Fantasy Mini Golf — logos for TEAM-PLAN-RECRUITMENT-2026.html
-========================================================================
+Flavors + Fantasy Mini Golf — logos (zante/)
+==========================================
 
-Drop files here (deck slide 1 + A4 poster ribbon use these paths from the same zante/ folder):
+Files in this folder
+--------------------
 
-  flavors.png   (or .svg)  — Flavors Frozen Daiquiri
-  fantasy.png              — Fantasy Mini Golf
-  dutchman.png             — Flying Dutchman
-  exposure.png             — Exposure Solutions (optional)
+**flavors.png** — Official mark from the live Flavors Zante header (GHL / Filesafe CDN), resized for web + print (~500px max). Source URL used when refreshing:
 
-Recommended: transparent PNG, ~400px wide min.
+  https://assets.cdn.filesafe.space/KbiucErIMNPbO1mY4qXL/media/695718f8c902bf5286dfa38c.png
 
-If files are missing, the plan page still shows styled wordmarks using brand colours.
+**fantasy.svg** — Vector wordmark + small flag/ball motif in brand greens (#065f46 → #10b981). Use until you add an official **fantasy.png** from the venue brand pack; then point HTML at `fantasy.png` and keep or remove the SVG.
+
+**dutchman.png** (optional) — Flying Dutchman; deck partner strip uses it if present.
+
+**exposure.png** (optional) — Exposure Solutions mark for decks / footers.
+
+Used by
+--------
+
+- `zante/poster-zante-recruitment-a4.html` — ribbon
+- `zante/TEAM-PLAN-RECRUITMENT-2026.html` — slide 1 brand row
+- `zante/staff-apply.html` — top venue bar
+
+Recommended: transparent PNG for venue marks, ~400px wide min (Flavors already committed here).
