@@ -327,6 +327,15 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   .gift-form input,.gift-form select{width:100%;min-width:0}
 }
 
+/* ===== ZANTE RECRUITMENT STRIP (partner — Exposure) ===== */
+.zante-recruit-ribbon{background:linear-gradient(90deg,#0f172a 0%,#1e3a5f 45%,#0f172a 100%);border-top:1px solid rgba(200,134,10,.22);border-bottom:1px solid rgba(91,184,224,.18);padding:22px 24px}
+.zante-recruit-inner{max-width:720px;margin:0 auto;text-align:center}
+.zante-recruit-label{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.48);margin-bottom:8px}
+.zante-recruit-txt{font-size:14px;color:rgba(245,240,232,.9);line-height:1.55;margin:0 0 14px}
+.zante-recruit-txt strong{color:var(--amber-light)}
+.zante-recruit-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:999px;font-weight:700;font-size:14px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;text-decoration:none;box-shadow:0 6px 24px rgba(37,99,235,.28)}
+.zante-recruit-cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -411,6 +420,15 @@ body{background:var(--cream);color:var(--text);min-height:100vh;display:flex;fle
   <div class="scroll-indicator" aria-hidden="true">
     <span>Scroll to explore</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- ===== ZANTE RECRUITMENT (partner strip) ===== -->
+<section class="zante-recruit-ribbon" aria-label="Partner recruitment — Zante summer jobs">
+  <div class="zante-recruit-inner">
+    <p class="zante-recruit-label">Exposure Solutions · Partner hire</p>
+    <p class="zante-recruit-txt">Know someone for <strong>Flavors</strong> or <strong>Fantasy Mini Golf</strong> in Zante? <strong>6 days a week</strong>, <strong>accommodation included</strong> — honest strip vibe (we party while we work). Summer ’26 · Ireland &amp; Netherlands focus.</p>
+    <a class="zante-recruit-cta" href="https://exposuresolutions.me/zante-jobs?utm_source=achillstore&utm_medium=strip&utm_campaign=zante26&utm_content=home_strip" target="_blank" rel="noopener">Apply for Zante roles →</a>
   </div>
 </section>
 

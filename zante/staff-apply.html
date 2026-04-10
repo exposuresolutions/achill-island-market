@@ -320,6 +320,56 @@
   (function () {
     var CLIENT_FORM_API = 'https://dodealswithlee.onrender.com/api/client-form';
 
+    /** Set when jobs page is deployed: GA4 Measurement ID + Meta Pixel ID (strings). Leave '' to skip. */
+    var ZANTE_TRACKING = {
+      ga4MeasurementId: '',
+      metaPixelId: ''
+    };
+
+    function initGa4(measurementId) {
+      if (!measurementId || measurementId.indexOf('G-') !== 0) return;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+      document.head.appendChild(s);
+      window.gtag('js', new Date());
+      window.gtag('config', measurementId, { anonymize_ip: true });
+    }
+
+    function initMetaPixel(pixelId) {
+      if (!pixelId || window._zanteFbqInit) return;
+      window._zanteFbqInit = true;
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', pixelId);
+      window.fbq('track', 'PageView');
+    }
+
+    function fireLeadConversion() {
+      try {
+        if (typeof window.gtag === 'function' && ZANTE_TRACKING.ga4MeasurementId) {
+          window.gtag('event', 'generate_lead');
+        }
+        if (typeof window.fbq === 'function' && ZANTE_TRACKING.metaPixelId) {
+          window.fbq('track', 'Lead');
+        }
+      } catch (ignore) {}
+    }
+
+    initGa4(ZANTE_TRACKING.ga4MeasurementId);
+    initMetaPixel(ZANTE_TRACKING.metaPixelId);
+
     function applyPageUrlForQr() {
       var meta = document.querySelector('meta[name="apply-canonical-url"]');
       var raw = meta && meta.getAttribute('content') ? meta.getAttribute('content').trim() : '';
@@ -353,8 +403,20 @@
         utm_source: p.get('utm_source') || '',
         utm_medium: p.get('utm_medium') || '',
         utm_campaign: p.get('utm_campaign') || '',
-        utm_content: p.get('utm_content') || ''
+        utm_content: p.get('utm_content') || '',
+        fbclid: (p.get('fbclid') || '').slice(0, 500),
+        gclid: (p.get('gclid') || '').slice(0, 500),
+        ttclid: (p.get('ttclid') || '').slice(0, 500),
+        msclkid: (p.get('msclkid') || '').slice(0, 500)
       };
+    }
+
+    function landingPageUrl() {
+      try {
+        return String(window.location.href || '').slice(0, 2000);
+      } catch (e) {
+        return '';
+      }
     }
 
     function pageSourceLabel() {
@@ -422,7 +484,12 @@
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
-        utm_content: utm.utm_content
+        utm_content: utm.utm_content,
+        fbclid: utm.fbclid,
+        gclid: utm.gclid,
+        ttclid: utm.ttclid,
+        msclkid: utm.msclkid,
+        landing_page: landingPageUrl()
       };
 
       btn.textContent = 'Sending…';
@@ -435,6 +502,7 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error('bad status');
+          fireLeadConversion();
           form.reset();
           document.getElementById('formCard').hidden = true;
           document.getElementById('thankYou').hidden = false;

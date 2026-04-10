@@ -225,7 +225,13 @@ Treat this as **Exposure’s API route on shared infrastructure** — document i
   "source": "Exposure — Zante jobs (exposuresolutions.me)",
   "utm_source": "instagram",
   "utm_medium": "bio",
-  "utm_campaign": "zante26"
+  "utm_campaign": "zante26",
+  "utm_content": "reel_hook_a",
+  "fbclid": "",
+  "gclid": "",
+  "ttclid": "",
+  "msclkid": "",
+  "landing_page": "https://exposuresolutions.me/zante-jobs?utm_source=instagram&utm_medium=bio&utm_campaign=zante26"
 }
 ```
 
