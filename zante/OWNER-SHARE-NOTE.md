@@ -25,7 +25,7 @@ Hey — Flavors + Fantasy Mini Golf summer hiring deck (2 min on your phone is f
 
 https://achillstore.store/zante-deck.html
 
-Tap the arrows or swipe. 8 slides — goals, ads, 7-day plan, who does what. Dutchman is on the same campaign if people fit there too.
+Tap the arrows or swipe. 8 slides — goals, ads, 7-day plan, who does what. Slide 1 + apply copy spell it out: 6 days/week, accommodation included, party-while-you-work (honest strip hire). Dutchman same form if they fit there too.
 
 We’ll wire the apply form to GHL next; this is the team plan so we’re aligned.
 ```
