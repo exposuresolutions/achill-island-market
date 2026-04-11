@@ -366,16 +366,20 @@ function submitVendor(e) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
-  .then(() => {
-    document.getElementById('vendorRegForm').closest('section').style.display = 'none';
-    document.getElementById('successSection').style.display = 'block';
-    document.getElementById('successSection').scrollIntoView({ behavior: 'smooth' });
-  })
-  .catch(() => {
-    showToast('❌ Error — please try again or call 098 47234', false);
-    btn.textContent = orig;
-    btn.disabled = false;
-  });
+    .then(function (res) {
+      if (!res.ok) throw new Error('Server returned ' + res.status);
+      return res.text();
+    })
+    .then(function () {
+      document.getElementById('vendorRegForm').closest('section').style.display = 'none';
+      document.getElementById('successSection').style.display = 'block';
+      document.getElementById('successSection').scrollIntoView({ behavior: 'smooth' });
+    })
+    .catch(function () {
+      showToast('❌ Error — please try again or call 098 47234', false);
+      btn.textContent = orig;
+      btn.disabled = false;
+    });
 }
 </script>
 <script>window.ACHILL_CHAT_WIDGET_ID = "";</script>
