@@ -19,7 +19,7 @@ The M365 connector can list these files but can't download video, so share them 
 | Posters + stationery | `print/` — open `print/index.html`. Click any text to edit, then Print / Save as PDF |
 | Ready PDFs | `print/pdf/` — re-make with `node print/make-pdfs.mjs` after editing `data/band.js` |
 | Screen ad, 15s loop (HTML) | `signage/ad.html` — auto-fits landscape or portrait |
-| Screen ad, MP4 (Exposure intro + 15s ad) | `signage/ad-landscape-1920x1080.mp4`, `signage/ad-portrait-1080x1920.mp4` |
+| Screen ad, MP4 (15s) | `signage/ad-landscape-1920x1080.mp4`, `signage/ad-portrait-1080x1920.mp4` |
 | Per-venue screen ads ("Live here at …") | `signage/venues/<venue>-landscape.mp4` / `-portrait.mp4`. Rebuild everything with `signage/make-ads.sh` |
 | Job complete + final payment | `complete.html` |
 | Promo video builder | `promo/make-promo.sh` |
@@ -41,9 +41,15 @@ In Cloudflare → Pages → achill-island-market → Settings → Environment va
 Until both are set, bookings still go through and the site tells customers Lilly will collect their files on the call. Files are limited to 45 MB each (Telegram's limit is 50 MB).
 
 ### Branding
-- Exposure Solutions logo: `assets/exposure-logo.jpg`, from OneDrive `Clients/ACTIVE/DDWL/Branding/exposure-solutions/logo/ES-logo-final.png`.
-- Animated Exposure intro: `signage/exposure-intro.html` (3s). It plays when the website opens and at the start of every screen ad and promo.
-- The band's own animated logo intro (`1765700585788.mp4` in OneDrive) still needs a share link before it can be added.
+Everything here is about **the band and the venue**. Exposure appears only as a small **"Powered by Exposure"** credit:
+- posters: a strip at the bottom with Exposure's new logo and a QR to `exposuresolutions.me/#services` (tagged `utm_source=a-las-raices`)
+- screen ads: in the corner of the end card
+- website: in the footer
+- stationery: a tiny text credit
+
+Bookings still go through Exposure (098 78500 / hello@exposuresolutions.me), but they're shown as plain booking details, not Exposure branding.
+The new Exposure logo files come from `../exposure-brand/` (`assets/exposure-logo-white.svg`, `-dark.svg`); the QR is `assets/qr-exposure.svg`.
+The band's own animated logo intro (`1765700585788.mp4` in OneDrive) still needs a share link before it can be added.
 
 ## Bookings, tickets and packages
 **Exposure Solutions is the booking agent.** Every booking contact on the site, posters, stationery and screen ad is Exposure's (`agency` in `data/band.js`). The band's own number isn't published.
@@ -65,7 +71,7 @@ Ways to book on the site:
 
 ## Putting the ad on the 6 venue screens
 Upload the MP4 that matches each screen's orientation to the signage player (Yodeck or similar). Give each venue its own "Live here at …" version from `signage/venues/`.
-18s loop (3s Exposure intro + 15s ad); suggested slot: once every 3–5 minutes. No sound, so it works in any venue.
+15s loop; suggested slot: once every 3–5 minutes. No sound, so it works in any venue.
 
 ## Still needed from the band
 - [ ] Their OK to use their videos, plus any newer clips (originals from their phones beat Facebook copies)

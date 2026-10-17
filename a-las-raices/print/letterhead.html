@@ -32,14 +32,16 @@ footer{display:flex;justify-content:space-between;font-family:var(--display);fon
     <p id="sign"></p>
   </div>
   <footer><span>RUMBA FLAMENCA · GIPSY FIESTA</span><span>DUO · TRIO · FULL BAND</span><span>COSTA BLANCA</span></footer>
+  <div id="credit" style="margin-top:3mm;color:#6d6656"></div>
 </div>
 <script src="../data/band.js"></script>
 <script src="common.js"></script>
 <script>
 var c = contactBits();
-document.getElementById("contact").innerHTML = '<img src="../assets/exposure-logo.jpg" alt="Exposure Solutions" style="height:9mm;width:auto;border-radius:1mm;margin:0 0 1.5mm auto">' + '<b>BOOKINGS · ' + c.agency.toUpperCase() + '</b><br>' + c.phone + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
+document.getElementById("contact").innerHTML = '<b>BOOKINGS</b><br>' + c.phone.replace(/^Call \w+ /, "") + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
 document.getElementById("today").textContent = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-document.getElementById("sign").innerHTML = c.agency + '<br><i>Bookings for A Las Raices</i>';
+document.getElementById("sign").innerHTML = c.leader + '<br><i>A Las Raices</i>';
+document.getElementById("credit").innerHTML = poweredBy("light", false);
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

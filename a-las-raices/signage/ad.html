@@ -61,7 +61,9 @@ body{font-family:Cormorant,Georgia,serif}
 .scan{font-style:italic;color:var(--muted);font-size:4.2vmin;margin-top:2.4vmin}
 .s4 .big{font-size:10vmin;margin-bottom:5vmin}
 .agent{margin-top:4vmin;display:flex;align-items:center;justify-content:center;gap:3vmin;font-style:italic;color:var(--muted);font-size:3.8vmin;line-height:1.35;text-align:left}
-.agent .xl{height:9vmin;width:auto;mix-blend-mode:screen}
+.pw{position:absolute;right:3vmin;bottom:3vmin;display:flex;align-items:center;gap:1.4vmin;opacity:.55}
+.pw small{font-family:Cinzel,serif;font-size:1.4vmin;letter-spacing:.3em;color:var(--muted)}
+.pw img{height:4.2vmin;width:auto}
 .agent b{font-family:Cinzel,serif;font-style:normal;font-weight:400;color:var(--cream);letter-spacing:.06em}
 
 @media (orientation:portrait){
@@ -78,7 +80,8 @@ body{font-family:Cormorant,Georgia,serif}
   .scan{font-size:5vw}
   .s4 .big{font-size:11vw}
   .agent{font-size:4.6vw}
-  .agent .xl{height:11vw}
+  .pw img{height:4.5vw}
+  .pw small{font-size:1.6vw}
   #s4-big{font-size:9.5vw}
 }
 </style>
@@ -110,7 +113,8 @@ body{font-family:Cormorant,Georgia,serif}
       <div class="scan">Scan for dates</div>
     </div>
   </div>
-  <div class="agent"><img class="xl" src="../assets/exposure-logo.png" alt="Exposure Solutions"><span>Private gigs &amp; venue parties<br>Call Lilly <b>098 78500</b></span></div>
+  <div class="agent"><span>Private gigs &amp; venue parties · bookings <b>098 78500</b></span></div>
+  <div class="pw"><small>POWERED BY</small><img src="../assets/exposure-logo-white.svg" alt="Exposure Solutions"></div>
 </div>
 
 <script src="../data/band.js"></script>

@@ -9,7 +9,7 @@
 @page{size:A4;margin:0}
 .sheet{width:210mm;height:297mm;background:var(--bg);color:var(--cream);padding:16mm 16mm 14mm;display:flex;flex-direction:column}
 .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 30%,#c27a2c2e,transparent 70%);pointer-events:none}
-.logo{width:92mm;margin:0 auto}
+.logo{width:86mm;margin:0 auto}
 .kicker{font-family:var(--display);letter-spacing:.42em;color:var(--ember);text-align:center;font-size:11pt;margin-top:4mm}
 h1{font-family:var(--display);font-weight:400;text-align:center;font-size:36pt;letter-spacing:.08em;line-height:1.05;margin-top:5mm}
 .sub{text-align:center;font-style:italic;font-size:17pt;color:#cfc6ae;margin-top:2mm}
@@ -21,7 +21,7 @@ h1{font-family:var(--display);font-weight:400;text-align:center;font-size:36pt;l
 .dates .v{font-family:var(--display);font-size:14pt;letter-spacing:.04em}
 .dates .t{font-style:italic;font-size:13pt;color:#cfc6ae}
 .dates .tm{font-family:var(--display);font-size:14pt;letter-spacing:.06em;text-align:right}
-.foot{display:grid;grid-template-columns:1fr 34mm;gap:8mm;align-items:center;margin-top:7mm;padding-top:6mm;border-top:.6mm solid var(--ember)}
+.foot{display:grid;grid-template-columns:1fr 32mm;gap:8mm;align-items:center;margin-top:5mm;padding-top:5mm;border-top:.6mm solid var(--ember)}
 .foot h2{font-family:var(--display);font-weight:400;font-size:17pt;letter-spacing:.06em}
 .foot p{font-size:13pt;color:#cfc6ae;line-height:1.35}
 .qr{background:var(--cream);padding:2mm;border-radius:1.5mm}
@@ -43,6 +43,7 @@ h1{font-family:var(--display);font-weight:400;text-align:center;font-size:36pt;l
     </div>
     <div class="qr"><img src="../assets/qr-facebook.svg" alt="QR code"><small>SCAN FOR DATES</small></div>
   </div>
+  <div id="credit" style="margin-top:5mm;color:#cfc6ae"></div>
 </div>
 
 <script src="../data/band.js"></script>
@@ -69,8 +70,8 @@ function render() {
   makeEditable();
 }
 var c = contactBits();
-document.getElementById("contact").innerHTML = '<img src="../assets/exposure-logo.png" alt="Exposure Solutions" style="height:11mm;width:auto;mix-blend-mode:screen;vertical-align:middle;margin:1.5mm 3mm 0 -1mm">' +
-  '<span style="font-family:var(--display);font-size:14pt;color:var(--cream);letter-spacing:.06em;vertical-align:middle">' + c.phone.toUpperCase() + '</span><br>' + c.email + " · " + c.web;
+document.getElementById("contact").innerHTML = "Bookings &amp; private parties: <b style=\"color:var(--cream)\">" + c.phone.replace(/^Call \w+ /, "") + "</b> · " + c.email;
+document.getElementById("credit").innerHTML = poweredBy("dark");
 document.getElementById("venue").onchange = render;
 document.getElementById("rows").oninput = render;
 render(); markSample();

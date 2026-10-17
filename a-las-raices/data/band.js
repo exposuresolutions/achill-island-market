@@ -15,7 +15,16 @@ window.ALR = {
     whatsapp: "",                 // optional WhatsApp number for bookings
     email: "hello@exposuresolutions.me",
     website: "exposuresolutions.me",
-    logo: "assets/exposure-logo.png"
+    logo: "assets/exposure-logo-white.svg"
+  },
+
+  // Small "Powered by Exposure" credit on posters, ads, stationery and the site.
+  poweredBy: {
+    url: "https://exposuresolutions.me/?utm_source=a-las-raices&utm_medium=qr#services",
+    label: "exposuresolutions.me",
+    logoWhite: "assets/exposure-logo-white.svg",   // on dark backgrounds
+    logoDark: "assets/exposure-logo-dark.svg",     // on light backgrounds
+    qr: "assets/qr-exposure.svg"
   },
 
   // Customer photo/video uploads (Cloudflare Pages Function → Exposure Telegram).

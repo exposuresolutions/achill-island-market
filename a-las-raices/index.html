@@ -151,20 +151,6 @@ dialog::backdrop{background:#000c}
 .venue .btn{margin-top:auto;align-self:flex-start;padding:10px 16px;font-size:12px}
 .agent{margin-top:26px;border-left:2px solid var(--ember);padding:4px 0 4px 16px;color:var(--muted);font-size:18px}
 
-/* Exposure animated intro */
-#xintro{position:fixed;inset:0;z-index:50;background:#000;display:grid;place-items:center;cursor:pointer;animation:xout .6s ease 2.6s forwards}
-#xintro .xw{position:relative;width:min(640px,86vw);overflow:hidden}
-#xintro img{width:100%;mix-blend-mode:screen;animation:xin 1.6s cubic-bezier(.2,.7,.2,1) both}
-#xintro .sweep{position:absolute;inset:0;-webkit-mask:url(assets/exposure-logo.png) center/100% 100% no-repeat;mask:url(assets/exposure-logo.png) center/100% 100% no-repeat;background:linear-gradient(105deg,transparent 35%,#ffffff55 50%,transparent 65%);transform:translateX(-120%);animation:xsweep 1.2s ease .9s forwards;mix-blend-mode:screen}
-#xintro p{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:var(--display);letter-spacing:.4em;font-size:12px;color:#7fe6f0;opacity:0;animation:xfade .8s ease 1.3s forwards}
-@keyframes xin{0%{opacity:0;transform:scale(1.25);filter:blur(14px) brightness(2)}60%{opacity:1;filter:blur(0) brightness(1.3)}100%{transform:scale(1);filter:none}}
-@keyframes xsweep{to{transform:translateX(120%)}}
-@keyframes xfade{to{opacity:1}}
-@keyframes xout{to{opacity:0;visibility:hidden}}
-.presents{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-size:11px;letter-spacing:.32em;color:var(--muted);margin-bottom:18px}
-.presents span{animation:fade 1.4s .4s both}
-.hero .presents img{height:40px;width:auto;margin:0;mix-blend-mode:screen;animation:none}
-
 /* how booking works */
 .steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:34px}
 .steps li{counter-increment:s;border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:24px 20px;position:relative}
@@ -180,22 +166,13 @@ dialog::backdrop{background:#000c}
 .files{list-style:none;margin-top:6px;font-size:16px}
 .files li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:4px 0}
 .files .st{color:var(--ember);white-space:nowrap}
-footer .xlogo{width:150px;margin:18px auto 6px;mix-blend-mode:screen}
+footer .powered{display:inline-flex;align-items:center;gap:10px;margin-top:22px;text-decoration:none;opacity:.7}
+footer .powered:hover{opacity:1}
+footer .powered small{font-family:var(--display);font-size:10px;letter-spacing:.28em}
+footer .powered img{height:26px;width:auto;margin:0;opacity:1}
 </style>
 </head>
 <body>
-<div id="xintro" role="img" aria-label="Exposure Solutions presents" hidden>
-  <div class="xw"><img src="assets/exposure-logo.png" alt=""><div class="sweep"></div></div>
-  <p>PRESENTS</p>
-</div>
-<script>
-// Play the Exposure intro once per visit (skipped for reduced motion). Tap to skip.
-(function(){ var el = document.getElementById("xintro"), seen = false;
-  try { seen = sessionStorage.getItem("xintro") === "1"; sessionStorage.setItem("xintro","1"); } catch (e) {}
-  if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  el.hidden = false; el.onclick = function(){ el.remove(); }; setTimeout(function(){ el.remove(); }, 3300);
-})();
-</script>
 
 <nav>
   <a class="brand" href="#top">A LAS RAICES</a>
@@ -209,7 +186,6 @@ footer .xlogo{width:150px;margin:18px auto 6px;mix-blend-mode:screen}
 
 <header class="hero" id="top">
   <div class="hero-inner">
-    <div class="presents"><img src="assets/exposure-logo.png" alt="Exposure Solutions"><span>PRESENTS</span></div>
     <img src="assets/logo-transparent.png" alt="A Las Raices">
     <p class="tagline">Rumba Flamenca, straight from the roots.</p>
     <div class="ctas">
@@ -231,7 +207,7 @@ footer .xlogo{width:150px;margin:18px auto 6px;mix-blend-mode:screen}
 <section id="how">
   <div class="wrap">
     <p class="eyebrow" data-reveal>HOW BOOKING WORKS</p>
-    <h2 data-reveal>One call to Exposure</h2>
+    <h2 data-reveal>One call books it</h2>
     <ol class="steps" data-reveal>
       <li><b>Pick the night</b><p>A partner venue party, a private gig at your place, or tickets to a show.</p></li>
       <li><b>Call Lilly</b><p>Ring Exposure on <span data-phone-local></span> and Lilly takes your details — or use the form below.</p></li>
@@ -360,8 +336,9 @@ footer .xlogo{width:150px;margin:18px auto 6px;mix-blend-mode:screen}
   <p>A Las Raices · Rumba Flamenca · Costa Blanca</p>
   <p id="foot-contact"></p>
   <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
-  <a href="https://exposuresolutions.me" target="_blank" rel="noopener"><img class="xlogo" src="assets/exposure-logo.png" alt="Exposure Solutions"></a>
-  <p style="font-size:14px">Bookings &amp; management by Exposure Solutions</p>
+  <a class="powered" href="https://exposuresolutions.me/?utm_source=a-las-raices&amp;utm_medium=website#services" target="_blank" rel="noopener">
+    <small>POWERED BY</small><img src="assets/exposure-logo-white.svg" alt="Exposure Solutions">
+  </a>
 </footer>
 
 <dialog id="checkout">

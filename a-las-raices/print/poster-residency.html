@@ -12,7 +12,7 @@
 .every{font-family:var(--display);font-size:20pt;letter-spacing:.5em;color:var(--ember);margin-left:.5em}
 .day{font-family:var(--display);font-size:70pt;line-height:.95;letter-spacing:.04em;margin-top:2mm}
 .time{font-family:var(--display);font-size:24pt;letter-spacing:.14em;margin-top:4mm}
-.logo{width:118mm;margin:7mm 0 2mm}
+.logo{width:110mm;margin:5mm 0 2mm}
 .genre{font-style:italic;font-size:22pt;color:#cfc6ae}
 .at{margin-top:6mm;font-family:var(--display);font-size:11pt;letter-spacing:.4em;color:var(--ember)}
 .venue{font-family:var(--display);font-size:30pt;letter-spacing:.06em;margin-top:2mm;line-height:1.1}
@@ -44,6 +44,7 @@
     </div>
     <div class="qr"><img src="../assets/qr-facebook.svg" alt="QR code"><small>FOLLOW US</small></div>
   </div>
+  <div id="credit" style="margin-top:4mm;width:100%;color:#cfc6ae;text-align:left"></div>
 </div>
 
 <script src="../data/band.js"></script>
@@ -55,8 +56,8 @@ document.getElementById("time").textContent = r.time.toUpperCase();
 document.getElementById("venue").textContent = r.venue.toUpperCase();
 document.getElementById("place").textContent = r.place;
 document.getElementById("note").textContent = r.note.toUpperCase();
-document.getElementById("contact").innerHTML = '<img src="../assets/exposure-logo.png" alt="Exposure Solutions" style="height:11mm;width:auto;mix-blend-mode:screen;vertical-align:middle;margin:1.5mm 3mm 0 -1mm">' +
-  '<span style="font-family:var(--display);font-size:14pt;color:var(--cream);letter-spacing:.06em;vertical-align:middle">' + c.phone.toUpperCase() + '</span><br>' + c.email + " · " + c.web;
+document.getElementById("contact").innerHTML = "Bookings &amp; private parties: <b style=\"color:var(--cream)\">" + c.phone.replace(/^Call \w+ /, "") + "</b> · " + c.email;
+document.getElementById("credit").innerHTML = poweredBy("dark");
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

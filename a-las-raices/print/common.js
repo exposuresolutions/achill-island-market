@@ -18,6 +18,15 @@
     };
   };
 
+  // Small "Powered by Exposure Solutions" credit with a QR to Exposure's services.
+  // theme: "dark" (white logo) or "light" (dark logo); withQr: false for tiny pieces.
+  window.poweredBy = function (theme, withQr) {
+    var P = D.poweredBy, logo = "../" + (theme === "light" ? P.logoDark : P.logoWhite);
+    return '<div class="powered"><div class="pb"><small>POWERED BY</small><img src="' + logo + '" alt="Exposure Solutions"></div>' +
+      (withQr === false ? '' :
+       '<div class="pq"><span>Digital signage, websites &amp; ads<br>for your business · ' + P.label + '</span><img src="../' + P.qr + '" alt="QR code to Exposure Solutions"></div>') + '</div>';
+  };
+
   window.markSample = function () {
     if (D.DRAFT) document.querySelectorAll(".sheet").forEach(function (s) { s.classList.add("sample"); });
   };
