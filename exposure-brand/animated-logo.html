@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exposure Solutions – Animated Logo</title>
+<!--
+  Animated Exposure Solutions logo: cyan energy waves with lightning flowing through the letters,
+  aperture lens in the O. Loops seamlessly every 4 seconds.
+
+  URL options:
+    ?w=1920&h=1080   canvas size in px (default: fills the window)
+    &mode=full|icon  full logo, or just the lens (profile pictures)
+    &pad=0.12        empty space around the logo, as a fraction
+    &bg=000000       background colour (hex), or "none" for transparent
+    &still=1.6       draw one frame at this time (seconds) and stop
+  window.renderAt(t) draws the frame at time t; used to render GIF/MP4 versions.
+-->
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}canvas{display:block;margin:auto}</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="logo-geometry.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var G = window.EXPO_GEO.A, T = 4;                          // loop length (s)
+  var CY = [25, 211, 230];                                     // brand cyan
+  var W = +q.get("w") || innerWidth, H = +q.get("h") || innerHeight;
+  var mode = q.get("mode") || "full", pad = q.has("pad") ? +q.get("pad") : 0.12;
+  var bg = q.get("bg") || "000000";
+  var cv = document.getElementById("c"); cv.width = W; cv.height = H;
+  var ctx = cv.getContext("2d");
+  var L = document.createElement("canvas"); L.width = W; L.height = H; var lx = L.getContext("2d");
+  var lens = G.lens, letters = G.letters.map(function (l) { return new Path2D(l.d); });
+
+  // Fit logo (or lens) into the canvas
+  var box = mode === "icon" ? { x: lens.cx - lens.r, y: lens.cy - lens.r, w: 2 * lens.r, h: 2 * lens.r }
+                            : { x: 0, y: 0, w: G.width, h: G.height };
+  var s = Math.min(W * (1 - 2 * pad) / box.w, H * (1 - 2 * pad) / box.h);
+  var ox = (W - box.w * s) / 2 - box.x * s, oy = (H - box.h * s) / 2 - box.y * s;
+  function toScreen(x, y) { return [ox + x * s, oy + y * s]; }
+
+  // Deterministic random numbers, so every render of a frame is identical
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function rgba(a, c) { c = c || CY; return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+
+  // Energy waves: sweeping curves that run diagonally across the logo, like the original swirl
+  var waves = [
+    { amp: 0.30, len: 1.25, speed: 1, phase: 0.0, tilt: -0.22, width: 1.0 },
+    { amp: 0.22, len: 0.85, speed: 2, phase: 2.1, tilt: -0.10, width: 0.7 },
+    { amp: 0.36, len: 1.60, speed: -1, phase: 4.0, tilt: 0.05, width: 0.55 }
+  ];
+  function wavePoints(wv, t, n) {
+    var pts = [], bw = box.w, bh = box.h, cx = box.x + bw / 2, cy = box.y + bh / 2;
+    for (var i = 0; i <= n; i++) {
+      var u = i / n, x = box.x - bw * 0.15 + u * bw * 1.3;
+      var y = cy + (u - 0.5) * bw * wv.tilt
+            + Math.sin(2 * Math.PI * (u / wv.len) + wv.phase + 2 * Math.PI * wv.speed * t / T) * bh * wv.amp
+            + Math.sin(2 * Math.PI * (u * 2.7) - 2 * Math.PI * t / T) * bh * 0.05;
+      pts.push(toScreen(x, y));
+    }
+    return pts;
+  }
+  function strokePts(c, pts) { c.beginPath(); c.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]); c.stroke(); }
+
+  // Lightning: jagged line that follows a wave, re-drawn 14 times a second
+  function bolt(pts, r, jag, from, to) {
+    // control points every few samples with big random kinks, then finer jitter between them
+    var ctrl = [], a = Math.floor(from * pts.length), b = Math.min(pts.length - 1, Math.floor(to * pts.length));
+    for (var i = a; i <= b; i += 4 + Math.floor(r() * 7)) {
+      var p = pts[i], q2 = pts[Math.min(i + 1, pts.length - 1)], dx = q2[0] - p[0], dy = q2[1] - p[1], d = Math.hypot(dx, dy) || 1;
+      var off = (r() - 0.5) * 2 * jag * (0.4 + r());
+      ctrl.push([p[0] - dy / d * off, p[1] + dx / d * off]);
+    }
+    var out = [];
+    for (i = 0; i < ctrl.length - 1; i++) {
+      var p0 = ctrl[i], p1 = ctrl[i + 1], sx = p1[0] - p0[0], sy = p1[1] - p0[1], sl = Math.hypot(sx, sy) || 1;
+      out.push(p0);
+      for (var k = 1; k < 3; k++) {
+        var f = k / 3 + (r() - .5) * .15, j = (r() - .5) * sl * .35;
+        out.push([p0[0] + sx * f - sy / sl * j, p0[1] + sy * f + sx / sl * j]);
+      }
+    }
+    if (ctrl.length) out.push(ctrl[ctrl.length - 1]);
+    return out;
+  }
+
+  function drawLens(c, t, glow) {
+    var p = toScreen(lens.cx, lens.cy), R = lens.r * s, ring = R * 0.255, rin = R - ring * 1.35;
+    var breathe = 1 + 0.12 * Math.sin(2 * Math.PI * t / T), hexr = rin * 0.42 * breathe, gap = rin * 0.085;
+    var rot = (Math.PI / 3) * (t / T) + Math.PI / 12;          // one blade step per loop = seamless
+    var A = document.createElement("canvas"); A.width = A.height = Math.ceil(rin * 2 + 4);
+    var a = A.getContext("2d"), m = A.width / 2;
+    a.fillStyle = "rgb(" + CY + ")"; a.beginPath(); a.arc(m, m, rin, 0, 7); a.fill();
+    var g = a.createRadialGradient(m - rin * .3, m - rin * .3, 0, m, m, rin);
+    g.addColorStop(0, "rgba(255,255,255,.45)"); g.addColorStop(.6, "rgba(255,255,255,0)"); a.fillStyle = g; a.fill();
+    a.globalCompositeOperation = "destination-out"; a.lineWidth = gap; a.lineCap = "butt";
+    for (var i = 0; i < 6; i++) {
+      var ang = rot + i * Math.PI / 3, px = m + hexr * Math.cos(ang), py = m + hexr * Math.sin(ang), dx = -Math.sin(ang), dy = Math.cos(ang);
+      a.beginPath(); a.moveTo(px - dx * rin * .1, py - dy * rin * .1); a.lineTo(px + dx * rin * 1.6, py + dy * rin * 1.6); a.stroke();
+    }
+    a.beginPath();
+    for (i = 0; i < 6; i++) { var h = rot + Math.PI / 6 + i * Math.PI / 3, hr = hexr / Math.cos(Math.PI / 6); a[i ? "lineTo" : "moveTo"](m + hr * Math.cos(h), m + hr * Math.sin(h)); }
+    a.closePath(); a.fill();
+    c.save(); c.fillStyle = "#03080a"; c.beginPath(); c.arc(p[0], p[1], rin + ring * 0.2, 0, 7); c.fill();   // dark backing so the blades always read
+    c.shadowColor = rgba(0.9); c.shadowBlur = glow * R * 0.5; c.drawImage(A, p[0] - m, p[1] - m); c.restore();
+  }
+
+  function renderAt(t) {
+    t = ((t % T) + T) % T;
+    var bucket = Math.floor(t * 14) % (14 * T);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.clearRect(0, 0, W, H);
+    if (bg !== "none") { ctx.fillStyle = "#" + bg; ctx.fillRect(0, 0, W, H); }
+
+    // soft nebula behind everything
+    var c0 = toScreen(box.x + box.w * (0.45 + 0.08 * Math.sin(2 * Math.PI * t / T)), box.y + box.h * 0.5);
+    var neb = ctx.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], box.w * s * 0.6);
+    neb.addColorStop(0, rgba(0.22)); neb.addColorStop(1, rgba(0)); ctx.fillStyle = neb; ctx.fillRect(0, 0, W, H);
+
+    var unit = box.h * s, allPts = waves.map(function (wv) { return wavePoints(wv, t, 160); });
+
+    // 1. glowing wave ribbons behind the letters
+    ctx.globalCompositeOperation = "lighter"; ctx.lineCap = "round"; ctx.lineJoin = "round";
+    allPts.forEach(function (pts, i) {
+      var w = waves[i].width;
+      ctx.strokeStyle = rgba(0.07); ctx.lineWidth = unit * 0.30 * w; strokePts(ctx, pts);
+      ctx.strokeStyle = rgba(0.18); ctx.lineWidth = unit * 0.12 * w; strokePts(ctx, pts);
+      ctx.strokeStyle = rgba(0.35, [170, 245, 255]); ctx.lineWidth = unit * 0.025 * w; strokePts(ctx, pts);
+    });
+
+    // 2. letters: white, lit cyan where the energy passes through them
+    lx.globalCompositeOperation = "source-over"; lx.clearRect(0, 0, W, H);
+    lx.save(); lx.translate(ox, oy); lx.scale(s, s); lx.fillStyle = "#fff";
+    if (mode !== "icon") letters.forEach(function (p) { lx.fill(p); });
+    lx.beginPath(); lx.arc(lens.cx, lens.cy, lens.r - lens.r * 0.255 / 2, 0, 7); lx.lineWidth = lens.r * 0.255; lx.strokeStyle = "#fff"; lx.stroke();
+    lx.restore();
+    lx.globalCompositeOperation = "source-atop"; lx.lineCap = "round";
+    allPts.forEach(function (pts, i) {
+      if (i === 2) return;                                     // keep the letters readable: two bands only
+      lx.strokeStyle = rgba(0.45); lx.lineWidth = unit * 0.11 * waves[i].width; strokePts(lx, pts);
+      lx.strokeStyle = rgba(0.95, [60, 225, 245]); lx.lineWidth = unit * 0.035 * waves[i].width; strokePts(lx, pts);
+    });
+    ctx.globalCompositeOperation = "source-over";
+    ctx.save(); ctx.shadowColor = rgba(0.55); ctx.shadowBlur = unit * 0.06; ctx.drawImage(L, 0, 0); ctx.restore();
+
+    // 3. lightning crackling along the waves, on top
+    ctx.globalCompositeOperation = "lighter";
+    allPts.forEach(function (pts, i) {
+      var r = rng(i * 7919 + bucket * 31 + 1);
+      if (r() < 0.25) return;                                   // flicker: some frames have no bolt
+      var start = r() * 0.5, len = 0.25 + r() * 0.5;
+      var b = bolt(pts, r, unit * (mode === "icon" ? 0.035 : 0.06), start, Math.min(1, start + len));
+      if (b.length < 3) return;
+      ctx.strokeStyle = rgba(0.35); ctx.lineWidth = unit * 0.035; ctx.shadowColor = rgba(1); ctx.shadowBlur = unit * 0.08; strokePts(ctx, b);
+      ctx.shadowBlur = 0; ctx.strokeStyle = "rgba(235,255,255,.95)"; ctx.lineWidth = Math.max(1, unit * 0.007); strokePts(ctx, b);
+      // a fork
+      var k = Math.floor(b.length * (0.3 + r() * 0.4)), fk = [b[k]], ang = (r() - 0.5) * 2.4, x = b[k][0], y = b[k][1];
+      for (var j = 0; j < 8; j++) { x += Math.cos(ang) * unit * 0.05 + (r() - .5) * unit * .04; y += Math.sin(ang) * unit * 0.05 + (r() - .5) * unit * .04; fk.push([x, y]); }
+      ctx.strokeStyle = "rgba(200,250,255,.7)"; ctx.lineWidth = Math.max(1, unit * 0.004); strokePts(ctx, fk);
+    });
+
+    // 4. the lens, glowing harder as lightning passes
+    ctx.globalCompositeOperation = "source-over";
+    drawLens(ctx, t, 0.6 + 0.4 * Math.max(0, Math.sin(2 * Math.PI * (t / T) * 2)));
+  }
+
+  window.renderAt = renderAt;
+  if (q.has("still")) { renderAt(+q.get("still")); return; }
+  var t0 = performance.now();
+  (function loop(now) { renderAt((now - t0) / 1000); requestAnimationFrame(loop); })(t0);
+})();
+</script>
+</body>
+</html>
