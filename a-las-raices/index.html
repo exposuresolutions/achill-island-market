@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices | Live Band</title>
+<meta name="description" content="A Las Raices — live band. Guitar, vocals and soul, straight from the roots. Book the band for your venue or event.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="A Las Raices | Live Band">
+<meta property="og:description" content="Live music, straight from the roots. Book the band.">
+<meta property="og:image" content="assets/logo-square.jpg">
+<link rel="icon" href="assets/logo-square.jpg">
+<style>
+@font-face{font-family:Cinzel;src:url(assets/fonts/Cinzel-normal.woff2) format("woff2");font-weight:400 900;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-normal.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-italic.woff2) format("woff2");font-style:italic;font-weight:300 700;font-display:swap}
+:root{
+  --bg:#0b0a08;--bg-2:#14120e;--line:#2a261e;
+  --cream:#f0ead6;--muted:#b3ab96;--ember:#d08a3c;
+  --display:Cinzel,Georgia,serif;--body:Cormorant,Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--body);font-size:20px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:linear-gradient(#0b0a08ee,#0b0a0800)}
+nav .brand{font-family:var(--display);letter-spacing:.18em;font-size:15px;text-decoration:none}
+nav ul{display:flex;gap:22px;list-style:none;font-family:var(--display);font-size:13px;letter-spacing:.14em}
+nav ul a{text-decoration:none;opacity:.8}
+nav ul a:hover{opacity:1;color:var(--ember)}
+@media (max-width:640px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:90px 20px 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 55%,#d08a3c22,transparent 70%)}
+.hero-inner{position:relative}
+.hero img{width:min(560px,86vw);margin:0 auto;animation:grow 2.4s ease-out both}
+.tagline{font-style:italic;font-size:clamp(22px,4vw,30px);color:var(--muted);margin-top:18px;animation:fade 1.6s .8s both}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:fade 1.6s 1.2s both}
+.btn{font-family:var(--display);font-size:14px;letter-spacing:.16em;text-decoration:none;padding:14px 26px;border:1px solid var(--cream);border-radius:2px;transition:.25s}
+.btn.solid{background:var(--cream);color:var(--bg)}
+.btn:hover{background:var(--ember);border-color:var(--ember);color:var(--bg)}
+@keyframes grow{from{opacity:0;transform:translateY(16px) scale(.97);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* sections */
+section{padding:90px 0;border-top:1px solid var(--line)}
+.eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--ember);margin-bottom:10px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,46px);letter-spacing:.06em;line-height:1.15;margin-bottom:22px}
+.lead{font-size:clamp(21px,2.6vw,25px);max-width:720px;color:var(--muted)}
+.lead em{color:var(--cream)}
+
+.lineup{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:40px}
+.member{border:1px solid var(--line);background:var(--bg-2);padding:28px 24px;border-radius:4px}
+.member .name{font-family:var(--display);font-size:22px;letter-spacing:.06em}
+.member .role{font-style:italic;color:var(--ember)}
+
+.videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:34px}
+.video{aspect-ratio:9/16;max-height:560px;background:var(--bg-2);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.video iframe{width:100%;height:100%;border:0}
+.video-empty{border:1px dashed var(--line);border-radius:4px;padding:40px 24px;text-align:center;color:var(--muted);margin-top:30px}
+.video-empty .btn{display:inline-block;margin-top:18px}
+
+.residency{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.residency .card{border:1px solid var(--ember);padding:34px;border-radius:4px;text-align:center}
+.residency .card .big{font-family:var(--display);font-size:30px;letter-spacing:.08em}
+@media (max-width:760px){.residency{grid-template-columns:1fr}}
+
+.stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:30px}
+.stat .n{font-family:var(--display);font-size:38px;color:var(--cream)}
+.stat .l{font-size:16px;color:var(--muted);letter-spacing:.06em}
+
+form{display:grid;gap:14px;max-width:620px;margin-top:30px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+label{font-family:var(--display);font-size:12px;letter-spacing:.18em;color:var(--muted)}
+input,select,textarea{width:100%;margin-top:6px;background:var(--bg-2);border:1px solid var(--line);color:var(--cream);font-family:var(--body);font-size:18px;letter-spacing:0;padding:12px 14px;border-radius:2px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ember)}
+button.btn{cursor:pointer;background:var(--cream);color:var(--bg);justify-self:start}
+
+footer{border-top:1px solid var(--line);padding:40px 20px;text-align:center;color:var(--muted);font-size:16px}
+footer img{width:70px;margin:0 auto 12px;opacity:.8}
+
+[data-reveal]{opacity:0;transform:translateY(18px);transition:1s ease}
+[data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">A LAS RAICES</a>
+  <ul>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#watch">WATCH</a></li>
+    <li><a href="#live">LIVE</a></li>
+    <li><a href="#book">BOOK</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <img src="assets/logo-transparent.png" alt="A Las Raices">
+    <p class="tagline">Live music, straight from the roots.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#book">BOOK THE BAND</a>
+      <a class="btn" href="#watch">WATCH LIVE</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>THE BAND</p>
+    <h2 data-reveal>Back to the roots</h2>
+    <p class="lead" data-reveal><em>A Las Raices</em> — "to the roots" — is a live band built on guitar, voice and feeling. From the first chord to the last encore, every set is played live and played loud, with a sound that pulls a room together.</p>
+    <div class="stats" data-reveal>
+      <div class="stat"><div class="n">7,400+</div><div class="l">FOLLOWERS</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">LIVE</div></div>
+    </div>
+    <!-- Line-up from the band's Facebook bio. Add remaining members once confirmed. -->
+    <div class="lineup">
+      <div class="member" data-reveal><div class="name">Demircan</div><div class="role">Guitar &amp; Vocals</div></div>
+      <div class="member" data-reveal><div class="name">Ibrahim Cetiner</div><div class="role">Solo Guitar</div></div>
+      <div class="member" data-reveal><div class="name">Daniel</div><div class="role">Bass</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="watch">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>WATCH</p>
+    <h2 data-reveal>See them live</h2>
+    <div class="videos" id="videos"></div>
+    <div class="video-empty" id="videos-empty" hidden>
+      New clips coming soon. Catch the latest on Facebook.<br>
+      <a class="btn" href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">OPEN FACEBOOK</a>
+    </div>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap residency">
+    <div data-reveal>
+      <p class="eyebrow">LIVE</p>
+      <h2>Resident band</h2>
+      <p class="lead">Catch A Las Raices in residency at <em>Los Altos</em>, and on the screens at partner venues across the network. Follow the page for dates and pop-up gigs.</p>
+    </div>
+    <div class="card" data-reveal>
+      <p class="eyebrow">NOW PLAYING</p>
+      <p class="big">LOS ALTOS</p>
+      <p style="color:var(--muted);font-style:italic">Residency — see Facebook for this week's nights</p>
+      <a class="btn" style="display:inline-block;margin-top:20px" href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">GIG DATES</a>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>BOOKINGS</p>
+    <h2 data-reveal>Book A Las Raices</h2>
+    <p class="lead" data-reveal>Bars, hotels, weddings, private parties and festivals. Tell us about your night and we'll come back with availability.</p>
+    <form id="booking" data-reveal>
+      <div class="row">
+        <label>NAME<input name="name" required autocomplete="name"></label>
+        <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="row">
+        <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
+        <label>DATE<input name="date" type="date"></label>
+      </div>
+      <label>EVENT TYPE
+        <select name="type"><option>Bar / venue night</option><option>Wedding</option><option>Private party</option><option>Corporate</option><option>Festival</option><option>Other</option></select>
+      </label>
+      <label>DETAILS<textarea name="details" rows="4" placeholder="Venue, town, how long a set, anything else"></textarea></label>
+      <button class="btn" type="submit">SEND ENQUIRY</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <img src="assets/logo-transparent.png" alt="">
+  <p>A Las Raices · Live band</p>
+  <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
+  <p style="margin-top:10px;font-size:14px">Website &amp; signage by <a href="https://exposuresolutions.ie" target="_blank" rel="noopener">Exposure Solutions</a></p>
+</footer>
+
+<script>
+// ---- Edit these once the band confirms ----
+// Booking enquiries go here. Leave blank to send people to the Facebook page instead.
+var BOOKING_EMAIL = "";
+// Public Facebook video/reel URLs to show in the Watch section.
+var VIDEOS = [
+  // "https://www.facebook.com/reel/1234567890",
+];
+// -------------------------------------------
+
+var FB_PAGE = "https://www.facebook.com/people/A-Las-Raices/100083239897155/";
+
+(function renderVideos(){
+  var grid = document.getElementById("videos");
+  if (!VIDEOS.length) { document.getElementById("videos-empty").hidden = false; return; }
+  VIDEOS.forEach(function(url){
+    var box = document.createElement("div");
+    box.className = "video";
+    box.setAttribute("data-reveal","");
+    box.innerHTML = '<iframe loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen ' +
+      'src="https://www.facebook.com/plugins/video.php?show_text=false&href=' + encodeURIComponent(url) + '"></iframe>';
+    grid.appendChild(box);
+  });
+})();
+
+document.getElementById("booking").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = new FormData(e.target), lines = [];
+  f.forEach(function(v,k){ if (v) lines.push(k.charAt(0).toUpperCase()+k.slice(1)+": "+v); });
+  var body = lines.join("\n");
+  if (BOOKING_EMAIL) {
+    location.href = "mailto:"+BOOKING_EMAIL+"?subject="+encodeURIComponent("Booking enquiry – A Las Raices")+"&body="+encodeURIComponent(body);
+  } else {
+    try { navigator.clipboard.writeText(body); } catch (err) {}
+    alert("Thanks! Your details are copied — paste them into a message to the band on Facebook.");
+    window.open(FB_PAGE, "_blank", "noopener");
+  }
+});
+
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+}, {threshold:.15});
+document.querySelectorAll("[data-reveal]").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>

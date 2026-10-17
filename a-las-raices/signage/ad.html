@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Screen Ad</title>
+<!--
+  15-second looping ad for digital signage (Yodeck, ScreenCloud, Rise Vision, any browser kiosk).
+  Works full-screen in landscape (1920x1080) and portrait (1080x1920).
+  Rendered MP4 copies sit next to this file for players that only take video.
+-->
+<style>
+@font-face{font-family:Cinzel;src:url(../assets/fonts/Cinzel-normal.woff2) format("woff2");font-weight:400 900}
+@font-face{font-family:Cormorant;src:url(../assets/fonts/CormorantGaramond-normal.woff2) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;src:url(../assets/fonts/CormorantGaramond-italic.woff2) format("woff2");font-style:italic;font-weight:300 700}
+:root{--bg:#0b0a08;--cream:#f0ead6;--muted:#b3ab96;--ember:#d08a3c;--T:15s}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--cream);cursor:none}
+body{font-family:Cormorant,Georgia,serif}
+
+.glow{position:absolute;inset:-20%;background:
+  radial-gradient(40% 35% at 50% 60%,#d08a3c30,transparent 70%),
+  radial-gradient(30% 25% at 30% 30%,#f0ead610,transparent 70%);
+  animation:drift var(--T) ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(2%,-3%) scale(1.08)}}
+
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6vmin;opacity:0}
+
+/* 1 · logo 0–4s */
+.s1{animation:s1 var(--T) linear infinite}
+.s1 img{width:min(70vw,95vmin);animation:logo var(--T) ease-out infinite}
+@keyframes s1{0%{opacity:0}4%{opacity:1}24%{opacity:1}27%{opacity:0}100%{opacity:0}}
+@keyframes logo{0%{transform:translateY(4vmin) scale(.94);filter:blur(1.2vmin)}12%{transform:none;filter:blur(0)}27%{transform:scale(1.04)}100%{transform:scale(1.04)}}
+
+/* 2 · live music 4–8s */
+.s2{animation:s2 var(--T) linear infinite}
+@keyframes s2{0%,26%{opacity:0}29%{opacity:1}51%{opacity:1}54%,100%{opacity:0}}
+.big{font-family:Cinzel,serif;font-weight:400;letter-spacing:.08em;line-height:1.05;font-size:13vmin}
+.ital{font-style:italic;color:var(--muted);font-size:6.2vmin;margin-top:2vmin}
+.rule{width:18vmin;height:2px;background:var(--ember);margin:4vmin auto}
+.names{font-family:Cinzel,serif;letter-spacing:.14em;font-size:3.4vmin;color:var(--cream);opacity:.9}
+.names b{font-weight:400}
+.names span{color:var(--ember);margin:0 1.4vmin}
+.s2 .big{animation:rise var(--T) ease-out infinite}
+@keyframes rise{0%,26%{transform:translateY(5vmin);letter-spacing:.2em}34%,100%{transform:none;letter-spacing:.08em}}
+
+/* 3 · residency 8–11.5s */
+.s3{animation:s3 var(--T) linear infinite}
+@keyframes s3{0%,53%{opacity:0}56%{opacity:1}74%{opacity:1}77%,100%{opacity:0}}
+.eyebrow{font-family:Cinzel,serif;letter-spacing:.4em;color:var(--ember);font-size:3.6vmin;margin-bottom:3vmin}
+.s3 .big{font-size:15vmin;animation:zoom var(--T) ease-out infinite}
+@keyframes zoom{0%,53%{transform:scale(1.15);opacity:0}60%{transform:scale(1);opacity:1}100%{transform:scale(1)}}
+
+/* 4 · book 11.5–15s */
+.s4{animation:s4 var(--T) linear infinite}
+@keyframes s4{0%,76%{opacity:0}79%{opacity:1}96%{opacity:1}100%{opacity:0}}
+.cta{display:flex;align-items:center;gap:6vmin}
+.cta img.logo{width:42vmin}
+.qr{background:var(--cream);padding:1.6vmin;border-radius:1vmin;width:36vmin}
+.qr img{width:100%;display:block}
+.scan{font-style:italic;color:var(--muted);font-size:4.2vmin;margin-top:2.4vmin}
+.s4 .big{font-size:10vmin;margin-bottom:5vmin}
+
+@media (orientation:portrait){
+  .s1 img{width:88vw}
+  .big{font-size:14vw}
+  .ital{font-size:7vw}
+  .names{font-size:3.8vw;display:flex;flex-direction:column;gap:2vw}
+  .names span{display:none}
+  .s3 .big{font-size:17vw}
+  .eyebrow{font-size:4vw}
+  .cta{flex-direction:column;gap:6vw}
+  .cta img.logo{width:70vw}
+  .qr{width:42vw}
+  .scan{font-size:5vw}
+  .s4 .big{font-size:11vw}
+}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="scene s1"><img src="../assets/logo-transparent.png" alt="A Las Raices"></div>
+
+<div class="scene s2">
+  <div class="big">LIVE MUSIC</div>
+  <div class="ital">straight from the roots</div>
+  <div class="rule"></div>
+  <div class="names"><b>DEMIRCAN</b><span>·</span><b>IBRAHIM CETINER</b><span>·</span><b>DANIEL</b></div>
+</div>
+
+<div class="scene s3">
+  <div class="eyebrow">RESIDENT BAND</div>
+  <div class="big">LOS ALTOS</div>
+  <div class="ital">catch them live this week</div>
+</div>
+
+<div class="scene s4">
+  <div class="big">BOOK THE BAND</div>
+  <div class="cta">
+    <img class="logo" src="../assets/logo-transparent.png" alt="">
+    <div>
+      <div class="qr"><img src="../assets/qr-facebook.svg" alt="QR code to A Las Raices on Facebook"></div>
+      <div class="scan">Scan to follow &amp; book</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
