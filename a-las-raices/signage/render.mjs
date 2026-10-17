@@ -1,5 +1,5 @@
 // Renders an animated HTML page to MP4, frame by frame (smooth, no dropped frames).
-// Usage: node render.mjs <page.html> <out.mp4> <width> <height> [seconds=15] [fps=30] [startSeconds=0]
+// Usage: node render.mjs <page.html[?query]> <out.mp4> <width> <height> [seconds=15] [fps=30] [startSeconds=0]
 // Needs Playwright + ffmpeg. Set PLAYWRIGHT_PATH if playwright isn't resolvable.
 import { createRequire } from "module";
 import { spawn } from "child_process";
@@ -13,7 +13,8 @@ const W = +w, H = +h, S = +secs, F = +fps, T0 = +start * 1000, total = Math.roun
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: W, height: H } });
-await page.goto("file://" + path.resolve(page_));
+const [file, query] = page_.split("?");
+await page.goto("file://" + path.resolve(file) + (query ? "?" + query : ""));
 await page.evaluate(() => document.fonts.ready);
 await page.waitForLoadState("networkidle");
 

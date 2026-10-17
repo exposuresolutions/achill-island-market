@@ -69,7 +69,8 @@ function render() {
   makeEditable();
 }
 var c = contactBits();
-document.getElementById("contact").innerHTML = "Bookings: " + c.agency + " · " + c.phone + " · " + c.email;
+document.getElementById("contact").innerHTML = '<img src="../assets/exposure-logo.png" alt="Exposure Solutions" style="height:11mm;width:auto;mix-blend-mode:screen;vertical-align:middle;margin:1.5mm 3mm 0 -1mm">' +
+  '<span style="font-family:var(--display);font-size:14pt;color:var(--cream);letter-spacing:.06em;vertical-align:middle">' + c.phone.toUpperCase() + '</span><br>' + c.email + " · " + c.web;
 document.getElementById("venue").onchange = render;
 document.getElementById("rows").oninput = render;
 render(); markSample();

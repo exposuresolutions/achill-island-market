@@ -9,10 +9,21 @@ window.ALR = {
   // All bookings (private gigs, venue + band parties, tickets) go through Exposure Solutions.
   agency: {
     name: "Exposure Solutions",
-    phone: "",          // Exposure bookings WhatsApp, e.g. "+34 600 000 000"
+    assistant: "Lilly",           // Exposure's phone assistant (ElevenLabs agent on the number below)
+    phone: "+353 98 78500",       // international format, used for call links
+    phoneLocal: "098 78500",      // how it's printed
+    whatsapp: "",                 // optional WhatsApp number for bookings
     email: "hello@exposuresolutions.me",
-    website: "exposuresolutions.me"
+    website: "exposuresolutions.me",
+    logo: "assets/exposure-logo.png"
   },
+
+  // Customer photo/video uploads (Cloudflare Pages Function → Exposure Telegram).
+  uploadApi: "/api/upload",
+
+  // After the job: contractor uploads photos/videos of the finished job, then the
+  // customer pays the balance. Paste a Stripe Payment Link here to take card payments.
+  finalPayment: { link: "", note: "Exposure will send your final invoice once the photos are in." },
 
   contact: {
     leader: "Demircan Ulugun",

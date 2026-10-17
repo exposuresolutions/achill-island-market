@@ -34,7 +34,7 @@
     <div class="role" data-edit>Private gigs · venue parties · tickets<br>via Exposure Solutions</div>
     <div class="lines" id="lines" data-edit></div>
   </div>
-  <div><img class="qr" src="../assets/qr-facebook.svg" alt="QR code"></div>
+  <div><img class="qr" src="../assets/qr-facebook.svg" alt="QR code"><img src="../assets/exposure-logo.jpg" alt="Exposure Solutions" style="width:19mm;margin-top:2mm;border-radius:.8mm"></div>
   <div class="tag" data-edit>RUMBA FLAMENCA · DUO · TRIO · FULL BAND</div>
 </div>
 <script src="../data/band.js"></script>
@@ -42,7 +42,7 @@
 <script>
 var c = contactBits();
 document.getElementById("name").textContent = "Bookings";
-document.getElementById("lines").innerHTML = c.phone + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
+document.getElementById("lines").innerHTML = '<b style="font-family:var(--display);font-weight:400;font-size:9.5pt">' + c.phone + '</b><br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

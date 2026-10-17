@@ -19,9 +19,31 @@ The M365 connector can list these files but can't download video, so share them 
 | Posters + stationery | `print/` — open `print/index.html`. Click any text to edit, then Print / Save as PDF |
 | Ready PDFs | `print/pdf/` — re-make with `node print/make-pdfs.mjs` after editing `data/band.js` |
 | Screen ad, 15s loop (HTML) | `signage/ad.html` — auto-fits landscape or portrait |
-| Screen ad, MP4 | `signage/ad-landscape-1920x1080.mp4`, `signage/ad-portrait-1080x1920.mp4` |
+| Screen ad, MP4 (Exposure intro + 15s ad) | `signage/ad-landscape-1920x1080.mp4`, `signage/ad-portrait-1080x1920.mp4` |
+| Per-venue screen ads ("Live here at …") | `signage/venues/<venue>-landscape.mp4` / `-portrait.mp4`. Rebuild everything with `signage/make-ads.sh` |
+| Job complete + final payment | `complete.html` |
 | Promo video builder | `promo/make-promo.sh` |
 | Logo (transparent / square), QR | `assets/` |
+
+## How booking works (Exposure process)
+1. **Pick the night.** The venue and what's advertised come first: a partner venue party, a private gig, or tickets.
+2. **Call Lilly** on **098 78500** (+353 98 78500). That's Exposure's ElevenLabs phone agent "Lilly Phone — Exposure Solutions". Or use the website form.
+3. **Photos or videos.** Customers can upload pictures of their venue or space with the booking (optional).
+4. **Confirmation.** Sent once one of Exposure's contractors (the band or venue) confirms the date.
+5. **After the job.** Photos and videos of the finished job go up on `complete.html` (booking reference, role, files), then the final payment is made (`finalPayment` in `data/band.js`: a Stripe link or an invoice note).
+
+### Uploads — one-time setup
+Uploads go through a Cloudflare Pages Function at `/functions/api/upload.js`, which forwards each file to Telegram with its booking reference.
+In Cloudflare → Pages → achill-island-market → Settings → Environment variables, add:
+- `TELEGRAM_BOT_TOKEN`: the same bot that sends the booking alerts
+- `TELEGRAM_CHAT_ID`: the chat to receive the files
+
+Until both are set, bookings still go through and the site tells customers Lilly will collect their files on the call. Files are limited to 45 MB each (Telegram's limit is 50 MB).
+
+### Branding
+- Exposure Solutions logo: `assets/exposure-logo.jpg`, from OneDrive `Clients/ACTIVE/DDWL/Branding/exposure-solutions/logo/ES-logo-final.png`.
+- Animated Exposure intro: `signage/exposure-intro.html` (3s). It plays when the website opens and at the start of every screen ad and promo.
+- The band's own animated logo intro (`1765700585788.mp4` in OneDrive) still needs a share link before it can be added.
 
 ## Bookings, tickets and packages
 **Exposure Solutions is the booking agent.** Every booking contact on the site, posters, stationery and screen ad is Exposure's (`agency` in `data/band.js`). The band's own number isn't published.
@@ -42,13 +64,14 @@ Ways to book on the site:
 - Highlighted fields (WhatsApp number, email, NIE, IBAN) still need real details.
 
 ## Putting the ad on the 6 venue screens
-Upload the MP4 that matches each screen's orientation to the signage player (Yodeck or similar) and add it to each venue's playlist.
-15s loop; suggested slot: once every 3–5 minutes. No sound, so it works in any venue.
+Upload the MP4 that matches each screen's orientation to the signage player (Yodeck or similar). Give each venue its own "Live here at …" version from `signage/venues/`.
+18s loop (3s Exposure intro + 15s ad); suggested slot: once every 3–5 minutes. No sound, so it works in any venue.
 
 ## Still needed from the band
 - [ ] Their OK to use their videos, plus any newer clips (originals from their phones beat Facebook copies)
 - [ ] Confirm the line-up is still current
-- [ ] Exposure bookings WhatsApp number (`agency.phone`) and NIF/CIF for quotes and invoices
+- [ ] Exposure NIF/CIF for quotes and invoices (optional WhatsApp: `agency.whatsapp`)
+- [ ] Update Lilly's instructions (ElevenLabs agent) so she knows the A Las Raices booking questions
 - [ ] The 6 partner venues: name, town, type, and whether they take party bookings
 - [ ] Current prices, if they want them on the site (Dec 2025: duo €150, trio €200, full band €699)
 - [ ] Real gig dates, the La Zenia beach bar name and residency day/time

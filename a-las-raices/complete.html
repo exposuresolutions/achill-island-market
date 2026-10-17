@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Complete | A Las Raices</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-square.jpg">
+<style>
+@font-face{font-family:Cinzel;src:url(assets/fonts/Cinzel-normal.woff2) format("woff2");font-weight:400 900;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-normal.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-italic.woff2) format("woff2");font-style:italic;font-weight:300 700;font-display:swap}
+:root{--bg:#0b0a08;--bg-2:#14120e;--line:#2a261e;--cream:#f0ead6;--muted:#b3ab96;--ember:#d08a3c;--display:Cinzel,Georgia,serif;--body:Cormorant,Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream);font-family:var(--body);font-size:20px;line-height:1.6;padding:28px 16px 60px}
+main{max-width:620px;margin:0 auto}
+a{color:inherit}
+.brand{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px}
+.brand img{height:54px;width:auto}
+.brand .x{height:44px;mix-blend-mode:screen}
+.eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--ember)}
+h1{font-family:var(--display);font-weight:400;font-size:32px;letter-spacing:.05em;margin:6px 0 10px}
+.lead{color:var(--muted)}
+.steps{display:flex;gap:10px;margin:22px 0;font-family:var(--display);font-size:11px;letter-spacing:.14em}
+.steps span{flex:1;text-align:center;border-top:2px solid var(--line);padding-top:8px;color:var(--muted)}
+.steps span.on{border-color:var(--ember);color:var(--cream)}
+form{display:grid;gap:14px;margin-top:10px}
+label{font-family:var(--display);font-size:12px;letter-spacing:.18em;color:var(--muted)}
+input,select,textarea{width:100%;margin-top:6px;background:var(--bg-2);border:1px solid var(--line);color:var(--cream);font-family:var(--body);font-size:18px;padding:12px 14px;border-radius:2px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ember)}
+.drop{border:1px dashed var(--ember);border-radius:4px;padding:16px}
+.drop input{border:0;background:none;padding:8px 0}
+.files{list-style:none;font-size:16px}
+.files li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:4px 0}
+.files .st{color:var(--ember);white-space:nowrap}
+.btn{display:inline-block;font-family:var(--display);font-size:14px;letter-spacing:.16em;text-decoration:none;padding:14px 26px;border:1px solid var(--cream);background:var(--cream);color:var(--bg);border-radius:2px;cursor:pointer;justify-self:start}
+.btn.ghost{background:none;color:var(--cream)}
+.card{border:1px solid var(--ember);border-radius:4px;padding:22px;margin-top:26px}
+.note{color:var(--muted);font-style:italic;font-size:17px}
+.draft{position:fixed;left:0;right:0;bottom:0;background:var(--ember);color:var(--bg);text-align:center;font-family:var(--display);font-size:12px;letter-spacing:.14em;padding:8px}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><img class="x" src="assets/exposure-logo.png" alt="Exposure Solutions"><img src="assets/logo-transparent.png" alt="A Las Raices"></div>
+  <p class="eyebrow">AFTER THE SHOW</p>
+  <h1>Job complete</h1>
+  <p class="lead">Once the night is done, the photos and videos go up here, and then the final payment is made.</p>
+  <div class="steps"><span class="on" id="s1">1 · PHOTOS &amp; VIDEOS</span><span id="s2">2 · FINAL PAYMENT</span></div>
+
+  <form id="done">
+    <label>BOOKING REFERENCE<input name="ref" required placeholder="From your confirmation"></label>
+    <label>I AM
+      <select name="role"><option>The band / contractor</option><option>The customer</option><option>The venue</option></select>
+    </label>
+    <label>NAME<input name="name" required autocomplete="name"></label>
+    <div class="drop">
+      <label>PHOTOS OR VIDEOS OF THE NIGHT <span style="font-family:var(--body);letter-spacing:0;font-size:15px">(max 45 MB each)</span>
+        <input type="file" id="files" accept="image/*,video/*" multiple>
+      </label>
+      <ul class="files" id="file-list"></ul>
+    </div>
+    <label>NOTES<textarea name="notes" rows="3" placeholder="Anything to add — overtime, extras, feedback"></textarea></label>
+    <button class="btn" type="submit" id="go">MARK JOB COMPLETE</button>
+  </form>
+
+  <div class="card" id="pay" hidden>
+    <p class="eyebrow">FINAL PAYMENT</p>
+    <p id="pay-text" style="margin-top:8px"></p>
+    <p style="margin-top:16px" id="pay-btn"></p>
+  </div>
+  <p class="note" style="margin-top:30px" id="help"></p>
+</main>
+<div class="draft" id="draft" hidden>DRAFT PREVIEW</div>
+
+<script src="data/band.js"></script>
+<script>
+var D = ALR, A = D.agency;
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+if (D.DRAFT) document.getElementById("draft").hidden = false;
+document.getElementById("help").innerHTML = "Questions? Call " + esc(A.assistant) + " at " + esc(A.name) + " on <a href=\"tel:" + A.phone.replace(/[^\d+]/g, "") + "\">" + esc(A.phoneLocal) + "</a> or email <a href=\"mailto:" + esc(A.email) + "\">" + esc(A.email) + "</a>.";
+try { var r = new URLSearchParams(location.search).get("ref"); if (r) document.querySelector("[name=ref]").value = r; } catch (e) {}
+
+var input = document.getElementById("files"), list = document.getElementById("file-list");
+input.onchange = function(){ list.innerHTML = Array.prototype.map.call(input.files, function(f){ return '<li><span>' + esc(f.name) + '</span><span class="st">' + (f.size / 1048576).toFixed(1) + ' MB</span></li>'; }).join(""); };
+
+function upload(files, ref, name){
+  var failed = 0;
+  list.innerHTML = files.map(function(f, i){ return '<li><span>' + esc(f.name) + '</span><span class="st" id="u' + i + '">waiting</span></li>'; }).join("");
+  return files.reduce(function(chain, f, i){
+    return chain.then(function(){
+      var st = document.getElementById("u" + i);
+      if (f.size > 45 * 1024 * 1024) { st.textContent = "too large"; failed++; return; }
+      st.textContent = "uploading…";
+      return fetch(D.uploadApi + "?client=a-las-raices&stage=completion&ref=" + encodeURIComponent(ref) + "&name=" + encodeURIComponent(name) + "&file=" + encodeURIComponent(f.name),
+        { method: "POST", headers: { "Content-Type": f.type || "application/octet-stream" }, body: f })
+        .then(function(r){ if (!r.ok) throw 0; st.textContent = "sent ✓"; })
+        .catch(function(){ st.textContent = "not sent"; failed++; });
+    });
+  }, Promise.resolve()).then(function(){ return failed; });
+}
+
+document.getElementById("done").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = Object.fromEntries(new FormData(e.target).entries()), files = Array.prototype.slice.call(input.files), btn = document.getElementById("go");
+  btn.disabled = true; btn.textContent = "SENDING…";
+  var payload = { client: "a-las-raices", form_type: "job-complete", name: f.name, ref: f.ref, role: f.role, notes: f.notes, page: location.href,
+    message: "Job complete · ref " + f.ref + " · " + f.role + " · " + files.length + " photo/video file(s)" + (f.notes ? " — " + f.notes : "") };
+  fetch(D.formApi, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+    .catch(function(){})
+    .then(function(){ return upload(files, f.ref, f.name); })
+    .then(function(failed){
+      btn.hidden = true;
+      if (failed) list.insertAdjacentHTML("afterend", '<p class="note">Some files didn\'t upload. Email them to ' + esc(A.email) + ' with reference ' + esc(f.ref) + '.</p>');
+      document.getElementById("s2").classList.add("on");
+      var P = D.finalPayment, pay = document.getElementById("pay");
+      document.getElementById("pay-text").innerHTML = "Thanks — the job is marked complete for reference <strong>" + esc(f.ref) + "</strong>. " +
+        (P.link ? "The customer can now settle the final balance by card." : esc(P.note));
+      if (P.link) document.getElementById("pay-btn").innerHTML = '<a class="btn" href="' + esc(P.link) + '">PAY FINAL BALANCE</a>';
+      pay.hidden = false; pay.scrollIntoView({ behavior: "smooth" });
+    });
+});
+</script>
+</body>
+</html>

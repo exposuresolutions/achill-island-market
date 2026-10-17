@@ -60,7 +60,8 @@ body{font-family:Cormorant,Georgia,serif}
 .qr img{width:100%;display:block}
 .scan{font-style:italic;color:var(--muted);font-size:4.2vmin;margin-top:2.4vmin}
 .s4 .big{font-size:10vmin;margin-bottom:5vmin}
-.agent{margin-top:5vmin;font-style:italic;color:var(--muted);font-size:3.8vmin;line-height:1.35}
+.agent{margin-top:4vmin;display:flex;align-items:center;justify-content:center;gap:3vmin;font-style:italic;color:var(--muted);font-size:3.8vmin;line-height:1.35;text-align:left}
+.agent .xl{height:9vmin;width:auto;mix-blend-mode:screen}
 .agent b{font-family:Cinzel,serif;font-style:normal;font-weight:400;color:var(--cream);letter-spacing:.06em}
 
 @media (orientation:portrait){
@@ -77,6 +78,8 @@ body{font-family:Cormorant,Georgia,serif}
   .scan{font-size:5vw}
   .s4 .big{font-size:11vw}
   .agent{font-size:4.6vw}
+  .agent .xl{height:11vw}
+  #s4-big{font-size:9.5vw}
 }
 </style>
 </head>
@@ -93,13 +96,13 @@ body{font-family:Cormorant,Georgia,serif}
 </div>
 
 <div class="scene s3">
-  <div class="eyebrow">LIVE ON THE COSTA BLANCA</div>
-  <div class="big">GIPSY FIESTA</div>
-  <div class="ital">La Zenia · Cabo Roig · Torrevieja</div>
+  <div class="eyebrow" id="s3-eyebrow">LIVE ON THE COSTA BLANCA</div>
+  <div class="big" id="s3-big">GIPSY FIESTA</div>
+  <div class="ital" id="s3-ital">La Zenia · Cabo Roig · Torrevieja</div>
 </div>
 
 <div class="scene s4">
-  <div class="big">BOOK THE BAND</div>
+  <div class="big" id="s4-big">BOOK A PARTY</div>
   <div class="cta">
     <img class="logo" src="../assets/logo-transparent.png" alt="">
     <div>
@@ -107,7 +110,27 @@ body{font-family:Cormorant,Georgia,serif}
       <div class="scan">Scan for dates</div>
     </div>
   </div>
-  <div class="agent">Private gigs &amp; venue parties<br><b>hello@exposuresolutions.me</b></div>
+  <div class="agent"><img class="xl" src="../assets/exposure-logo.png" alt="Exposure Solutions"><span>Private gigs &amp; venue parties<br>Call Lilly <b>098 78500</b></span></div>
 </div>
+
+<script src="../data/band.js"></script>
+<script>
+// ?venue=<name> makes a venue-specific ad: scene 3 says "Live here" with the next date there.
+(function(){
+  var D = window.ALR; if (!D) return;
+  var A = D.agency, v = new URLSearchParams(location.search).get("venue");
+  document.querySelector(".agent b").textContent = A.phoneLocal || A.phone;
+  if (!v) return;
+  var venue = D.venues.filter(function(x){ return x.name === v; })[0]; if (!venue) return;
+  var next = D.upcoming().filter(function(g){ return g.venue === v; })[0];
+  var r = D.residency, isRes = r.venue === v;
+  document.getElementById("s3-eyebrow").textContent = "LIVE HERE AT";
+  var big = document.getElementById("s3-big"); big.textContent = v.toUpperCase();
+  if (v.length > 12) big.style.fontSize = "min(" + Math.round(130 / v.length * 10) / 10 + "vw, 11vmin)";
+  document.getElementById("s3-ital").textContent = isRes ? r.day + " · " + r.time
+    : next ? D.fmtDate(next.date, { weekday: "long", day: "numeric", month: "long" }) + " · " + next.time : venue.blurb;
+  document.getElementById("s4-big").textContent = "PARTY HERE WITH THE BAND";
+})();
+</script>
 </body>
 </html>

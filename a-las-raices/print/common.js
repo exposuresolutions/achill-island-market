@@ -8,7 +8,8 @@
     var A = D.agency;
     return {
       agency: A.name,
-      phone: A.phone ? "WhatsApp " + A.phone : '<span class="todo">WhatsApp +34 ··· ··· ···</span>',
+      phone: "Call " + A.assistant + " " + (A.phoneLocal || A.phone),
+      phoneIntl: A.phone,
       email: A.email,
       web: A.website,
       area: C.area,

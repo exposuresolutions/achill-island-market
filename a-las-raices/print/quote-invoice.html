@@ -78,7 +78,7 @@ footer{position:absolute;left:18mm;right:18mm;bottom:12mm;text-align:center;font
 <script>
 var c = contactBits();
 toolbar('<label>Type: <select id="type"><option>QUOTE</option><option>INVOICE</option></select></label>');
-document.getElementById("from").innerHTML = c.agency + "<br><i>Booking agent for A Las Raices</i>" + '<br><span class="todo">NIF / CIF ·········</span><br>' + c.phone + "<br>" + c.email;
+document.getElementById("from").innerHTML = '<img src="../assets/exposure-logo.jpg" alt="Exposure Solutions" style="height:10mm;width:auto;border-radius:1mm;margin-bottom:1.5mm"><br>' + c.agency + "<br><i>Booking agent for A Las Raices</i>" + '<br><span class="todo">NIF / CIF ·········</span><br>' + c.phone + "<br>" + c.email;
 var today = new Date(), valid = new Date(Date.now() + 30 * 864e5);
 function fmt(d) { return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
 document.getElementById("date").textContent = fmt(today);

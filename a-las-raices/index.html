@@ -150,9 +150,52 @@ dialog::backdrop{background:#000c}
 .venue p{color:var(--muted);font-size:17px}
 .venue .btn{margin-top:auto;align-self:flex-start;padding:10px 16px;font-size:12px}
 .agent{margin-top:26px;border-left:2px solid var(--ember);padding:4px 0 4px 16px;color:var(--muted);font-size:18px}
+
+/* Exposure animated intro */
+#xintro{position:fixed;inset:0;z-index:50;background:#000;display:grid;place-items:center;cursor:pointer;animation:xout .6s ease 2.6s forwards}
+#xintro .xw{position:relative;width:min(640px,86vw);overflow:hidden}
+#xintro img{width:100%;mix-blend-mode:screen;animation:xin 1.6s cubic-bezier(.2,.7,.2,1) both}
+#xintro .sweep{position:absolute;inset:0;-webkit-mask:url(assets/exposure-logo.png) center/100% 100% no-repeat;mask:url(assets/exposure-logo.png) center/100% 100% no-repeat;background:linear-gradient(105deg,transparent 35%,#ffffff55 50%,transparent 65%);transform:translateX(-120%);animation:xsweep 1.2s ease .9s forwards;mix-blend-mode:screen}
+#xintro p{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:var(--display);letter-spacing:.4em;font-size:12px;color:#7fe6f0;opacity:0;animation:xfade .8s ease 1.3s forwards}
+@keyframes xin{0%{opacity:0;transform:scale(1.25);filter:blur(14px) brightness(2)}60%{opacity:1;filter:blur(0) brightness(1.3)}100%{transform:scale(1);filter:none}}
+@keyframes xsweep{to{transform:translateX(120%)}}
+@keyframes xfade{to{opacity:1}}
+@keyframes xout{to{opacity:0;visibility:hidden}}
+.presents{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-size:11px;letter-spacing:.32em;color:var(--muted);margin-bottom:18px}
+.presents span{animation:fade 1.4s .4s both}
+.hero .presents img{height:40px;width:auto;margin:0;mix-blend-mode:screen;animation:none}
+
+/* how booking works */
+.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:34px}
+.steps li{counter-increment:s;border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:24px 20px;position:relative}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:34px;color:var(--ember);display:block;line-height:1;margin-bottom:10px}
+.steps b{font-family:var(--display);font-weight:400;font-size:18px;letter-spacing:.04em;display:block}
+.steps p{color:var(--muted);font-size:17px;margin-top:6px}
+.callbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:28px}
+.callbar .or{color:var(--muted);font-style:italic}
+
+/* uploads */
+.drop{border:1px dashed var(--ember);border-radius:4px;padding:16px;color:var(--muted);font-size:17px}
+.drop input{border:0;padding:8px 0;background:none}
+.files{list-style:none;margin-top:6px;font-size:16px}
+.files li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:4px 0}
+.files .st{color:var(--ember);white-space:nowrap}
+footer .xlogo{width:150px;margin:18px auto 6px;mix-blend-mode:screen}
 </style>
 </head>
 <body>
+<div id="xintro" role="img" aria-label="Exposure Solutions presents" hidden>
+  <div class="xw"><img src="assets/exposure-logo.png" alt=""><div class="sweep"></div></div>
+  <p>PRESENTS</p>
+</div>
+<script>
+// Play the Exposure intro once per visit (skipped for reduced motion). Tap to skip.
+(function(){ var el = document.getElementById("xintro"), seen = false;
+  try { seen = sessionStorage.getItem("xintro") === "1"; sessionStorage.setItem("xintro","1"); } catch (e) {}
+  if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  el.hidden = false; el.onclick = function(){ el.remove(); }; setTimeout(function(){ el.remove(); }, 3300);
+})();
+</script>
 
 <nav>
   <a class="brand" href="#top">A LAS RAICES</a>
@@ -166,14 +209,43 @@ dialog::backdrop{background:#000c}
 
 <header class="hero" id="top">
   <div class="hero-inner">
+    <div class="presents"><img src="assets/exposure-logo.png" alt="Exposure Solutions"><span>PRESENTS</span></div>
     <img src="assets/logo-transparent.png" alt="A Las Raices">
     <p class="tagline">Rumba Flamenca, straight from the roots.</p>
     <div class="ctas">
-      <a class="btn solid" href="#gigs">SEE THEM LIVE</a>
-      <a class="btn" href="#private">BOOK A PARTY</a>
+      <a class="btn solid" href="#venues">BOOK A VENUE PARTY</a>
+      <a class="btn" data-call href="tel:+3539878500">CALL LILLY · 098 78500</a>
     </div>
   </div>
 </header>
+
+<section id="venues">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>PARTNER VENUES</p>
+    <h2 data-reveal>Party at one of our venues</h2>
+    <p class="lead" data-reveal>Book a space at a partner venue and we'll put A Las Raices on for your group — birthdays, hen and stag parties, leaving dos, team nights. One booking, venue and band sorted.</p>
+    <div class="venues" id="venue-list"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>HOW BOOKING WORKS</p>
+    <h2 data-reveal>One call to Exposure</h2>
+    <ol class="steps" data-reveal>
+      <li><b>Pick the night</b><p>A partner venue party, a private gig at your place, or tickets to a show.</p></li>
+      <li><b>Call Lilly</b><p>Ring Exposure on <span data-phone-local></span> and Lilly takes your details — or use the form below.</p></li>
+      <li><b>Send photos or videos</b><p>Your villa, venue or space, if it helps us plan. Upload them with your booking.</p></li>
+      <li><b>Confirmed</b><p>You get your confirmation as soon as one of our contractors confirms the date.</p></li>
+      <li><b>After the party</b><p>Photos and videos of the night are uploaded, then the final payment is made.</p></li>
+    </ol>
+    <div class="callbar" data-reveal>
+      <a class="btn solid" data-call href="tel:+3539878500">CALL LILLY · 098 78500</a>
+      <span class="or">or</span>
+      <a class="btn" href="#private">BOOK ONLINE</a>
+    </div>
+  </div>
+</section>
 
 <section id="gigs">
   <div class="wrap">
@@ -231,15 +303,6 @@ dialog::backdrop{background:#000c}
   </div>
 </section>
 
-<section id="venues">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>PARTNER VENUES</p>
-    <h2 data-reveal>Party at one of our venues</h2>
-    <p class="lead" data-reveal>Book a space at a partner venue and we'll put A Las Raices on for your group — birthdays, hen and stag parties, leaving dos, team nights. One booking, venue and band sorted.</p>
-    <div class="venues" id="venue-list"></div>
-  </div>
-</section>
-
 <section id="private">
   <div class="wrap">
     <p class="eyebrow" data-reveal>BOOKINGS</p>
@@ -255,7 +318,7 @@ dialog::backdrop{background:#000c}
       <input type="hidden" name="booking_type" value="Private gig (own venue)">
       <div class="row">
         <label>NAME<input name="name" required autocomplete="name"></label>
-        <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
+        <label>PHONE<input name="phone" type="tel" autocomplete="tel"></label>
       </div>
       <div class="row">
         <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
@@ -278,10 +341,17 @@ dialog::backdrop{background:#000c}
         <select name="food_drink"><option>Not needed</option><option>Drinks package</option><option>Tapas &amp; drinks</option><option>Full dinner</option><option>Help me decide</option></select>
       </label>
       <label>DETAILS<textarea name="message" rows="4" placeholder="Times, how long a set, budget, anything else"></textarea></label>
-      <button class="btn" type="submit">GET A QUOTE</button>
+      <div class="drop">
+        <label style="color:var(--muted)">PHOTOS OR VIDEOS <span style="font-family:var(--body);letter-spacing:0;font-size:15px">(optional — your venue, villa or space, max 45 MB each)</span>
+          <input type="file" id="files" accept="image/*,video/*" multiple>
+        </label>
+        <ul class="files" id="file-list"></ul>
+      </div>
+      <button class="btn" type="submit">SEND BOOKING REQUEST</button>
       <div id="booking-ok" class="ok" hidden></div>
     </form>
     <p class="agent" id="agent-line" data-reveal></p>
+    <p class="note" style="margin-top:10px">Show finished? Contractors upload the night's photos and customers settle the balance on the <a href="complete.html">job complete page</a>.</p>
   </div>
 </section>
 
@@ -290,7 +360,8 @@ dialog::backdrop{background:#000c}
   <p>A Las Raices · Rumba Flamenca · Costa Blanca</p>
   <p id="foot-contact"></p>
   <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
-  <p style="margin-top:10px;font-size:14px">Bookings &amp; management by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></p>
+  <a href="https://exposuresolutions.me" target="_blank" rel="noopener"><img class="xlogo" src="assets/exposure-logo.png" alt="Exposure Solutions"></a>
+  <p style="font-size:14px">Bookings &amp; management by Exposure Solutions</p>
 </footer>
 
 <dialog id="checkout">
@@ -304,7 +375,7 @@ dialog::backdrop{background:#000c}
     <form id="co-form">
       <div class="row">
         <label>NAME<input name="name" required autocomplete="name"></label>
-        <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
+        <label>PHONE<input name="phone" type="tel" autocomplete="tel"></label>
       </div>
       <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
       <button class="btn" type="submit" id="co-btn">RESERVE</button>
@@ -385,7 +456,10 @@ if (D.DRAFT) document.getElementById("draft").hidden = false;
   });
 
   var bits = [];
-  if (A.phone) bits.push('<a href="https://wa.me/' + A.phone.replace(/\D/g,"") + '">WhatsApp ' + esc(A.phone) + '</a>');
+  if (A.phone) bits.push('<a href="tel:' + A.phone.replace(/[^\d+]/g,"") + '">Call ' + esc(A.assistant) + ' ' + esc(A.phoneLocal || A.phone) + '</a>');
+  if (A.whatsapp) bits.push('<a href="https://wa.me/' + A.whatsapp.replace(/\D/g,"") + '">WhatsApp</a>');
+  document.querySelectorAll("[data-phone-local]").forEach(function(el){ el.textContent = A.phoneLocal || A.phone; });
+  document.querySelectorAll("[data-call]").forEach(function(el){ el.href = "tel:" + A.phone.replace(/[^\d+]/g,""); el.textContent = "CALL " + A.assistant.toUpperCase() + " · " + (A.phoneLocal || A.phone); });
   if (A.email) bits.push('<a href="mailto:' + esc(A.email) + '">' + esc(A.email) + '</a>');
   document.getElementById("foot-contact").innerHTML = "Bookings: " + bits.join(" · ");
   document.getElementById("agent-line").innerHTML = "All bookings for A Las Raices are handled by <em>" + esc(A.name) + "</em>" +
@@ -402,18 +476,19 @@ if (D.DRAFT) document.getElementById("draft").hidden = false;
 })();
 
 // Send a form to the Exposure form API; fall back to WhatsApp / Facebook if it fails.
-function send(payload, okEl, okHtml, btn){
+function send(payload, okEl, okHtml, btn, onOk){
   var label = btn.textContent; btn.disabled = true; btn.textContent = "SENDING…";
   payload.client = "a-las-raices"; payload.page = location.href;
   fetch(D.formApi, { method:"POST", keepalive:true, headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload) })
     .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json().catch(function(){ return {}; }); })
     .then(function(j){ okEl.innerHTML = okHtml + (j.id ? '<p class="note">Reference: ' + esc(j.id) + '</p>' : ''); okEl.hidden = false; btn.hidden = true;
-      if (okEl.id === "co-ok") document.getElementById("co-form").hidden = true; })
+      if (okEl.id === "co-ok") document.getElementById("co-form").hidden = true;
+      if (onOk) onOk(j); })
     .catch(function(){
       btn.disabled = false; btn.textContent = label;
       var text = Object.keys(payload).filter(function(k){ return payload[k] && k !== "page" && k !== "client"; })
         .map(function(k){ return k + ": " + payload[k]; }).join("\n");
-      if (A.phone) { window.open("https://wa.me/" + A.phone.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+      if (A.whatsapp) { window.open("https://wa.me/" + A.whatsapp.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
       location.href = "mailto:" + A.email + "?subject=" + encodeURIComponent("A Las Raices booking") + "&body=" + encodeURIComponent(text);
     });
 }
@@ -428,9 +503,37 @@ document.getElementById("booking").addEventListener("submit", function(e){
   f.message = [f.booking_type, f.event_type, f.lineup !== "Not sure yet" ? f.lineup : "", f.date, atVenue ? f.venue : f.location,
     f.guests ? f.guests + " guests" : "", atVenue && f.food_drink !== "Not needed" ? f.food_drink : ""]
     .filter(Boolean).join(" · ") + (f.details ? " — " + f.details : "");
+  var files = Array.prototype.slice.call(document.getElementById("files").files);
+  if (files.length) f.message += " · " + files.length + " photo/video file(s) attached";
   send(f, document.getElementById("booking-ok"),
-    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> " + esc(A.name) + " will come back to you with availability and a quote" +
-    (atVenue ? " for the venue and the band" : "") + ".", e.submitter || e.target.querySelector("button"));
+    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> " + esc(A.name) + " has your request" + (atVenue ? " for the venue and the band" : "") +
+    ". You'll get your confirmation as soon as one of our contractors confirms the date. Questions? Call " + esc(A.assistant) + " on " + esc(A.phoneLocal || A.phone) + ".",
+    e.submitter || e.target.querySelector("button"),
+    function(j){ uploadAll(files, j.id || "", f.name, "booking", document.getElementById("file-list")); });
+});
+
+// Upload photos/videos one at a time to the Cloudflare upload function (→ Exposure Telegram).
+function uploadAll(files, ref, name, stage, listEl){
+  if (!files.length) return Promise.resolve();
+  listEl.innerHTML = files.map(function(fl, i){ return '<li><span>' + esc(fl.name) + '</span><span class="st" id="up' + stage + i + '">waiting</span></li>'; }).join("");
+  var failed = 0;
+  return files.reduce(function(chain, fl, i){
+    return chain.then(function(){
+      var st = document.getElementById("up" + stage + i);
+      if (fl.size > 45 * 1024 * 1024) { st.textContent = "too large"; failed++; return; }
+      st.textContent = "uploading…";
+      var qs = "?client=a-las-raices&stage=" + stage + "&ref=" + encodeURIComponent(ref) + "&name=" + encodeURIComponent(name || "") + "&file=" + encodeURIComponent(fl.name);
+      return fetch(D.uploadApi + qs, { method: "POST", headers: { "Content-Type": fl.type || "application/octet-stream" }, body: fl })
+        .then(function(r){ if (!r.ok) throw 0; st.textContent = "sent ✓"; })
+        .catch(function(){ st.textContent = "not sent"; failed++; });
+    });
+  }, Promise.resolve()).then(function(){
+    if (failed) listEl.insertAdjacentHTML("afterend", '<p class="note">Some files didn\'t upload — no problem, ' + esc(A.assistant) + ' will collect them when we call, or email them to ' + esc(A.email) + (ref ? ' with reference ' + esc(ref) : '') + '.</p>');
+  });
+}
+document.getElementById("files").addEventListener("change", function(){
+  document.getElementById("file-list").innerHTML = Array.prototype.map.call(this.files, function(fl){
+    return '<li><span>' + esc(fl.name) + '</span><span class="st">' + (fl.size / 1048576).toFixed(1) + ' MB</span></li>'; }).join("");
 });
 
 // "At your place" vs "Venue + band"
@@ -502,7 +605,7 @@ document.getElementById("co-form").addEventListener("submit", function(e){
     return;
   }
   send(f, document.getElementById("co-ok"),
-    "<strong>You're on the list!</strong> " + esc(f.message) + ". " + esc(A.name) + " will confirm by " + (f.phone ? "WhatsApp" : "email") + ".", document.getElementById("co-btn"));
+    "<strong>You're on the list!</strong> " + esc(f.message) + ". " + esc(A.name) + " will confirm by " + (f.phone ? "phone" : "email") + ".", document.getElementById("co-btn"));
 });
 document.addEventListener("click", function(e){
   var t = e.target.closest("[data-gig],[data-table]"); if (!t) return;
