@@ -39,7 +39,7 @@
   <div class="foot">
     <div>
       <h2 data-edit>LOVE THE FIESTA? BOOK US PRIVATELY</h2>
-      <p data-edit>Weddings · birthdays · villa &amp; yacht parties</p>
+      <p data-edit>Private gigs · parties at our partner venues · weddings</p>
       <p id="contact" data-edit></p>
     </div>
     <div class="qr"><img src="../assets/qr-facebook.svg" alt="QR code"><small>FOLLOW US</small></div>
@@ -55,7 +55,7 @@ document.getElementById("time").textContent = r.time.toUpperCase();
 document.getElementById("venue").textContent = r.venue.toUpperCase();
 document.getElementById("place").textContent = r.place;
 document.getElementById("note").textContent = r.note.toUpperCase();
-document.getElementById("contact").innerHTML = c.phone + " · " + c.email;
+document.getElementById("contact").innerHTML = "Bookings: " + c.agency + " · " + c.phone + " · " + c.email;
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

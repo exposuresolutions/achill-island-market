@@ -37,9 +37,9 @@ footer{display:flex;justify-content:space-between;font-family:var(--display);fon
 <script src="common.js"></script>
 <script>
 var c = contactBits();
-document.getElementById("contact").innerHTML = '<b>BOOKINGS</b><br>' + c.leader + '<br>' + c.phone + '<br>' + c.email + '<br>' + c.web + '<br>' + c.area.replace(/ · Costa Blanca$/, "");
+document.getElementById("contact").innerHTML = '<b>BOOKINGS · ' + c.agency.toUpperCase() + '</b><br>' + c.phone + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
 document.getElementById("today").textContent = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-document.getElementById("sign").innerHTML = c.leader + '<br><i>A Las Raices</i>';
+document.getElementById("sign").innerHTML = c.agency + '<br><i>Bookings for A Las Raices</i>';
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

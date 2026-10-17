@@ -22,21 +22,21 @@ body{background:#ece6d6;padding-bottom:40px}
 <script src="../data/band.js"></script>
 <script src="common.js"></script>
 <script>
-var C = ALR.contact;
+var C = ALR.contact, A = ALR.agency;
 // Images in emails must be hosted online. Update this if the site moves to its own domain.
 var LOGO = "https://achillstore.store/a-las-raices/assets/logo-dark.png";
-var phone = C.phone || "+34 ··· ··· ···", email = C.email || "bookings@…";
-var waLink = C.phone ? "https://wa.me/" + C.phone.replace(/\D/g, "") : "#";
+var phone = A.phone || "+34 ··· ··· ···", email = A.email;
+var waLink = A.phone ? "https://wa.me/" + A.phone.replace(/\D/g, "") : "#";
 document.getElementById("sig").innerHTML =
   '<table cellpadding="0" cellspacing="0" style="font-family:Georgia,serif;color:#14120e;font-size:14px;line-height:1.45">' +
   '<tr><td style="padding-right:16px;border-right:2px solid #c27a2c;vertical-align:middle">' +
   '<img src="' + LOGO + '" width="130" alt="A Las Raices" style="display:block;width:130px;height:auto"></td>' +
   '<td style="padding-left:16px;vertical-align:middle">' +
-  '<div style="font-size:16px;letter-spacing:1px"><b>' + C.leader + '</b></div>' +
-  '<div style="color:#c27a2c;font-style:italic">A Las Raices · Band leader &amp; bookings</div>' +
+  '<div style="font-size:16px;letter-spacing:1px"><b>A Las Raices · Bookings</b></div>' +
+  '<div style="color:#c27a2c;font-style:italic">' + A.name + ' · booking agent</div>' +
   '<div style="margin-top:6px">WhatsApp <a href="' + waLink + '" style="color:#14120e">' + phone + '</a></div>' +
   '<div><a href="mailto:' + email + '" style="color:#14120e">' + email + '</a></div>' +
-  '<div><a href="' + C.facebook + '" style="color:#14120e">Facebook</a>' + (C.website ? ' · <a href="https://' + C.website + '" style="color:#14120e">' + C.website + '</a>' : '') + '</div>' +
+  '<div><a href="' + C.facebook + '" style="color:#14120e">Facebook</a>' + ' · <a href="https://' + A.website + '" style="color:#14120e">' + A.website + '</a>' + '</div>' +
   '<div style="margin-top:6px;font-size:11px;letter-spacing:2px;color:#8a826e">RUMBA FLAMENCA · DUO · TRIO · FULL BAND · COSTA BLANCA</div>' +
   '</td></tr></table>';
 

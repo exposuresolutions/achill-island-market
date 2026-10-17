@@ -24,6 +24,14 @@ The M365 connector can list these files but can't download video, so share them 
 | Logo (transparent / square), QR | `assets/` |
 
 ## Bookings, tickets and packages
+**Exposure Solutions is the booking agent.** Every booking contact on the site, posters, stationery and screen ad is Exposure's (`agency` in `data/band.js`). The band's own number isn't published.
+
+Ways to book on the site:
+- **At your place:** a private gig at a villa, home, yacht, wedding venue or the customer's own bar.
+- **Venue + band:** the customer picks a partner venue (`venues` in `data/band.js`) and Exposure books the space, the band and optional food and drink together. Each venue card has a "Book a party here" button.
+- **Tickets / tables** for gigs and the weekly residency.
+- **Become a partner:** a card for bars and hotels that want the band and the screen ad.
+
 - Private event / venue enquiries and ticket or table orders are sent to the Exposure form API (`/api/client-form`, client `a-las-raices`) and come through as a Telegram alert. If the API is down, the site falls back to WhatsApp (once a number is set) or Facebook.
 - Ticket packages (Show Ticket, Fiesta Package, VIP Table) take reservations with payment on the door until Stripe is set up. Then create a Stripe Payment Link for each package and paste it into `payLink` in `data/band.js`, and the button switches to "Pay €…".
 - `DRAFT: true` in `data/band.js` shows a draft banner on the site and a SAMPLE watermark on every print piece. Set it to `false` once dates, prices and contacts are real.
@@ -39,11 +47,13 @@ Upload the MP4 that matches each screen's orientation to the signage player (Yod
 
 ## Still needed from the band
 - [ ] Their OK to use their videos, plus any newer clips (originals from their phones beat Facebook copies)
-- [ ] Confirm the line-up is still current, and a booking email / WhatsApp number
+- [ ] Confirm the line-up is still current
+- [ ] Exposure bookings WhatsApp number (`agency.phone`) and NIF/CIF for quotes and invoices
+- [ ] The 6 partner venues: name, town, type, and whether they take party bookings
 - [ ] Current prices, if they want them on the site (Dec 2025: duo €150, trio €200, full band €699)
 - [ ] Real gig dates, the La Zenia beach bar name and residency day/time
 - [ ] Ticket package prices and contents (current ones are examples), plus a Stripe account if they want card payments
-- [ ] NIE/NIF and IBAN for the invoice template
+- [ ] IBAN for the invoice template
 - [ ] A domain if they want their own (e.g. alasraices.com)
 
 ## After that

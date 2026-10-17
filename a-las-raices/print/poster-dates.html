@@ -38,7 +38,7 @@ h1{font-family:var(--display);font-weight:400;text-align:center;font-size:36pt;l
   <div class="foot">
     <div>
       <h2 data-edit>BOOK US FOR YOUR PARTY</h2>
-      <p data-edit>Weddings · birthdays · villa &amp; yacht parties · venues<br>Duo · Trio · Full 9-piece band</p>
+      <p data-edit>Private gigs · parties at our partner venues · weddings<br>Duo · Trio · Full 9-piece band</p>
       <p id="contact" data-edit style="margin-top:2mm"></p>
     </div>
     <div class="qr"><img src="../assets/qr-facebook.svg" alt="QR code"><small>SCAN FOR DATES</small></div>
@@ -69,7 +69,7 @@ function render() {
   makeEditable();
 }
 var c = contactBits();
-document.getElementById("contact").innerHTML = c.phone + " · " + c.email;
+document.getElementById("contact").innerHTML = "Bookings: " + c.agency + " · " + c.phone + " · " + c.email;
 document.getElementById("venue").onchange = render;
 document.getElementById("rows").oninput = render;
 render(); markSample();

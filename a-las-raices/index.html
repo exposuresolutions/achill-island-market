@@ -135,6 +135,21 @@ dialog::backdrop{background:#000c}
 .dlg form{margin-top:16px}
 .note{color:var(--muted);font-size:16px;font-style:italic}
 .ok{border:1px solid var(--ember);border-radius:4px;padding:18px;margin-top:16px}
+
+/* booking ways + venues */
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.way{border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:28px 24px;cursor:pointer;text-align:left;color:inherit;font:inherit}
+.way:hover,.way.on{border-color:var(--ember)}
+.way .n{font-family:var(--display);font-size:21px;letter-spacing:.05em}
+.way p{color:var(--muted);margin-top:6px;font-size:18px}
+@media (max-width:640px){.ways{grid-template-columns:1fr}}
+.venues{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:34px}
+.venue{border:1px solid var(--line);border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(160deg,#d08a3c14,transparent 60%)}
+.venue .n{font-family:var(--display);font-size:20px;letter-spacing:.05em}
+.venue .t{color:var(--ember);font-style:italic}
+.venue p{color:var(--muted);font-size:17px}
+.venue .btn{margin-top:auto;align-self:flex-start;padding:10px 16px;font-size:12px}
+.agent{margin-top:26px;border-left:2px solid var(--ember);padding:4px 0 4px 16px;color:var(--muted);font-size:18px}
 </style>
 </head>
 <body>
@@ -144,7 +159,7 @@ dialog::backdrop{background:#000c}
   <ul>
     <li><a href="#gigs">GIGS</a></li>
     <li><a href="#tickets">TICKETS</a></li>
-    <li><a href="#about">BAND</a></li>
+    <li><a href="#venues">VENUES</a></li>
     <li><a href="#private">BOOK</a></li>
   </ul>
 </nav>
@@ -155,7 +170,7 @@ dialog::backdrop{background:#000c}
     <p class="tagline">Rumba Flamenca, straight from the roots.</p>
     <div class="ctas">
       <a class="btn solid" href="#gigs">SEE THEM LIVE</a>
-      <a class="btn" href="#private">BOOK A PRIVATE PARTY</a>
+      <a class="btn" href="#private">BOOK A PARTY</a>
     </div>
   </div>
 </header>
@@ -216,15 +231,28 @@ dialog::backdrop{background:#000c}
   </div>
 </section>
 
+<section id="venues">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>PARTNER VENUES</p>
+    <h2 data-reveal>Party at one of our venues</h2>
+    <p class="lead" data-reveal>Book a space at a partner venue and we'll put A Las Raices on for your group — birthdays, hen and stag parties, leaving dos, team nights. One booking, venue and band sorted.</p>
+    <div class="venues" id="venue-list"></div>
+  </div>
+</section>
+
 <section id="private">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>PRIVATE EVENTS &amp; VENUES</p>
-    <h2 data-reveal>Bring the fiesta to you</h2>
-    <p class="lead" data-reveal>Weddings, birthdays, villa and yacht parties, corporate nights — or a regular slot at your bar. Pick a line-up and we'll send a quote.</p>
+    <p class="eyebrow" data-reveal>BOOKINGS</p>
+    <h2 data-reveal>Book the fiesta</h2>
     <div class="lineup" id="private-pkgs"></div>
-    <p class="lead" data-reveal style="margin-top:30px">Based on the Costa Blanca — <em>La Zenia, Cabo Roig, Torrevieja</em> — and happy to travel further.</p>
+    <p class="lead" data-reveal style="margin-top:34px">How would you like to book?</p>
+    <div class="ways" data-reveal style="margin-top:14px">
+      <button type="button" class="way on" data-way="own"><div class="n">At your place</div><p>Villa, home, yacht, wedding venue or your own bar. The band comes to you.</p></button>
+      <button type="button" class="way" data-way="venue"><div class="n">Venue + band</div><p>Pick one of our partner venues and we'll book the space and the band together.</p></button>
+    </div>
 
     <form id="booking" data-reveal style="margin-top:40px">
+      <input type="hidden" name="booking_type" value="Private gig (own venue)">
       <div class="row">
         <label>NAME<input name="name" required autocomplete="name"></label>
         <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
@@ -234,21 +262,26 @@ dialog::backdrop{background:#000c}
         <label>DATE<input name="date" type="date"></label>
       </div>
       <div class="row">
-        <label>EVENT TYPE
-          <select name="event_type"><option>Private party</option><option>Wedding</option><option>Birthday</option><option>Villa / yacht party</option><option>Corporate</option><option>Bar / venue gig</option><option>Weekly residency</option><option>Festival</option><option>Other</option></select>
+        <label>OCCASION
+          <select name="event_type"><option>Private party</option><option>Birthday</option><option>Wedding</option><option>Hen / stag party</option><option>Villa / yacht party</option><option>Corporate / team night</option><option>Bar / venue gig</option><option>Weekly residency</option><option>Festival</option><option>Other</option></select>
         </label>
         <label>LINE-UP
           <select name="lineup"><option>Not sure yet</option><option>Duo</option><option>Trio</option><option>Full band</option></select>
         </label>
       </div>
       <div class="row">
-        <label>TOWN / VENUE<input name="location" placeholder="e.g. villa in Ciudad Quesada"></label>
+        <label id="where-own">WHERE<input name="location" placeholder="e.g. villa in Ciudad Quesada"></label>
+        <label id="where-venue" hidden>PARTNER VENUE<select name="venue" id="venue-select"></select></label>
         <label>GUESTS<input name="guests" type="number" min="1" inputmode="numeric"></label>
       </div>
-      <label>DETAILS<textarea name="message" rows="4" placeholder="Times, how long a set, anything else"></textarea></label>
+      <label id="extras" hidden>FOOD &amp; DRINK
+        <select name="food_drink"><option>Not needed</option><option>Drinks package</option><option>Tapas &amp; drinks</option><option>Full dinner</option><option>Help me decide</option></select>
+      </label>
+      <label>DETAILS<textarea name="message" rows="4" placeholder="Times, how long a set, budget, anything else"></textarea></label>
       <button class="btn" type="submit">GET A QUOTE</button>
       <div id="booking-ok" class="ok" hidden></div>
     </form>
+    <p class="agent" id="agent-line" data-reveal></p>
   </div>
 </section>
 
@@ -257,7 +290,7 @@ dialog::backdrop{background:#000c}
   <p>A Las Raices · Rumba Flamenca · Costa Blanca</p>
   <p id="foot-contact"></p>
   <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
-  <p style="margin-top:10px;font-size:14px">Website &amp; signage by <a href="https://exposuresolutions.ie" target="_blank" rel="noopener">Exposure Solutions</a></p>
+  <p style="margin-top:10px;font-size:14px">Bookings &amp; management by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></p>
 </footer>
 
 <dialog id="checkout">
@@ -290,7 +323,7 @@ var VIDEOS = [
   // "https://www.facebook.com/reel/1234567890",
 ];
 
-var D = window.ALR, C = D.contact;
+var D = window.ALR, C = D.contact, A = D.agency;
 function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 function euro(n){ return "€" + (n % 1 ? n.toFixed(2) : n); }
 if (D.DRAFT) document.getElementById("draft").hidden = false;
@@ -352,9 +385,20 @@ if (D.DRAFT) document.getElementById("draft").hidden = false;
   });
 
   var bits = [];
-  if (C.phone) bits.push('<a href="https://wa.me/' + C.phone.replace(/\D/g,"") + '">WhatsApp ' + esc(C.phone) + '</a>');
-  if (C.email) bits.push('<a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a>');
-  document.getElementById("foot-contact").innerHTML = bits.join(" · ");
+  if (A.phone) bits.push('<a href="https://wa.me/' + A.phone.replace(/\D/g,"") + '">WhatsApp ' + esc(A.phone) + '</a>');
+  if (A.email) bits.push('<a href="mailto:' + esc(A.email) + '">' + esc(A.email) + '</a>');
+  document.getElementById("foot-contact").innerHTML = "Bookings: " + bits.join(" · ");
+  document.getElementById("agent-line").innerHTML = "All bookings for A Las Raices are handled by <em>" + esc(A.name) + "</em>" +
+    (bits.length ? " — " + bits.join(" · ") : "") + ". We'll confirm availability, line-up and price, usually within 24 hours.";
+
+  var vl = document.getElementById("venue-list"), vs = document.getElementById("venue-select");
+  vs.innerHTML = '<option>Help me choose</option>';
+  D.venues.filter(function(v){ return v.party; }).forEach(function(v){
+    vl.insertAdjacentHTML("beforeend", '<div class="venue"><div class="n">' + esc(v.name) + '</div><div class="t">' + esc(v.type) + ' · ' + esc(v.town) + '</div>' +
+      '<p>' + esc(v.blurb) + '</p><button type="button" class="btn" data-venue="' + esc(v.name) + '">BOOK A PARTY HERE</button></div>');
+    vs.insertAdjacentHTML("beforeend", '<option>' + esc(v.name) + ' (' + esc(v.town) + ')</option>');
+  });
+  vl.insertAdjacentHTML("beforeend", '<div class="venue"><div class="n">Your venue here?</div><div class="t">Bars, clubs &amp; hotels</div><p>Get A Las Raices on your screens and your stage. Ask about joining the partner network.</p><button type="button" class="btn" data-way-go="own" data-occasion="Bar / venue gig">BECOME A PARTNER</button></div>');
 })();
 
 // Send a form to the Exposure form API; fall back to WhatsApp / Facebook if it fails.
@@ -369,22 +413,46 @@ function send(payload, okEl, okHtml, btn){
       btn.disabled = false; btn.textContent = label;
       var text = Object.keys(payload).filter(function(k){ return payload[k] && k !== "page" && k !== "client"; })
         .map(function(k){ return k + ": " + payload[k]; }).join("\n");
-      if (C.phone) { window.open("https://wa.me/" + C.phone.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
-      try { navigator.clipboard.writeText(text); } catch (e) {}
-      alert("We couldn't send that just now. Your details are copied — paste them into a message to the band on Facebook.");
-      window.open(C.facebook, "_blank", "noopener");
+      if (A.phone) { window.open("https://wa.me/" + A.phone.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+      location.href = "mailto:" + A.email + "?subject=" + encodeURIComponent("A Las Raices booking") + "&body=" + encodeURIComponent(text);
     });
 }
 
 document.getElementById("booking").addEventListener("submit", function(e){
   e.preventDefault();
   var f = Object.fromEntries(new FormData(e.target).entries());
-  f.form_type = "private-booking";
+  var atVenue = way === "venue";
+  f.form_type = atVenue ? "venue-and-band" : "private-booking";
+  if (atVenue) delete f.location; else { delete f.venue; delete f.food_drink; }
   f.details = f.message;
-  f.message = [f.event_type, f.lineup !== "Not sure yet" ? f.lineup : "", f.date, f.location, f.guests ? f.guests + " guests" : ""]
+  f.message = [f.booking_type, f.event_type, f.lineup !== "Not sure yet" ? f.lineup : "", f.date, atVenue ? f.venue : f.location,
+    f.guests ? f.guests + " guests" : "", atVenue && f.food_drink !== "Not needed" ? f.food_drink : ""]
     .filter(Boolean).join(" · ") + (f.details ? " — " + f.details : "");
   send(f, document.getElementById("booking-ok"),
-    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> The band will come back to you with availability and a quote.", e.submitter || e.target.querySelector("button"));
+    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> " + esc(A.name) + " will come back to you with availability and a quote" +
+    (atVenue ? " for the venue and the band" : "") + ".", e.submitter || e.target.querySelector("button"));
+});
+
+// "At your place" vs "Venue + band"
+var way = "own";
+function setWay(w, venueName){
+  way = w;
+  document.querySelectorAll("[data-way]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-way") === w); });
+  var v = w === "venue";
+  document.getElementById("where-own").hidden = v;
+  document.getElementById("where-venue").hidden = !v;
+  document.getElementById("extras").hidden = !v;
+  document.querySelector("#booking [name=booking_type]").value = v ? "Venue + band party" : "Private gig (own venue)";
+  if (venueName) { var sel = document.getElementById("venue-select");
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text.indexOf(venueName) === 0) sel.selectedIndex = i; }
+}
+document.addEventListener("click", function(e){
+  var w = e.target.closest("[data-way]"); if (w) { setWay(w.getAttribute("data-way")); return; }
+  var v = e.target.closest("[data-venue]");
+  if (v) { setWay("venue", v.getAttribute("data-venue")); document.getElementById("private").scrollIntoView({behavior:"smooth"}); return; }
+  var g = e.target.closest("[data-way-go]");
+  if (g) { setWay(g.getAttribute("data-way-go")); document.querySelector("#booking [name=event_type]").value = g.getAttribute("data-occasion");
+    document.getElementById("private").scrollIntoView({behavior:"smooth"}); }
 });
 
 // Checkout: tickets (with packages) or table reservations
@@ -434,7 +502,7 @@ document.getElementById("co-form").addEventListener("submit", function(e){
     return;
   }
   send(f, document.getElementById("co-ok"),
-    "<strong>You're on the list!</strong> " + esc(f.message) + ". We'll confirm by " + (f.phone ? "WhatsApp" : "email") + ".", document.getElementById("co-btn"));
+    "<strong>You're on the list!</strong> " + esc(f.message) + ". " + esc(A.name) + " will confirm by " + (f.phone ? "WhatsApp" : "email") + ".", document.getElementById("co-btn"));
 });
 document.addEventListener("click", function(e){
   var t = e.target.closest("[data-gig],[data-table]"); if (!t) return;

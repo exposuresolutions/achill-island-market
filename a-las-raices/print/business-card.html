@@ -31,7 +31,7 @@
 <div class="sheet back">
   <div>
     <div class="name" id="name" data-edit></div>
-    <div class="role" data-edit>Band leader · Bookings</div>
+    <div class="role" data-edit>Private gigs · venue parties · tickets<br>via Exposure Solutions</div>
     <div class="lines" id="lines" data-edit></div>
   </div>
   <div><img class="qr" src="../assets/qr-facebook.svg" alt="QR code"></div>
@@ -41,8 +41,8 @@
 <script src="common.js"></script>
 <script>
 var c = contactBits();
-document.getElementById("name").textContent = c.leader;
-document.getElementById("lines").innerHTML = c.phone + '<br>' + c.email + '<br>' + c.web + '<br>Costa Blanca, Spain';
+document.getElementById("name").textContent = "Bookings";
+document.getElementById("lines").innerHTML = c.phone + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
 toolbar(); makeEditable(); markSample();
 </script>
 </body>

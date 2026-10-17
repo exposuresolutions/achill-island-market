@@ -6,14 +6,28 @@
 window.ALR = {
   DRAFT: true,
 
+  // All bookings (private gigs, venue + band parties, tickets) go through Exposure Solutions.
+  agency: {
+    name: "Exposure Solutions",
+    phone: "",          // Exposure bookings WhatsApp, e.g. "+34 600 000 000"
+    email: "hello@exposuresolutions.me",
+    website: "exposuresolutions.me"
+  },
+
   contact: {
     leader: "Demircan Ulugun",
-    phone: "",          // e.g. "+34 600 000 000" (WhatsApp)
-    email: "",          // e.g. "bookings@alasraices.com"
-    website: "",        // e.g. "alasraices.com" once the domain is live
+    website: "",        // e.g. "alasraices.com" once the band has its own domain
     facebook: "https://www.facebook.com/people/A-Las-Raices/100083239897155/",
     area: "La Zenia · Cabo Roig · Torrevieja · Costa Blanca"
   },
+
+  // Partner venues: where the band plays, where the screen ad runs, and where people can
+  // book a party with the band. `party: true` = can be booked as "venue + band".
+  venues: [
+    { name: "Beach bar name TBC", town: "La Zenia Beach", type: "Beach bar", screen: true, party: true, blurb: "Sunday residency on the sand." },
+    { name: "The Lucky Lion",     town: "Cabo Roig",      type: "Bar & restaurant", screen: true, party: true, blurb: "Saturday afternoon fiestas." },
+    { name: "Bushwacka",          town: "Cabo Roig",      type: "Bar", screen: true, party: true, blurb: "Evening sets on the strip." }
+  ],
 
   // Bookings and ticket orders are sent here (Exposure form API → Telegram alert).
   formApi: "https://dodealswithlee.onrender.com/api/client-form",

@@ -2,14 +2,18 @@
 (function () {
   var D = window.ALR, C = D.contact;
 
-  // Text for contact lines; shows a highlighted placeholder if a detail isn't filled in yet.
+  // Booking contact lines — all bookings go through the agency (Exposure Solutions).
+  // Shows a highlighted placeholder if a detail isn't filled in yet.
   window.contactBits = function () {
+    var A = D.agency;
     return {
-      phone: C.phone ? "WhatsApp " + C.phone : '<span class="todo">WhatsApp +34 ··· ··· ···</span>',
-      email: C.email || '<span class="todo">bookings@ email TBC</span>',
-      web: C.website || "facebook.com/A-Las-Raices",
+      agency: A.name,
+      phone: A.phone ? "WhatsApp " + A.phone : '<span class="todo">WhatsApp +34 ··· ··· ···</span>',
+      email: A.email,
+      web: A.website,
       area: C.area,
-      leader: C.leader
+      leader: C.leader,
+      facebook: "facebook.com/A-Las-Raices"
     };
   };
 

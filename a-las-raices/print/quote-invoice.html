@@ -78,7 +78,7 @@ footer{position:absolute;left:18mm;right:18mm;bottom:12mm;text-align:center;font
 <script>
 var c = contactBits();
 toolbar('<label>Type: <select id="type"><option>QUOTE</option><option>INVOICE</option></select></label>');
-document.getElementById("from").innerHTML = "A Las Raices<br>" + c.leader + '<br><span class="todo">NIE / NIF ·········</span><br>' + c.phone + "<br>" + c.email;
+document.getElementById("from").innerHTML = c.agency + "<br><i>Booking agent for A Las Raices</i>" + '<br><span class="todo">NIF / CIF ·········</span><br>' + c.phone + "<br>" + c.email;
 var today = new Date(), valid = new Date(Date.now() + 30 * 864e5);
 function fmt(d) { return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
 document.getElementById("date").textContent = fmt(today);
@@ -114,7 +114,7 @@ function calc() {
 }
 document.addEventListener("input", calc);
 document.getElementById("add").onclick = function () { addRow("New item", 1, 0); };
-addRow("Live performance — Trio (2 × 45 min sets)<br><i>Event, venue and date</i>", 1, 200);
+addRow("A Las Raices live — Trio (2 × 45 min sets)<br><i>Event, venue and date</i>", 1, 200);
 addRow("Travel (fuel)", 1, 0);
 makeEditable(); markSample();
 </script>
