@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Quote / Invoice</title>
+<link rel="stylesheet" href="print.css">
+<style>
+@page{size:A4;margin:0}
+.sheet{width:210mm;min-height:297mm;padding:16mm 18mm 14mm;font-size:11.5pt}
+.sheet::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4mm;background:var(--ink)}
+header{display:flex;justify-content:space-between;align-items:flex-start}
+header img{width:58mm}
+.doc{text-align:right}
+.doc h1{font-family:var(--display);font-weight:400;font-size:24pt;letter-spacing:.16em;color:var(--ember)}
+.doc table{margin-left:auto;margin-top:2mm;font-size:10.5pt}
+.doc td{padding:.6mm 0 .6mm 6mm}
+.doc td:first-child{color:var(--muted);font-family:var(--display);font-size:8pt;letter-spacing:.14em}
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:10mm}
+.parties h3,.terms h3{font-family:var(--display);font-weight:400;font-size:8pt;letter-spacing:.22em;color:var(--ember);margin-bottom:1.5mm}
+.parties div{line-height:1.45}
+table.items{width:100%;border-collapse:collapse;margin-top:10mm}
+.items th{font-family:var(--display);font-weight:400;font-size:8pt;letter-spacing:.16em;color:var(--muted);text-align:left;border-bottom:.4mm solid var(--ink);padding:2mm 1.5mm}
+.items td{padding:2.6mm 1.5mm;border-bottom:.25mm solid #e2dacb;vertical-align:top}
+.items .n{text-align:right;white-space:nowrap}
+.items .x{width:6mm;text-align:center}
+.items .x button{border:0;background:none;color:#b33;font-size:14pt;cursor:pointer}
+.totals{margin-left:auto;margin-top:4mm;width:80mm}
+.totals td{padding:1.4mm 1.5mm}
+.totals td:last-child{text-align:right}
+.totals tr.grand td{font-family:var(--display);font-size:14pt;border-top:.4mm solid var(--ink);padding-top:2.5mm}
+.terms{display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:12mm;font-size:10.5pt;line-height:1.5;color:#3a352d}
+footer{position:absolute;left:18mm;right:18mm;bottom:12mm;text-align:center;font-family:var(--display);font-size:7.5pt;letter-spacing:.2em;color:var(--muted)}
+@media print{.items .x,.addrow{display:none}}
+.addrow{margin-top:3mm;font:inherit;font-size:10pt;padding:1.5mm 4mm;border:.3mm dashed var(--ember);background:none;color:var(--ember);cursor:pointer}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <img src="../assets/logo-dark.png" alt="A Las Raices">
+    <div class="doc">
+      <h1 id="kind">QUOTE</h1>
+      <table>
+        <tr><td>NUMBER</td><td data-edit id="num"></td></tr>
+        <tr><td>DATE</td><td data-edit id="date"></td></tr>
+        <tr><td id="validlbl">VALID UNTIL</td><td data-edit id="valid"></td></tr>
+      </table>
+    </div>
+  </header>
+
+  <div class="parties">
+    <div><h3>FROM</h3><div id="from" data-edit></div></div>
+    <div><h3>FOR</h3><div data-edit>Client name<br>Company / venue<br>Address<br>Email · phone</div></div>
+  </div>
+
+  <table class="items">
+    <thead><tr><th>DESCRIPTION</th><th class="n">QTY</th><th class="n">PRICE €</th><th class="n">AMOUNT €</th><th class="x"></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <button class="addrow" type="button" id="add">+ Add line</button>
+
+  <table class="totals">
+    <tr><td>Subtotal</td><td id="sub"></td></tr>
+    <tr><td>IVA <span data-edit id="vat">21</span>%</td><td id="vatamt"></td></tr>
+    <tr class="grand"><td>TOTAL</td><td id="total"></td></tr>
+  </table>
+
+  <div class="terms">
+    <div><h3>PAYMENT</h3><div data-edit>Bank transfer / Bizum<br>IBAN: <span class="todo">ES·· ···· ···· ···· ····</span><br>Reference: quote number</div></div>
+    <div><h3>TERMS</h3><div data-edit>30% deposit secures the date; balance on the day.<br>Travel outside the Costa Blanca charged at cost.<br>Sound system included for duo and trio.</div></div>
+  </div>
+  <footer>THANK YOU · GRACIAS · A LAS RAICES · RUMBA FLAMENCA</footer>
+</div>
+
+<script src="../data/band.js"></script>
+<script src="common.js"></script>
+<script>
+var c = contactBits();
+toolbar('<label>Type: <select id="type"><option>QUOTE</option><option>INVOICE</option></select></label>');
+document.getElementById("from").innerHTML = '<img src="../assets/exposure-logo-dark.svg" alt="Exposure Solutions" style="height:8mm;width:auto;margin-bottom:1.5mm"><br>' + c.agency + "<br><i>Booking agent for A Las Raices</i>" + '<br><span class="todo">NIF / CIF ·········</span><br>' + c.phone + "<br>" + c.email;
+var today = new Date(), valid = new Date(Date.now() + 30 * 864e5);
+function fmt(d) { return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+document.getElementById("date").textContent = fmt(today);
+document.getElementById("valid").textContent = fmt(valid);
+document.getElementById("num").textContent = "ALR-" + today.getFullYear() + "-001";
+document.getElementById("type").onchange = function () {
+  var inv = this.value === "INVOICE";
+  document.getElementById("kind").textContent = this.value;
+  document.getElementById("validlbl").textContent = inv ? "DUE" : "VALID UNTIL";
+  document.getElementById("valid").textContent = fmt(new Date(Date.now() + (inv ? 14 : 30) * 864e5));
+};
+
+var rows = document.getElementById("rows");
+function addRow(desc, qty, price) {
+  var tr = document.createElement("tr");
+  tr.innerHTML = '<td data-edit>' + desc + '</td><td class="n" data-edit>' + qty + '</td><td class="n" data-edit>' + price +
+    '</td><td class="n amt"></td><td class="x"><button type="button" title="Remove line">×</button></td>';
+  tr.querySelector("button").onclick = function () { tr.remove(); calc(); };
+  rows.appendChild(tr); makeEditable(); calc();
+}
+function num(el) { return parseFloat(String(el.textContent).replace(/[^\d.,-]/g, "").replace(",", ".")) || 0; }
+function money(n) { return n.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function calc() {
+  var sub = 0;
+  rows.querySelectorAll("tr").forEach(function (tr) {
+    var td = tr.children, a = num(td[1]) * num(td[2]);
+    td[3].textContent = money(a); sub += a;
+  });
+  var vat = sub * num(document.getElementById("vat")) / 100;
+  document.getElementById("sub").textContent = "€" + money(sub);
+  document.getElementById("vatamt").textContent = "€" + money(vat);
+  document.getElementById("total").textContent = "€" + money(sub + vat);
+}
+document.addEventListener("input", calc);
+document.getElementById("add").onclick = function () { addRow("New item", 1, 0); };
+addRow("A Las Raices live — Trio (2 × 45 min sets)<br><i>Event, venue and date</i>", 1, 200);
+addRow("Travel (fuel)", 1, 0);
+makeEditable(); markSample();
+</script>
+</body>
+</html>

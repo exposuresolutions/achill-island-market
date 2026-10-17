@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exposure Brand Kit</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#05080b;--card:#0c1218;--line:#1b2630;--text:#eaf6f8;--muted:#8aa0a8;--cyan:#19d3e6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;padding:0 16px 60px}
+main{max-width:1000px;margin:0 auto}
+header{padding:28px 0 10px}
+h1{font-size:26px;letter-spacing:.02em}
+h2{font-size:13px;letter-spacing:.24em;color:var(--cyan);margin:40px 0 14px;font-weight:600}
+p.lead{color:var(--muted);max-width:700px}
+.hero{border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:16/7;background:#000;margin-top:18px}
+.hero iframe{width:100%;height:100%;border:0;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card img,.card video{width:100%;display:block;border-radius:6px;background:#000}
+.card .light{background:#fff;padding:14px;border-radius:6px}
+.card b{display:block;margin-top:10px}
+.card span{color:var(--muted);font-size:14px}
+.pick{border-color:var(--cyan)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.12em;color:#001014;background:var(--cyan);border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+ul.dl{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+ul.dl a{display:flex;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;color:var(--text);text-decoration:none}
+ul.dl a:hover{border-color:var(--cyan)}
+ul.dl small{color:var(--muted)}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw div{width:140px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.sw i{display:block;height:60px}
+.sw span{display:block;padding:6px 10px;font-size:13px;color:var(--muted)}
+code{background:#0f1a22;padding:2px 6px;border-radius:4px;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Exposure Solutions — brand kit</h1>
+    <p class="lead">Logo rebuilt as clean vector shapes, with a camera aperture in the O of EXPOSURE. Animated version: cyan energy waves and lightning flowing through the letters, looping every 4 seconds.</p>
+  </header>
+
+  <div class="hero"><iframe src="animated-logo.html?pad=0.14" title="Animated Exposure logo"></iframe></div>
+
+  <h2>LENS POSITION</h2>
+  <div class="grid">
+    <div class="card pick"><img src="logo-A.svg" alt="Lens in EXPOSURE"><b>A · Lens in EXPOSURE <span class="tag">RECOMMENDED</span></b><span>First thing you read, and the lens is literally what makes an exposure.</span></div>
+    <div class="card"><img src="logo-B.svg" alt="Lens in SOLUTIONS"><b>B · Lens in SOLUTIONS</b><span>Works, but it sits mid-word on the second line.</span></div>
+    <div class="card"><div class="light"><img src="logo-A-dark.svg" alt="Dark version" style="background:#fff"></div><b>A · on light backgrounds</b><span>Letterheads, invoices, light websites.</span></div>
+  </div>
+
+  <h2>EMAIL</h2>
+  <div class="grid">
+    <div class="card"><img src="export/email-header-600x200.gif" alt="Email header"><b>Email header · 600×200 GIF</b><span>Top of newsletters and campaign emails.</span></div>
+    <div class="card"><img src="export/email-signature-300x100.gif" alt="Email signature" style="width:300px"><b>Email signature · 300×100 GIF</b><span>Animates in Gmail and Apple Mail. Outlook shows the first frame.</span></div>
+  </div>
+
+  <h2>SOCIAL</h2>
+  <div class="grid">
+    <div class="card"><video src="export/facebook-cover-1640x624.mp4" autoplay muted loop playsinline poster="export/facebook-cover-1640x624.png"></video><b>Facebook cover · video + image</b><span>1640×624. Cover video is 20s (Facebook's minimum).</span></div>
+    <div class="card"><video src="export/profile-icon-1080.mp4" autoplay muted loop playsinline poster="export/profile-icon-1080.png"></video><b>Profile picture · lens icon</b><span>1080×1080, image or video.</span></div>
+    <div class="card"><img src="export/linkedin-banner-1584x396.png" alt="LinkedIn banner"><b>LinkedIn banner</b><span>1584×396</span></div>
+    <div class="card"><img src="export/x-header-1500x500.png" alt="X header"><b>X / Twitter header</b><span>1500×500</span></div>
+    <div class="card"><img src="export/youtube-banner-2560x1440.png" alt="YouTube banner"><b>YouTube banner</b><span>2560×1440, logo inside the safe area</span></div>
+  </div>
+
+  <h2>DOWNLOADS</h2>
+  <ul class="dl">
+    <li><a href="logo-A.svg" download>Logo A · white (SVG) <small>vector</small></a></li>
+    <li><a href="logo-A-dark.svg" download>Logo A · dark (SVG) <small>vector</small></a></li>
+    <li><a href="logo-B.svg" download>Logo B · white (SVG) <small>vector</small></a></li>
+    <li><a href="export/logo-still-transparent-2400.png" download>Logo with glow (PNG, transparent) <small>2400px</small></a></li>
+    <li><a href="export/email-header-600x200.gif" download>Email header GIF <small>600×200</small></a></li>
+    <li><a href="export/email-signature-300x100.gif" download>Email signature GIF <small>300×100</small></a></li>
+    <li><a href="export/facebook-cover-1640x624.mp4" download>Facebook cover video <small>MP4</small></a></li>
+    <li><a href="export/facebook-cover-1640x624.png" download>Facebook cover image <small>PNG</small></a></li>
+    <li><a href="export/profile-icon-1080.png" download>Profile picture <small>PNG</small></a></li>
+    <li><a href="export/profile-icon-1080.mp4" download>Profile picture <small>MP4</small></a></li>
+    <li><a href="export/linkedin-banner-1584x396.png" download>LinkedIn banner <small>PNG</small></a></li>
+    <li><a href="export/x-header-1500x500.png" download>X header <small>PNG</small></a></li>
+    <li><a href="export/youtube-banner-2560x1440.png" download>YouTube banner <small>PNG</small></a></li>
+    <li><a href="export/logo-animated-1920x1080.mp4" download>Animated logo, landscape <small>MP4 12s</small></a></li>
+    <li><a href="export/logo-animated-1080x1920.mp4" download>Animated logo, portrait <small>MP4 12s</small></a></li>
+  </ul>
+
+  <h2>COLOURS &amp; TYPE</h2>
+  <div class="sw">
+    <div><i style="background:#19d3e6"></i><span>Exposure cyan<br>#19D3E6</span></div>
+    <div><i style="background:#ffffff"></i><span>White<br>#FFFFFF</span></div>
+    <div><i style="background:#000000"></i><span>Black<br>#000000</span></div>
+    <div><i style="background:#0b0d10"></i><span>Ink (light bg)<br>#0B0D10</span></div>
+  </div>
+  <p class="lead" style="margin-top:14px">Lettering: Barlow Semi Condensed Black (free, SIL Open Font License). Rebuild the logo files with <code>python3 gen_logo.py</code> and every export with <code>node render.mjs</code>.</p>
+</main>
+</body>
+</html>

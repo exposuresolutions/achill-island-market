@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices | Rumba Flamenca</title>
+<meta name="description" content="A Las Raices — live Rumba Flamenca band on the Costa Blanca. Duo, trio or full 9-piece Gipsy Fiesta for bars, weddings and private events.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="A Las Raices | Rumba Flamenca">
+<meta property="og:description" content="Live Rumba Flamenca on the Costa Blanca. Book the Gipsy Fiesta.">
+<meta property="og:image" content="assets/logo-square.jpg">
+<link rel="icon" href="assets/logo-square.jpg">
+<style>
+@font-face{font-family:Cinzel;src:url(assets/fonts/Cinzel-normal.woff2) format("woff2");font-weight:400 900;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-normal.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:Cormorant;src:url(assets/fonts/CormorantGaramond-italic.woff2) format("woff2");font-style:italic;font-weight:300 700;font-display:swap}
+:root{
+  --bg:#0b0a08;--bg-2:#14120e;--line:#2a261e;
+  --cream:#f0ead6;--muted:#b3ab96;--ember:#d08a3c;
+  --display:Cinzel,Georgia,serif;--body:Cormorant,Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--body);font-size:20px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:linear-gradient(#0b0a08ee,#0b0a0800)}
+nav .brand{font-family:var(--display);letter-spacing:.18em;font-size:15px;text-decoration:none}
+nav ul{display:flex;gap:22px;list-style:none;font-family:var(--display);font-size:13px;letter-spacing:.14em}
+nav ul a{text-decoration:none;opacity:.8}
+nav ul a:hover{opacity:1;color:var(--ember)}
+@media (max-width:640px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:90px 20px 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 55%,#d08a3c22,transparent 70%)}
+.hero-inner{position:relative}
+.hero img{width:min(560px,86vw);margin:0 auto;animation:grow 2.4s ease-out both}
+.tagline{font-style:italic;font-size:clamp(22px,4vw,30px);color:var(--muted);margin-top:18px;animation:fade 1.6s .8s both}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:fade 1.6s 1.2s both}
+.btn{font-family:var(--display);font-size:14px;letter-spacing:.16em;text-decoration:none;padding:14px 26px;border:1px solid var(--cream);border-radius:2px;transition:.25s}
+.btn.solid{background:var(--cream);color:var(--bg)}
+.btn:hover{background:var(--ember);border-color:var(--ember);color:var(--bg)}
+@keyframes grow{from{opacity:0;transform:translateY(16px) scale(.97);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* sections */
+section{padding:90px 0;border-top:1px solid var(--line)}
+.eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--ember);margin-bottom:10px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,46px);letter-spacing:.06em;line-height:1.15;margin-bottom:22px}
+.lead{font-size:clamp(21px,2.6vw,25px);max-width:720px;color:var(--muted)}
+.lead em{color:var(--cream)}
+
+.lineup{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:40px}
+.member{border:1px solid var(--line);background:var(--bg-2);padding:28px 24px;border-radius:4px}
+.member .name{font-family:var(--display);font-size:22px;letter-spacing:.06em}
+.member .role{font-style:italic;color:var(--ember)}
+
+.videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:34px}
+.video{aspect-ratio:9/16;max-height:560px;background:var(--bg-2);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.video iframe{width:100%;height:100%;border:0}
+.video-empty{border:1px dashed var(--line);border-radius:4px;padding:40px 24px;text-align:center;color:var(--muted);margin-top:30px}
+.video-empty .btn{display:inline-block;margin-top:18px}
+
+
+.stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:30px}
+.stat .n{font-family:var(--display);font-size:38px;color:var(--cream)}
+.stat .l{font-size:16px;color:var(--muted);letter-spacing:.06em}
+
+form{display:grid;gap:14px;max-width:620px;margin-top:30px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+label{font-family:var(--display);font-size:12px;letter-spacing:.18em;color:var(--muted)}
+input,select,textarea{width:100%;margin-top:6px;background:var(--bg-2);border:1px solid var(--line);color:var(--cream);font-family:var(--body);font-size:18px;letter-spacing:0;padding:12px 14px;border-radius:2px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ember)}
+button.btn{cursor:pointer;background:var(--cream);color:var(--bg);justify-self:start}
+
+footer{border-top:1px solid var(--line);padding:40px 20px;text-align:center;color:var(--muted);font-size:16px}
+footer img{width:70px;margin:0 auto 12px;opacity:.8}
+
+[data-reveal]{opacity:0;transform:translateY(18px);transition:1s ease}
+[data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+/* draft banner */
+.draft{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ember);color:var(--bg);text-align:center;font-family:var(--display);font-size:12px;letter-spacing:.14em;padding:8px 12px}
+
+/* gigs */
+.res-card{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;border:1px solid var(--ember);border-radius:4px;padding:34px;margin-top:34px;background:radial-gradient(80% 120% at 0% 0%,#d08a3c18,transparent 60%)}
+.res-card .big{font-family:var(--display);font-size:clamp(26px,4vw,36px);letter-spacing:.06em;line-height:1.2}
+.res-card .when{color:var(--ember);font-style:italic;font-size:22px;margin:6px 0 2px}
+.res-card .actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+@media (max-width:760px){.res-card{grid-template-columns:1fr}}
+.gig-list{list-style:none;margin-top:30px;border-top:1px solid var(--line)}
+.gig{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.gig .d{font-family:var(--display);letter-spacing:.06em;line-height:1.1}
+.gig .d b{display:block;font-size:30px;font-weight:400}
+.gig .d small{font-size:13px;color:var(--muted);letter-spacing:.16em}
+.gig .v{font-family:var(--display);font-size:19px;letter-spacing:.04em}
+.gig .m{color:var(--muted);font-size:17px}
+.gig .tag{display:inline-block;font-family:var(--display);font-size:11px;letter-spacing:.14em;border:1px solid var(--ember);color:var(--ember);padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle}
+.gig .btn{padding:10px 16px;font-size:12px;white-space:nowrap}
+@media (max-width:560px){.gig{grid-template-columns:70px 1fr}.gig .act{grid-column:1/-1}.gig .d b{font-size:24px}}
+
+/* packages */
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:34px}
+.pkg{border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:28px 24px;display:flex;flex-direction:column}
+.pkg.featured{border-color:var(--ember)}
+.pkg .n{font-family:var(--display);font-size:21px;letter-spacing:.06em}
+.pkg .p{font-family:var(--display);font-size:34px;margin:8px 0 2px}
+.pkg .p small{font-family:var(--body);font-size:16px;color:var(--muted)}
+.pkg ul{list-style:none;margin:14px 0 0;color:var(--muted);font-size:18px}
+.pkg li::before{content:"— ";color:var(--ember)}
+.pkg .ribbon{font-family:var(--display);font-size:11px;letter-spacing:.2em;color:var(--ember);margin-bottom:6px}
+
+/* checkout */
+dialog{margin:auto;border:1px solid var(--line);background:var(--bg);color:var(--cream);border-radius:6px;padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100svh - 32px)}
+dialog::backdrop{background:#000c}
+.dlg{padding:28px 24px}
+.dlg h3{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.05em}
+.dlg .sub{color:var(--muted);font-style:italic}
+.dlg .close{position:absolute;right:12px;top:8px;background:none;border:0;color:var(--muted);font-size:30px;cursor:pointer}
+.opt{font-family:var(--body);letter-spacing:0;font-size:18px;color:var(--cream);display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:4px;padding:14px;margin-top:10px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--ember);background:#d08a3c12}
+.opt input{width:auto;margin-top:6px;accent-color:var(--ember)}
+.opt .on{font-family:var(--display);letter-spacing:.04em}
+.opt .oi{color:var(--muted);font-size:16px}
+.opt .op{margin-left:auto;font-family:var(--display);white-space:nowrap}
+.qty{display:flex;align-items:center;gap:14px;margin-top:18px}
+.qty button{width:40px;height:40px;border:1px solid var(--line);background:var(--bg-2);color:var(--cream);font-size:22px;cursor:pointer;border-radius:2px}
+.total{font-family:var(--display);font-size:24px;margin-left:auto}
+.dlg form{margin-top:16px}
+.note{color:var(--muted);font-size:16px;font-style:italic}
+.ok{border:1px solid var(--ember);border-radius:4px;padding:18px;margin-top:16px}
+
+/* booking ways + venues */
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.way{border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:28px 24px;cursor:pointer;text-align:left;color:inherit;font:inherit}
+.way:hover,.way.on{border-color:var(--ember)}
+.way .n{font-family:var(--display);font-size:21px;letter-spacing:.05em}
+.way p{color:var(--muted);margin-top:6px;font-size:18px}
+@media (max-width:640px){.ways{grid-template-columns:1fr}}
+.venues{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:34px}
+.venue{border:1px solid var(--line);border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(160deg,#d08a3c14,transparent 60%)}
+.venue .n{font-family:var(--display);font-size:20px;letter-spacing:.05em}
+.venue .t{color:var(--ember);font-style:italic}
+.venue p{color:var(--muted);font-size:17px}
+.venue .btn{margin-top:auto;align-self:flex-start;padding:10px 16px;font-size:12px}
+.agent{margin-top:26px;border-left:2px solid var(--ember);padding:4px 0 4px 16px;color:var(--muted);font-size:18px}
+
+/* how booking works */
+.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:34px}
+.steps li{counter-increment:s;border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:24px 20px;position:relative}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:34px;color:var(--ember);display:block;line-height:1;margin-bottom:10px}
+.steps b{font-family:var(--display);font-weight:400;font-size:18px;letter-spacing:.04em;display:block}
+.steps p{color:var(--muted);font-size:17px;margin-top:6px}
+.callbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:28px}
+.callbar .or{color:var(--muted);font-style:italic}
+
+/* uploads */
+.drop{border:1px dashed var(--ember);border-radius:4px;padding:16px;color:var(--muted);font-size:17px}
+.drop input{border:0;padding:8px 0;background:none}
+.files{list-style:none;margin-top:6px;font-size:16px}
+.files li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:4px 0}
+.files .st{color:var(--ember);white-space:nowrap}
+footer .powered{display:inline-flex;align-items:center;gap:10px;margin-top:22px;text-decoration:none;opacity:.7}
+footer .powered:hover{opacity:1}
+footer .powered small{font-family:var(--display);font-size:10px;letter-spacing:.28em}
+footer .powered img{height:26px;width:auto;margin:0;opacity:1}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">A LAS RAICES</a>
+  <ul>
+    <li><a href="#gigs">GIGS</a></li>
+    <li><a href="#tickets">TICKETS</a></li>
+    <li><a href="#venues">VENUES</a></li>
+    <li><a href="#private">BOOK</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <img src="assets/logo-transparent.png" alt="A Las Raices">
+    <p class="tagline">Rumba Flamenca, straight from the roots.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#venues">BOOK A VENUE PARTY</a>
+      <a class="btn" data-call href="tel:+3539878500">CALL LILLY · 098 78500</a>
+    </div>
+  </div>
+</header>
+
+<section id="venues">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>PARTNER VENUES</p>
+    <h2 data-reveal>Party at one of our venues</h2>
+    <p class="lead" data-reveal>Book a space at a partner venue and we'll put A Las Raices on for your group — birthdays, hen and stag parties, leaving dos, team nights. One booking, venue and band sorted.</p>
+    <div class="venues" id="venue-list"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>HOW BOOKING WORKS</p>
+    <h2 data-reveal>One call books it</h2>
+    <ol class="steps" data-reveal>
+      <li><b>Pick the night</b><p>A partner venue party, a private gig at your place, or tickets to a show.</p></li>
+      <li><b>Call Lilly</b><p>Ring Exposure on <span data-phone-local></span> and Lilly takes your details — or use the form below.</p></li>
+      <li><b>Send photos or videos</b><p>Your villa, venue or space, if it helps us plan. Upload them with your booking.</p></li>
+      <li><b>Confirmed</b><p>You get your confirmation as soon as one of our contractors confirms the date.</p></li>
+      <li><b>After the party</b><p>Photos and videos of the night are uploaded, then the final payment is made.</p></li>
+    </ol>
+    <div class="callbar" data-reveal>
+      <a class="btn solid" data-call href="tel:+3539878500">CALL LILLY · 098 78500</a>
+      <span class="or">or</span>
+      <a class="btn" href="#private">BOOK ONLINE</a>
+    </div>
+  </div>
+</section>
+
+<section id="gigs">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>LIVE</p>
+    <h2 data-reveal>Where to catch them</h2>
+    <div class="res-card" id="residency" data-reveal></div>
+    <ul class="gig-list" id="gig-list"></ul>
+    <p class="note" style="margin-top:16px">Dates change fast in summer. Follow <a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a> for pop-up gigs.</p>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>TICKETS &amp; PACKAGES</p>
+    <h2 data-reveal>Make a night of it</h2>
+    <p class="lead" data-reveal>For our ticketed shows, grab a ticket or upgrade to a package with drinks, tapas or a VIP table by the stage.</p>
+    <div class="pkgs" id="pkgs"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>THE BAND</p>
+    <h2 data-reveal>Back to the roots</h2>
+    <p class="lead" data-reveal><em>A Las Raices</em> — "to the roots" — bring the Gipsy Fiesta to the Costa Blanca: Rumba Flamenca guitars, clarinet, darbuka, conga and cajon, played live by up to nine musicians. From La Zenia and Cabo Roig to Torrevieja and beyond, they turn a quiet afternoon into a party.</p>
+    <div class="stats" data-reveal>
+      <div class="stat"><div class="n">7,400+</div><div class="l">FOLLOWERS</div></div>
+      <div class="stat"><div class="n">9</div><div class="l">MUSICIANS</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">LIVE</div></div>
+    </div>
+    <!-- Line-up from the band's Facebook (Dec 2025 recon). Re-check with Demi before launch. -->
+    <div class="lineup">
+      <div class="member" data-reveal><div class="name">Demircan Ulugun</div><div class="role">Vocals &amp; Guitar · Band leader</div></div>
+      <div class="member" data-reveal><div class="name">Ibrahim Cetiner</div><div class="role">Guitar</div></div>
+      <div class="member" data-reveal><div class="name">Daniel Martinez</div><div class="role">Vocals &amp; Bass</div></div>
+      <div class="member" data-reveal><div class="name">El Kiyo</div><div class="role">Solo Guitar</div></div>
+      <div class="member" data-reveal><div class="name">Nero</div><div class="role">Guitar</div></div>
+      <div class="member" data-reveal><div class="name">Kalim</div><div class="role">Clarinet</div></div>
+      <div class="member" data-reveal><div class="name">Emilio</div><div class="role">Darbuka</div></div>
+      <div class="member" data-reveal><div class="name">Sonero</div><div class="role">Conga</div></div>
+      <div class="member" data-reveal><div class="name">Gurhan</div><div class="role">Cajon</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="watch">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>WATCH</p>
+    <h2 data-reveal>See them live</h2>
+    <div class="videos" id="videos"></div>
+    <div class="video-empty" id="videos-empty" hidden>
+      New clips coming soon. Catch the latest on Facebook.<br>
+      <a class="btn" href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">OPEN FACEBOOK</a>
+    </div>
+  </div>
+</section>
+
+<section id="private">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>BOOKINGS</p>
+    <h2 data-reveal>Book the fiesta</h2>
+    <div class="lineup" id="private-pkgs"></div>
+    <p class="lead" data-reveal style="margin-top:34px">How would you like to book?</p>
+    <div class="ways" data-reveal style="margin-top:14px">
+      <button type="button" class="way on" data-way="own"><div class="n">At your place</div><p>Villa, home, yacht, wedding venue or your own bar. The band comes to you.</p></button>
+      <button type="button" class="way" data-way="venue"><div class="n">Venue + band</div><p>Pick one of our partner venues and we'll book the space and the band together.</p></button>
+    </div>
+
+    <form id="booking" data-reveal style="margin-top:40px">
+      <input type="hidden" name="booking_type" value="Private gig (own venue)">
+      <div class="row">
+        <label>NAME<input name="name" required autocomplete="name"></label>
+        <label>PHONE<input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="row">
+        <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
+        <label>DATE<input name="date" type="date"></label>
+      </div>
+      <div class="row">
+        <label>OCCASION
+          <select name="event_type"><option>Private party</option><option>Birthday</option><option>Wedding</option><option>Hen / stag party</option><option>Villa / yacht party</option><option>Corporate / team night</option><option>Bar / venue gig</option><option>Weekly residency</option><option>Festival</option><option>Other</option></select>
+        </label>
+        <label>LINE-UP
+          <select name="lineup"><option>Not sure yet</option><option>Duo</option><option>Trio</option><option>Full band</option></select>
+        </label>
+      </div>
+      <div class="row">
+        <label id="where-own">WHERE<input name="location" placeholder="e.g. villa in Ciudad Quesada"></label>
+        <label id="where-venue" hidden>PARTNER VENUE<select name="venue" id="venue-select"></select></label>
+        <label>GUESTS<input name="guests" type="number" min="1" inputmode="numeric"></label>
+      </div>
+      <label id="extras" hidden>FOOD &amp; DRINK
+        <select name="food_drink"><option>Not needed</option><option>Drinks package</option><option>Tapas &amp; drinks</option><option>Full dinner</option><option>Help me decide</option></select>
+      </label>
+      <label>DETAILS<textarea name="message" rows="4" placeholder="Times, how long a set, budget, anything else"></textarea></label>
+      <div class="drop">
+        <label style="color:var(--muted)">PHOTOS OR VIDEOS <span style="font-family:var(--body);letter-spacing:0;font-size:15px">(optional — your venue, villa or space, max 45 MB each)</span>
+          <input type="file" id="files" accept="image/*,video/*" multiple>
+        </label>
+        <ul class="files" id="file-list"></ul>
+      </div>
+      <button class="btn" type="submit">SEND BOOKING REQUEST</button>
+      <div id="booking-ok" class="ok" hidden></div>
+    </form>
+    <p class="agent" id="agent-line" data-reveal></p>
+    <p class="note" style="margin-top:10px">Show finished? Contractors upload the night's photos and customers settle the balance on the <a href="complete.html">job complete page</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <img src="assets/logo-transparent.png" alt="">
+  <p>A Las Raices · Rumba Flamenca · Costa Blanca</p>
+  <p id="foot-contact"></p>
+  <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
+  <a class="powered" href="https://exposuresolutions.me/?utm_source=a-las-raices&amp;utm_medium=website#services" target="_blank" rel="noopener">
+    <small>POWERED BY</small><img src="assets/exposure-logo-white.svg" alt="Exposure Solutions">
+  </a>
+</footer>
+
+<dialog id="checkout">
+  <div class="dlg" style="position:relative">
+    <button class="close" type="button" aria-label="Close" onclick="this.closest('dialog').close()">×</button>
+    <p class="eyebrow">TICKETS</p>
+    <h3 id="co-title"></h3>
+    <p class="sub" id="co-when"></p>
+    <div id="co-opts"></div>
+    <div class="qty"><button type="button" id="co-minus" aria-label="Fewer">−</button><span id="co-qty">2</span><span id="co-per" class="note"></span><span class="total" id="co-total"></span></div>
+    <form id="co-form">
+      <div class="row">
+        <label>NAME<input name="name" required autocomplete="name"></label>
+        <label>PHONE<input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
+      <button class="btn" type="submit" id="co-btn">RESERVE</button>
+      <p class="note" id="co-note"></p>
+    </form>
+    <div id="co-ok" class="ok" hidden></div>
+  </div>
+</dialog>
+
+<div class="draft" id="draft" hidden>DRAFT PREVIEW — DATES, PRICES &amp; VENUES TO BE CONFIRMED</div>
+
+<script src="data/band.js"></script>
+<script>
+// Public Facebook video/reel URLs to show in the Watch section.
+var VIDEOS = [
+  // "https://www.facebook.com/reel/1234567890",
+];
+
+var D = window.ALR, C = D.contact, A = D.agency;
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function euro(n){ return "€" + (n % 1 ? n.toFixed(2) : n); }
+if (D.DRAFT) document.getElementById("draft").hidden = false;
+
+(function renderVideos(){
+  var grid = document.getElementById("videos");
+  if (!VIDEOS.length) { document.getElementById("videos-empty").hidden = false; return; }
+  VIDEOS.forEach(function(url){
+    var box = document.createElement("div");
+    box.className = "video";
+    box.innerHTML = '<iframe loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen ' +
+      'src="https://www.facebook.com/plugins/video.php?show_text=false&href=' + encodeURIComponent(url) + '"></iframe>';
+    grid.appendChild(box);
+  });
+})();
+
+// Residency + gig list
+(function(){
+  var r = D.residency;
+  document.getElementById("residency").innerHTML =
+    '<div><p class="eyebrow">WEEKLY RESIDENCY</p><div class="big">' + esc(r.title) + '</div>' +
+    '<p class="when">' + esc(r.day) + ' · ' + esc(r.time) + '</p>' +
+    '<p class="lead" style="font-size:20px">' + esc(r.venue) + ', ' + esc(r.place) + '</p>' +
+    '<p class="note">' + esc(r.note) + '</p></div>' +
+    '<div class="actions"><button class="btn solid" type="button" data-table>BOOK A TABLE</button>' +
+    '<a class="btn" href="#private">BOOK THEM PRIVATELY</a></div>';
+
+  var list = document.getElementById("gig-list"), gigs = D.upcoming(8);
+  if (!gigs.length) list.innerHTML = '<li class="gig"><span></span><span class="m">New dates coming soon.</span></li>';
+  gigs.forEach(function(g, i){
+    var li = document.createElement("li"); li.className = "gig";
+    var dd = new Date(g.date + "T12:00:00");
+    li.innerHTML =
+      '<div class="d"><small>' + dd.toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase() + '</small><b>' + dd.getDate() + '</b><small>' + dd.toLocaleDateString("en-GB",{month:"short"}).toUpperCase() + '</small></div>' +
+      '<div><div class="v">' + esc(g.title || g.venue) + (g.residency ? '<span class="tag">WEEKLY</span>' : '') + (g.tickets ? '<span class="tag">TICKETS</span>' : '') + '</div>' +
+      '<div class="m">' + (g.title ? esc(g.venue) + ', ' : '') + esc(g.town) + ' · ' + esc(g.time) + ' · ' + esc(g.lineup) + '</div></div>' +
+      '<div class="act">' + (g.tickets ? '<button class="btn solid" type="button" data-gig="' + D.gigs.indexOf(g) + '">GET TICKETS</button>'
+                                       : '<button class="btn" type="button" data-table="' + D.gigs.indexOf(g) + '">RESERVE</button>') + '</div>';
+    list.appendChild(li);
+  });
+
+  var pk = document.getElementById("pkgs");
+  D.ticketPackages.forEach(function(p){
+    var el = document.createElement("div"); el.className = "pkg" + (p.featured ? " featured" : "");
+    el.innerHTML = (p.featured ? '<div class="ribbon">MOST POPULAR</div>' : '') + '<div class="n">' + esc(p.name) + '</div>' +
+      '<div class="p">' + euro(p.price) + ' <small>/ ' + esc(p.per) + '</small></div><ul>' +
+      p.includes.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    pk.appendChild(el);
+  });
+  var next = gigs.filter(function(g){ return g.tickets; })[0];
+  var cta = document.createElement("p"); cta.style.marginTop = "26px";
+  cta.innerHTML = next ? '<button class="btn solid" type="button" data-gig="' + D.gigs.indexOf(next) + '">GET TICKETS — ' + esc(D.fmtDate(next.date)).toUpperCase() + '</button>'
+                       : '<span class="note">No ticketed shows on sale right now.</span>';
+  pk.after(cta);
+
+  var pp = document.getElementById("private-pkgs");
+  D.privatePackages.forEach(function(p){
+    pp.insertAdjacentHTML("beforeend", '<div class="member"><div class="name">' + esc(p.name) + '</div><div class="role">Quote on request</div><p style="color:var(--muted);margin-top:8px">' + esc(p.blurb) + '</p></div>');
+  });
+
+  var bits = [];
+  if (A.phone) bits.push('<a href="tel:' + A.phone.replace(/[^\d+]/g,"") + '">Call ' + esc(A.assistant) + ' ' + esc(A.phoneLocal || A.phone) + '</a>');
+  if (A.whatsapp) bits.push('<a href="https://wa.me/' + A.whatsapp.replace(/\D/g,"") + '">WhatsApp</a>');
+  document.querySelectorAll("[data-phone-local]").forEach(function(el){ el.textContent = A.phoneLocal || A.phone; });
+  document.querySelectorAll("[data-call]").forEach(function(el){ el.href = "tel:" + A.phone.replace(/[^\d+]/g,""); el.textContent = "CALL " + A.assistant.toUpperCase() + " · " + (A.phoneLocal || A.phone); });
+  if (A.email) bits.push('<a href="mailto:' + esc(A.email) + '">' + esc(A.email) + '</a>');
+  document.getElementById("foot-contact").innerHTML = "Bookings: " + bits.join(" · ");
+  document.getElementById("agent-line").innerHTML = "All bookings for A Las Raices are handled by <em>" + esc(A.name) + "</em>" +
+    (bits.length ? " — " + bits.join(" · ") : "") + ". We'll confirm availability, line-up and price, usually within 24 hours.";
+
+  var vl = document.getElementById("venue-list"), vs = document.getElementById("venue-select");
+  vs.innerHTML = '<option>Help me choose</option>';
+  D.venues.filter(function(v){ return v.party; }).forEach(function(v){
+    vl.insertAdjacentHTML("beforeend", '<div class="venue"><div class="n">' + esc(v.name) + '</div><div class="t">' + esc(v.type) + ' · ' + esc(v.town) + '</div>' +
+      '<p>' + esc(v.blurb) + '</p><button type="button" class="btn" data-venue="' + esc(v.name) + '">BOOK A PARTY HERE</button></div>');
+    vs.insertAdjacentHTML("beforeend", '<option>' + esc(v.name) + ' (' + esc(v.town) + ')</option>');
+  });
+  vl.insertAdjacentHTML("beforeend", '<div class="venue"><div class="n">Your venue here?</div><div class="t">Bars, clubs &amp; hotels</div><p>Get A Las Raices on your screens and your stage. Ask about joining the partner network.</p><button type="button" class="btn" data-way-go="own" data-occasion="Bar / venue gig">BECOME A PARTNER</button></div>');
+})();
+
+// Send a form to the Exposure form API; fall back to WhatsApp / Facebook if it fails.
+function send(payload, okEl, okHtml, btn, onOk){
+  var label = btn.textContent; btn.disabled = true; btn.textContent = "SENDING…";
+  payload.client = "a-las-raices"; payload.page = location.href;
+  fetch(D.formApi, { method:"POST", keepalive:true, headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload) })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json().catch(function(){ return {}; }); })
+    .then(function(j){ okEl.innerHTML = okHtml + (j.id ? '<p class="note">Reference: ' + esc(j.id) + '</p>' : ''); okEl.hidden = false; btn.hidden = true;
+      if (okEl.id === "co-ok") document.getElementById("co-form").hidden = true;
+      if (onOk) onOk(j); })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = label;
+      var text = Object.keys(payload).filter(function(k){ return payload[k] && k !== "page" && k !== "client"; })
+        .map(function(k){ return k + ": " + payload[k]; }).join("\n");
+      if (A.whatsapp) { window.open("https://wa.me/" + A.whatsapp.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+      location.href = "mailto:" + A.email + "?subject=" + encodeURIComponent("A Las Raices booking") + "&body=" + encodeURIComponent(text);
+    });
+}
+
+document.getElementById("booking").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = Object.fromEntries(new FormData(e.target).entries());
+  var atVenue = way === "venue";
+  f.form_type = atVenue ? "venue-and-band" : "private-booking";
+  if (atVenue) delete f.location; else { delete f.venue; delete f.food_drink; }
+  f.details = f.message;
+  f.message = [f.booking_type, f.event_type, f.lineup !== "Not sure yet" ? f.lineup : "", f.date, atVenue ? f.venue : f.location,
+    f.guests ? f.guests + " guests" : "", atVenue && f.food_drink !== "Not needed" ? f.food_drink : ""]
+    .filter(Boolean).join(" · ") + (f.details ? " — " + f.details : "");
+  var files = Array.prototype.slice.call(document.getElementById("files").files);
+  if (files.length) f.message += " · " + files.length + " photo/video file(s) attached";
+  send(f, document.getElementById("booking-ok"),
+    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> " + esc(A.name) + " has your request" + (atVenue ? " for the venue and the band" : "") +
+    ". You'll get your confirmation as soon as one of our contractors confirms the date. Questions? Call " + esc(A.assistant) + " on " + esc(A.phoneLocal || A.phone) + ".",
+    e.submitter || e.target.querySelector("button"),
+    function(j){ uploadAll(files, j.id || "", f.name, "booking", document.getElementById("file-list")); });
+});
+
+// Upload photos/videos one at a time to the Cloudflare upload function (→ Exposure Telegram).
+function uploadAll(files, ref, name, stage, listEl){
+  if (!files.length) return Promise.resolve();
+  listEl.innerHTML = files.map(function(fl, i){ return '<li><span>' + esc(fl.name) + '</span><span class="st" id="up' + stage + i + '">waiting</span></li>'; }).join("");
+  var failed = 0;
+  return files.reduce(function(chain, fl, i){
+    return chain.then(function(){
+      var st = document.getElementById("up" + stage + i);
+      if (fl.size > 45 * 1024 * 1024) { st.textContent = "too large"; failed++; return; }
+      st.textContent = "uploading…";
+      var qs = "?client=a-las-raices&stage=" + stage + "&ref=" + encodeURIComponent(ref) + "&name=" + encodeURIComponent(name || "") + "&file=" + encodeURIComponent(fl.name);
+      return fetch(D.uploadApi + qs, { method: "POST", headers: { "Content-Type": fl.type || "application/octet-stream" }, body: fl })
+        .then(function(r){ if (!r.ok) throw 0; st.textContent = "sent ✓"; })
+        .catch(function(){ st.textContent = "not sent"; failed++; });
+    });
+  }, Promise.resolve()).then(function(){
+    if (failed) listEl.insertAdjacentHTML("afterend", '<p class="note">Some files didn\'t upload — no problem, ' + esc(A.assistant) + ' will collect them when we call, or email them to ' + esc(A.email) + (ref ? ' with reference ' + esc(ref) : '') + '.</p>');
+  });
+}
+document.getElementById("files").addEventListener("change", function(){
+  document.getElementById("file-list").innerHTML = Array.prototype.map.call(this.files, function(fl){
+    return '<li><span>' + esc(fl.name) + '</span><span class="st">' + (fl.size / 1048576).toFixed(1) + ' MB</span></li>'; }).join("");
+});
+
+// "At your place" vs "Venue + band"
+var way = "own";
+function setWay(w, venueName){
+  way = w;
+  document.querySelectorAll("[data-way]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-way") === w); });
+  var v = w === "venue";
+  document.getElementById("where-own").hidden = v;
+  document.getElementById("where-venue").hidden = !v;
+  document.getElementById("extras").hidden = !v;
+  document.querySelector("#booking [name=booking_type]").value = v ? "Venue + band party" : "Private gig (own venue)";
+  if (venueName) { var sel = document.getElementById("venue-select");
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text.indexOf(venueName) === 0) sel.selectedIndex = i; }
+}
+document.addEventListener("click", function(e){
+  var w = e.target.closest("[data-way]"); if (w) { setWay(w.getAttribute("data-way")); return; }
+  var v = e.target.closest("[data-venue]");
+  if (v) { setWay("venue", v.getAttribute("data-venue")); document.getElementById("private").scrollIntoView({behavior:"smooth"}); return; }
+  var g = e.target.closest("[data-way-go]");
+  if (g) { setWay(g.getAttribute("data-way-go")); document.querySelector("#booking [name=event_type]").value = g.getAttribute("data-occasion");
+    document.getElementById("private").scrollIntoView({behavior:"smooth"}); }
+});
+
+// Checkout: tickets (with packages) or table reservations
+var dlg = document.getElementById("checkout"), co = { qty: 2 };
+function coRender(){
+  var p = co.pkgs.filter(function(x){ return x.id === co.pkg; })[0];
+  document.getElementById("co-qty").textContent = co.qty;
+  document.getElementById("co-per").textContent = p.per === "table of 4" ? (co.qty > 1 ? "tables" : "table") : (co.qty > 1 ? "people" : "person");
+  document.getElementById("co-total").textContent = p.price ? euro(p.price * co.qty) : "";
+  var btn = document.getElementById("co-btn");
+  btn.textContent = p.payLink ? "PAY " + euro(p.price * co.qty) : (p.price ? "RESERVE — PAY ON THE DOOR" : "RESERVE");
+  document.getElementById("co-note").textContent = p.payLink ? "Secure card payment by Stripe." : (p.price ? "We'll hold your " + (co.qty > 1 ? "places" : "place") + "; pay at the venue on the night." : "Free entry — this just holds a table for you.");
+}
+function openCheckout(g, tableOnly){
+  co.gig = g; co.qty = 2;
+  co.pkgs = tableOnly ? [{ id:"table", name:"Table reservation", price:0, per:"person", includes:["Hold a table near the band"], payLink:"" }] : D.ticketPackages;
+  co.pkg = (co.pkgs.filter(function(x){ return x.featured; })[0] || co.pkgs[0]).id;
+  document.getElementById("co-title").textContent = g ? (g.title || g.venue) : D.residency.title;
+  document.getElementById("co-when").textContent = g ? D.fmtDate(g.date, {weekday:"long",day:"numeric",month:"long"}) + " · " + g.time + " · " + (g.title ? g.venue + ", " : "") + g.town
+                                                     : D.residency.day + " · " + D.residency.time + " · " + D.residency.venue + ", " + D.residency.place;
+  document.querySelector("#checkout .eyebrow").textContent = tableOnly ? "RESERVE A TABLE" : "TICKETS";
+  document.getElementById("co-opts").innerHTML = co.pkgs.map(function(p){
+    return '<label class="opt"><input type="radio" name="pkg" value="' + p.id + '"' + (p.id === co.pkg ? " checked" : "") + '>' +
+      '<span><span class="on">' + esc(p.name) + '</span><br><span class="oi">' + p.includes.map(esc).join(" · ") + '</span></span>' +
+      '<span class="op">' + (p.price ? euro(p.price) : "Free") + '</span></label>';
+  }).join("");
+  document.getElementById("co-form").hidden = false; document.getElementById("co-ok").hidden = true;
+  var b = document.getElementById("co-btn"); b.hidden = false; b.disabled = false;
+  coRender(); dlg.showModal();
+}
+document.getElementById("co-opts").addEventListener("change", function(e){ co.pkg = e.target.value; coRender(); });
+document.getElementById("co-minus").addEventListener("click", function(){ co.qty = Math.max(1, co.qty - 1); coRender(); });
+(function(){ var plus = document.createElement("button"); plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label","More");
+  plus.onclick = function(){ co.qty = Math.min(20, co.qty + 1); coRender(); };
+  document.getElementById("co-qty").after(plus); })();
+document.getElementById("co-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  var p = co.pkgs.filter(function(x){ return x.id === co.pkg; })[0], g = co.gig;
+  var f = Object.fromEntries(new FormData(e.target).entries());
+  f.form_type = p.id === "table" ? "table-reservation" : "ticket-order";
+  f.event = g ? (g.title || g.venue) + " — " + g.date + " " + g.time + ", " + g.town : D.residency.title + " (weekly)";
+  f.package = p.name; f.quantity = co.qty; f.total = p.price ? euro(p.price * co.qty) : "free";
+  f.message = f.quantity + " × " + f.package + " for " + f.event + " (" + f.total + ")";
+  if (p.payLink) {
+    send(f, document.getElementById("co-ok"), "", document.getElementById("co-btn"));
+    location.href = p.payLink + (p.payLink.indexOf("?") < 0 ? "?" : "&") + "prefilled_email=" + encodeURIComponent(f.email);
+    return;
+  }
+  send(f, document.getElementById("co-ok"),
+    "<strong>You're on the list!</strong> " + esc(f.message) + ". " + esc(A.name) + " will confirm by " + (f.phone ? "phone" : "email") + ".", document.getElementById("co-btn"));
+});
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-gig],[data-table]"); if (!t) return;
+  if (t.hasAttribute("data-gig")) openCheckout(D.gigs[+t.getAttribute("data-gig")], false);
+  else { var i = t.getAttribute("data-table"); openCheckout(i ? D.gigs[+i] : null, true); }
+});
+
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+}, {threshold:.15});
+document.querySelectorAll("[data-reveal]").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>

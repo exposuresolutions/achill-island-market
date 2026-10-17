@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Letterhead</title>
+<link rel="stylesheet" href="print.css">
+<style>
+@page{size:A4;margin:0}
+.sheet{width:210mm;height:297mm;padding:16mm 20mm 14mm;display:flex;flex-direction:column}
+.sheet::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4mm;background:var(--ink)}
+header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:6mm;border-bottom:.35mm solid var(--ember)}
+header img{width:62mm}
+.contact{text-align:right;font-size:11pt;line-height:1.5;color:#4a443a}
+.contact b{font-family:var(--display);font-weight:400;letter-spacing:.14em;font-size:9pt;color:var(--ember)}
+.body{flex:1;padding-top:14mm;font-size:12.5pt;line-height:1.55}
+.body p{margin-bottom:5mm}
+footer{display:flex;justify-content:space-between;font-family:var(--display);font-size:7.5pt;letter-spacing:.2em;color:var(--muted);padding-top:4mm;border-top:.25mm solid #d8d0bd}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <img src="../assets/logo-dark.png" alt="A Las Raices">
+    <div class="contact" id="contact" data-edit></div>
+  </header>
+  <div class="body" data-edit>
+    <p id="today"></p>
+    <p>Dear …,</p>
+    <p>Thank you for your interest in A Las Raices. Type your letter here — click anywhere on the page to edit, then use "Print / Save as PDF". Delete this text to print the letterhead blank.</p>
+    <p>Kind regards,</p>
+    <p id="sign"></p>
+  </div>
+  <footer><span>RUMBA FLAMENCA · GIPSY FIESTA</span><span>DUO · TRIO · FULL BAND</span><span>COSTA BLANCA</span></footer>
+  <div id="credit" style="margin-top:3mm;color:#6d6656"></div>
+</div>
+<script src="../data/band.js"></script>
+<script src="common.js"></script>
+<script>
+var c = contactBits();
+document.getElementById("contact").innerHTML = '<b>BOOKINGS</b><br>' + c.phone.replace(/^Call \w+ /, "") + '<br>' + c.email + '<br>' + c.web + '<br>' + c.facebook;
+document.getElementById("today").textContent = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+document.getElementById("sign").innerHTML = c.leader + '<br><i>A Las Raices</i>';
+document.getElementById("credit").innerHTML = poweredBy("light", false);
+toolbar(); makeEditable(); markSample();
+</script>
+</body>
+</html>

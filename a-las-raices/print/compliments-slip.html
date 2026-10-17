@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Compliments Slip</title>
+<link rel="stylesheet" href="print.css">
+<style>
+@page{size:210mm 99mm;margin:0}
+.sheet{width:210mm;height:99mm;padding:10mm 14mm;display:grid;grid-template-columns:58mm 1fr;gap:10mm}
+.sheet::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3mm;background:var(--ink)}
+.sample::after{font-size:70px}
+.left{border-right:.3mm solid var(--ember);padding-right:8mm;display:flex;flex-direction:column}
+.left img{width:52mm}
+.left .c{margin-top:auto;font-size:9.5pt;line-height:1.45;color:#4a443a}
+.right h1{font-family:var(--display);font-weight:400;font-size:15pt;letter-spacing:.2em;color:var(--ember)}
+.right .msg{margin-top:5mm;font-size:13pt;line-height:1.6;min-height:40mm;border-bottom:.25mm solid #d8d0bd}
+.right .sig{margin-top:3mm;font-style:italic;font-size:12pt}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="left">
+    <img src="../assets/logo-dark.png" alt="A Las Raices">
+    <div class="c" id="c" data-edit></div>
+  </div>
+  <div class="right">
+    <h1 data-edit>WITH COMPLIMENTS</h1>
+    <div class="msg" data-edit></div>
+    <div class="sig" data-edit>— A Las Raices</div>
+  </div>
+</div>
+<script src="../data/band.js"></script>
+<script src="common.js"></script>
+<script>
+var c = contactBits();
+document.getElementById("c").innerHTML = '<b style="font-family:var(--display);font-weight:400;letter-spacing:.14em;font-size:8pt;color:var(--ember)">BOOKINGS</b><br>' + c.phone.replace(/^Call \w+ /, "") + '<br>' + c.email + '<br>' + c.facebook +
+  '<div style="margin-top:3mm">' + poweredBy("light", false) + '</div>';
+toolbar(); makeEditable(); markSample();
+</script>
+</body>
+</html>
