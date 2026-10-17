@@ -1,8 +1,16 @@
 # A Las Raices — client kit
 
-Live band (Facebook: https://www.facebook.com/people/A-Las-Raices/100083239897155/ — 7.4k followers).
-Line-up from their bio: Demircan (guitar & vocals), Ibrahim Cetiner (solo guitar), Daniel (bass) — bio is cut off, confirm the rest.
-Logo taken from their Facebook profile picture.
+Rumba Flamenca / "Gipsy Fiesta" band on the Costa Blanca (La Zenia, Cabo Roig, Torrevieja). Led by Demircan Ulugun ("Demi").
+Duo, trio or full 9-piece. Facebook: https://www.facebook.com/people/A-Las-Raices/100083239897155/ (7.4k followers, Oct 2026).
+"Residencia Los Altos" on their Facebook is their location (Los Altos, Orihuela Costa), not a gig residency.
+Logo taken from their Facebook profile picture. Background and line-up come from the Dec 2025 recon in OneDrive:
+`Exposureai/ExposureSolutions/EXPOSURE-WORKSPACE-LENOVO-DAN/EXPOSURE WORKSPACE/Clients/A_LAS_RAICES/`.
+
+## Existing footage in OneDrive
+`OneDrive - Exposure Solutions/Clients/ARCHIVED/ACHILL-OFFSHORE/CLIENTS/A Las Rasias/Videos/` holds 5 gig videos from 29 Mar 2025 (VID_20250329_*.mp4, 2.5 GB in total).
+`…/Clients/ARCHIVED/Old-Archived/A Las Rasias/1765700585788.mp4` (1.8 MB, Dec 2025) is probably the logo intro.
+The Murphy's On The Park › Live Entertainment › Bands › A Las Raices folders (Logo, Vids, Murphy's Video Ads…) are empty in every copy.
+The M365 connector can list these files but can't download video, so share them with an "Anyone with the link" link and pull them with curl.
 
 | What | File |
 |---|---|
@@ -17,9 +25,9 @@ Upload the MP4 that matches each screen's orientation to the signage player (Yod
 15s loop; suggested slot: once every 3–5 minutes. No sound, so it works in any venue.
 
 ## Still needed from the band
-- [ ] Their OK to use their videos + 4–8 of their best clips (originals from their phones are better quality than Facebook copies)
-- [ ] Full line-up, booking email / WhatsApp number
-- [ ] Where "Los Altos" is (town), regular gig nights
+- [ ] Their OK to use their videos, plus any newer clips (originals from their phones beat Facebook copies)
+- [ ] Confirm the line-up is still current, and a booking email / WhatsApp number
+- [ ] Current prices, if they want them on the site (Dec 2025: duo €150, trio €200, full band €699)
 - [ ] A domain if they want their own (e.g. alasraices.com)
 
 ## After that
