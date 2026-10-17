@@ -84,6 +84,57 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
 [data-reveal]{opacity:0;transform:translateY(18px);transition:1s ease}
 [data-reveal].in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+/* draft banner */
+.draft{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ember);color:var(--bg);text-align:center;font-family:var(--display);font-size:12px;letter-spacing:.14em;padding:8px 12px}
+
+/* gigs */
+.res-card{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;border:1px solid var(--ember);border-radius:4px;padding:34px;margin-top:34px;background:radial-gradient(80% 120% at 0% 0%,#d08a3c18,transparent 60%)}
+.res-card .big{font-family:var(--display);font-size:clamp(26px,4vw,36px);letter-spacing:.06em;line-height:1.2}
+.res-card .when{color:var(--ember);font-style:italic;font-size:22px;margin:6px 0 2px}
+.res-card .actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+@media (max-width:760px){.res-card{grid-template-columns:1fr}}
+.gig-list{list-style:none;margin-top:30px;border-top:1px solid var(--line)}
+.gig{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.gig .d{font-family:var(--display);letter-spacing:.06em;line-height:1.1}
+.gig .d b{display:block;font-size:30px;font-weight:400}
+.gig .d small{font-size:13px;color:var(--muted);letter-spacing:.16em}
+.gig .v{font-family:var(--display);font-size:19px;letter-spacing:.04em}
+.gig .m{color:var(--muted);font-size:17px}
+.gig .tag{display:inline-block;font-family:var(--display);font-size:11px;letter-spacing:.14em;border:1px solid var(--ember);color:var(--ember);padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle}
+.gig .btn{padding:10px 16px;font-size:12px;white-space:nowrap}
+@media (max-width:560px){.gig{grid-template-columns:70px 1fr}.gig .act{grid-column:1/-1}.gig .d b{font-size:24px}}
+
+/* packages */
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:34px}
+.pkg{border:1px solid var(--line);background:var(--bg-2);border-radius:4px;padding:28px 24px;display:flex;flex-direction:column}
+.pkg.featured{border-color:var(--ember)}
+.pkg .n{font-family:var(--display);font-size:21px;letter-spacing:.06em}
+.pkg .p{font-family:var(--display);font-size:34px;margin:8px 0 2px}
+.pkg .p small{font-family:var(--body);font-size:16px;color:var(--muted)}
+.pkg ul{list-style:none;margin:14px 0 0;color:var(--muted);font-size:18px}
+.pkg li::before{content:"— ";color:var(--ember)}
+.pkg .ribbon{font-family:var(--display);font-size:11px;letter-spacing:.2em;color:var(--ember);margin-bottom:6px}
+
+/* checkout */
+dialog{margin:auto;border:1px solid var(--line);background:var(--bg);color:var(--cream);border-radius:6px;padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100svh - 32px)}
+dialog::backdrop{background:#000c}
+.dlg{padding:28px 24px}
+.dlg h3{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.05em}
+.dlg .sub{color:var(--muted);font-style:italic}
+.dlg .close{position:absolute;right:12px;top:8px;background:none;border:0;color:var(--muted);font-size:30px;cursor:pointer}
+.opt{font-family:var(--body);letter-spacing:0;font-size:18px;color:var(--cream);display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:4px;padding:14px;margin-top:10px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--ember);background:#d08a3c12}
+.opt input{width:auto;margin-top:6px;accent-color:var(--ember)}
+.opt .on{font-family:var(--display);letter-spacing:.04em}
+.opt .oi{color:var(--muted);font-size:16px}
+.opt .op{margin-left:auto;font-family:var(--display);white-space:nowrap}
+.qty{display:flex;align-items:center;gap:14px;margin-top:18px}
+.qty button{width:40px;height:40px;border:1px solid var(--line);background:var(--bg-2);color:var(--cream);font-size:22px;cursor:pointer;border-radius:2px}
+.total{font-family:var(--display);font-size:24px;margin-left:auto}
+.dlg form{margin-top:16px}
+.note{color:var(--muted);font-size:16px;font-style:italic}
+.ok{border:1px solid var(--ember);border-radius:4px;padding:18px;margin-top:16px}
 </style>
 </head>
 <body>
@@ -91,10 +142,10 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
 <nav>
   <a class="brand" href="#top">A LAS RAICES</a>
   <ul>
-    <li><a href="#about">ABOUT</a></li>
-    <li><a href="#watch">WATCH</a></li>
-    <li><a href="#lineups">LINE-UPS</a></li>
-    <li><a href="#book">BOOK</a></li>
+    <li><a href="#gigs">GIGS</a></li>
+    <li><a href="#tickets">TICKETS</a></li>
+    <li><a href="#about">BAND</a></li>
+    <li><a href="#private">BOOK</a></li>
   </ul>
 </nav>
 
@@ -103,11 +154,30 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
     <img src="assets/logo-transparent.png" alt="A Las Raices">
     <p class="tagline">Rumba Flamenca, straight from the roots.</p>
     <div class="ctas">
-      <a class="btn solid" href="#book">BOOK THE BAND</a>
-      <a class="btn" href="#watch">WATCH LIVE</a>
+      <a class="btn solid" href="#gigs">SEE THEM LIVE</a>
+      <a class="btn" href="#private">BOOK A PRIVATE PARTY</a>
     </div>
   </div>
 </header>
+
+<section id="gigs">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>LIVE</p>
+    <h2 data-reveal>Where to catch them</h2>
+    <div class="res-card" id="residency" data-reveal></div>
+    <ul class="gig-list" id="gig-list"></ul>
+    <p class="note" style="margin-top:16px">Dates change fast in summer. Follow <a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a> for pop-up gigs.</p>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>TICKETS &amp; PACKAGES</p>
+    <h2 data-reveal>Make a night of it</h2>
+    <p class="lead" data-reveal>For our ticketed shows, grab a ticket or upgrade to a package with drinks, tapas or a VIP table by the stage.</p>
+    <div class="pkgs" id="pkgs"></div>
+  </div>
+</section>
 
 <section id="about">
   <div class="wrap">
@@ -146,26 +216,15 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
   </div>
 </section>
 
-<section id="lineups">
+<section id="private">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>LINE-UPS</p>
-    <h2 data-reveal>Pick your fiesta</h2>
-    <p class="lead" data-reveal>From a relaxed lunchtime set to a full-blown party, choose the size that fits your venue.</p>
-    <div class="lineup">
-      <div class="member" data-reveal><div class="name">Duo</div><div class="role">Guitar &amp; vocals</div><p style="color:var(--muted);margin-top:8px">Perfect for restaurants, terraces and intimate events.</p></div>
-      <div class="member" data-reveal><div class="name">Trio</div><div class="role">Guitars, vocals &amp; percussion</div><p style="color:var(--muted);margin-top:8px">The bar and beach-club favourite. Big sound, small stage.</p></div>
-      <div class="member" data-reveal><div class="name">Full Band</div><div class="role">Nine musicians</div><p style="color:var(--muted);margin-top:8px">Weddings, festivals and corporate nights. The full Gipsy Fiesta.</p></div>
-    </div>
+    <p class="eyebrow" data-reveal>PRIVATE EVENTS &amp; VENUES</p>
+    <h2 data-reveal>Bring the fiesta to you</h2>
+    <p class="lead" data-reveal>Weddings, birthdays, villa and yacht parties, corporate nights — or a regular slot at your bar. Pick a line-up and we'll send a quote.</p>
+    <div class="lineup" id="private-pkgs"></div>
     <p class="lead" data-reveal style="margin-top:30px">Based on the Costa Blanca — <em>La Zenia, Cabo Roig, Torrevieja</em> — and happy to travel further.</p>
-  </div>
-</section>
 
-<section id="book">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>BOOKINGS</p>
-    <h2 data-reveal>Book A Las Raices</h2>
-    <p class="lead" data-reveal>Bars, hotels, weddings, private parties and festivals. Tell us about your night and we'll come back with availability.</p>
-    <form id="booking" data-reveal>
+    <form id="booking" data-reveal style="margin-top:40px">
       <div class="row">
         <label>NAME<input name="name" required autocomplete="name"></label>
         <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
@@ -174,14 +233,21 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
         <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
         <label>DATE<input name="date" type="date"></label>
       </div>
-      <label>LINE-UP
-        <select name="lineup"><option>Not sure yet</option><option>Duo</option><option>Trio</option><option>Full band (9-piece)</option></select>
-      </label>
-      <label>EVENT TYPE
-        <select name="type"><option>Bar / venue night</option><option>Wedding</option><option>Private party</option><option>Corporate</option><option>Festival</option><option>Other</option></select>
-      </label>
-      <label>DETAILS<textarea name="details" rows="4" placeholder="Venue, town, how long a set, anything else"></textarea></label>
-      <button class="btn" type="submit">SEND ENQUIRY</button>
+      <div class="row">
+        <label>EVENT TYPE
+          <select name="event_type"><option>Private party</option><option>Wedding</option><option>Birthday</option><option>Villa / yacht party</option><option>Corporate</option><option>Bar / venue gig</option><option>Weekly residency</option><option>Festival</option><option>Other</option></select>
+        </label>
+        <label>LINE-UP
+          <select name="lineup"><option>Not sure yet</option><option>Duo</option><option>Trio</option><option>Full band</option></select>
+        </label>
+      </div>
+      <div class="row">
+        <label>TOWN / VENUE<input name="location" placeholder="e.g. villa in Ciudad Quesada"></label>
+        <label>GUESTS<input name="guests" type="number" min="1" inputmode="numeric"></label>
+      </div>
+      <label>DETAILS<textarea name="message" rows="4" placeholder="Times, how long a set, anything else"></textarea></label>
+      <button class="btn" type="submit">GET A QUOTE</button>
+      <div id="booking-ok" class="ok" hidden></div>
     </form>
   </div>
 </section>
@@ -189,21 +255,45 @@ footer img{width:70px;margin:0 auto 12px;opacity:.8}
 <footer>
   <img src="assets/logo-transparent.png" alt="">
   <p>A Las Raices · Rumba Flamenca · Costa Blanca</p>
+  <p id="foot-contact"></p>
   <p><a href="https://www.facebook.com/people/A-Las-Raices/100083239897155/" target="_blank" rel="noopener">Facebook</a></p>
   <p style="margin-top:10px;font-size:14px">Website &amp; signage by <a href="https://exposuresolutions.ie" target="_blank" rel="noopener">Exposure Solutions</a></p>
 </footer>
 
+<dialog id="checkout">
+  <div class="dlg" style="position:relative">
+    <button class="close" type="button" aria-label="Close" onclick="this.closest('dialog').close()">×</button>
+    <p class="eyebrow">TICKETS</p>
+    <h3 id="co-title"></h3>
+    <p class="sub" id="co-when"></p>
+    <div id="co-opts"></div>
+    <div class="qty"><button type="button" id="co-minus" aria-label="Fewer">−</button><span id="co-qty">2</span><span id="co-per" class="note"></span><span class="total" id="co-total"></span></div>
+    <form id="co-form">
+      <div class="row">
+        <label>NAME<input name="name" required autocomplete="name"></label>
+        <label>PHONE / WHATSAPP<input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label>EMAIL<input name="email" type="email" required autocomplete="email"></label>
+      <button class="btn" type="submit" id="co-btn">RESERVE</button>
+      <p class="note" id="co-note"></p>
+    </form>
+    <div id="co-ok" class="ok" hidden></div>
+  </div>
+</dialog>
+
+<div class="draft" id="draft" hidden>DRAFT PREVIEW — DATES, PRICES &amp; VENUES TO BE CONFIRMED</div>
+
+<script src="data/band.js"></script>
 <script>
-// ---- Edit these once the band confirms ----
-// Booking enquiries go here. Leave blank to send people to the Facebook page instead.
-var BOOKING_EMAIL = "";
 // Public Facebook video/reel URLs to show in the Watch section.
 var VIDEOS = [
   // "https://www.facebook.com/reel/1234567890",
 ];
-// -------------------------------------------
 
-var FB_PAGE = "https://www.facebook.com/people/A-Las-Raices/100083239897155/";
+var D = window.ALR, C = D.contact;
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function euro(n){ return "€" + (n % 1 ? n.toFixed(2) : n); }
+if (D.DRAFT) document.getElementById("draft").hidden = false;
 
 (function renderVideos(){
   var grid = document.getElementById("videos");
@@ -211,25 +301,145 @@ var FB_PAGE = "https://www.facebook.com/people/A-Las-Raices/100083239897155/";
   VIDEOS.forEach(function(url){
     var box = document.createElement("div");
     box.className = "video";
-    box.setAttribute("data-reveal","");
     box.innerHTML = '<iframe loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen ' +
       'src="https://www.facebook.com/plugins/video.php?show_text=false&href=' + encodeURIComponent(url) + '"></iframe>';
     grid.appendChild(box);
   });
 })();
 
+// Residency + gig list
+(function(){
+  var r = D.residency;
+  document.getElementById("residency").innerHTML =
+    '<div><p class="eyebrow">WEEKLY RESIDENCY</p><div class="big">' + esc(r.title) + '</div>' +
+    '<p class="when">' + esc(r.day) + ' · ' + esc(r.time) + '</p>' +
+    '<p class="lead" style="font-size:20px">' + esc(r.venue) + ', ' + esc(r.place) + '</p>' +
+    '<p class="note">' + esc(r.note) + '</p></div>' +
+    '<div class="actions"><button class="btn solid" type="button" data-table>BOOK A TABLE</button>' +
+    '<a class="btn" href="#private">BOOK THEM PRIVATELY</a></div>';
+
+  var list = document.getElementById("gig-list"), gigs = D.upcoming(8);
+  if (!gigs.length) list.innerHTML = '<li class="gig"><span></span><span class="m">New dates coming soon.</span></li>';
+  gigs.forEach(function(g, i){
+    var li = document.createElement("li"); li.className = "gig";
+    var dd = new Date(g.date + "T12:00:00");
+    li.innerHTML =
+      '<div class="d"><small>' + dd.toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase() + '</small><b>' + dd.getDate() + '</b><small>' + dd.toLocaleDateString("en-GB",{month:"short"}).toUpperCase() + '</small></div>' +
+      '<div><div class="v">' + esc(g.title || g.venue) + (g.residency ? '<span class="tag">WEEKLY</span>' : '') + (g.tickets ? '<span class="tag">TICKETS</span>' : '') + '</div>' +
+      '<div class="m">' + (g.title ? esc(g.venue) + ', ' : '') + esc(g.town) + ' · ' + esc(g.time) + ' · ' + esc(g.lineup) + '</div></div>' +
+      '<div class="act">' + (g.tickets ? '<button class="btn solid" type="button" data-gig="' + D.gigs.indexOf(g) + '">GET TICKETS</button>'
+                                       : '<button class="btn" type="button" data-table="' + D.gigs.indexOf(g) + '">RESERVE</button>') + '</div>';
+    list.appendChild(li);
+  });
+
+  var pk = document.getElementById("pkgs");
+  D.ticketPackages.forEach(function(p){
+    var el = document.createElement("div"); el.className = "pkg" + (p.featured ? " featured" : "");
+    el.innerHTML = (p.featured ? '<div class="ribbon">MOST POPULAR</div>' : '') + '<div class="n">' + esc(p.name) + '</div>' +
+      '<div class="p">' + euro(p.price) + ' <small>/ ' + esc(p.per) + '</small></div><ul>' +
+      p.includes.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    pk.appendChild(el);
+  });
+  var next = gigs.filter(function(g){ return g.tickets; })[0];
+  var cta = document.createElement("p"); cta.style.marginTop = "26px";
+  cta.innerHTML = next ? '<button class="btn solid" type="button" data-gig="' + D.gigs.indexOf(next) + '">GET TICKETS — ' + esc(D.fmtDate(next.date)).toUpperCase() + '</button>'
+                       : '<span class="note">No ticketed shows on sale right now.</span>';
+  pk.after(cta);
+
+  var pp = document.getElementById("private-pkgs");
+  D.privatePackages.forEach(function(p){
+    pp.insertAdjacentHTML("beforeend", '<div class="member"><div class="name">' + esc(p.name) + '</div><div class="role">Quote on request</div><p style="color:var(--muted);margin-top:8px">' + esc(p.blurb) + '</p></div>');
+  });
+
+  var bits = [];
+  if (C.phone) bits.push('<a href="https://wa.me/' + C.phone.replace(/\D/g,"") + '">WhatsApp ' + esc(C.phone) + '</a>');
+  if (C.email) bits.push('<a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a>');
+  document.getElementById("foot-contact").innerHTML = bits.join(" · ");
+})();
+
+// Send a form to the Exposure form API; fall back to WhatsApp / Facebook if it fails.
+function send(payload, okEl, okHtml, btn){
+  var label = btn.textContent; btn.disabled = true; btn.textContent = "SENDING…";
+  payload.client = "a-las-raices"; payload.page = location.href;
+  fetch(D.formApi, { method:"POST", keepalive:true, headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload) })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json().catch(function(){ return {}; }); })
+    .then(function(j){ okEl.innerHTML = okHtml + (j.id ? '<p class="note">Reference: ' + esc(j.id) + '</p>' : ''); okEl.hidden = false; btn.hidden = true;
+      if (okEl.id === "co-ok") document.getElementById("co-form").hidden = true; })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = label;
+      var text = Object.keys(payload).filter(function(k){ return payload[k] && k !== "page" && k !== "client"; })
+        .map(function(k){ return k + ": " + payload[k]; }).join("\n");
+      if (C.phone) { window.open("https://wa.me/" + C.phone.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+      try { navigator.clipboard.writeText(text); } catch (e) {}
+      alert("We couldn't send that just now. Your details are copied — paste them into a message to the band on Facebook.");
+      window.open(C.facebook, "_blank", "noopener");
+    });
+}
+
 document.getElementById("booking").addEventListener("submit", function(e){
   e.preventDefault();
-  var f = new FormData(e.target), lines = [];
-  f.forEach(function(v,k){ if (v) lines.push(k.charAt(0).toUpperCase()+k.slice(1)+": "+v); });
-  var body = lines.join("\n");
-  if (BOOKING_EMAIL) {
-    location.href = "mailto:"+BOOKING_EMAIL+"?subject="+encodeURIComponent("Booking enquiry – A Las Raices")+"&body="+encodeURIComponent(body);
-  } else {
-    try { navigator.clipboard.writeText(body); } catch (err) {}
-    alert("Thanks! Your details are copied — paste them into a message to the band on Facebook.");
-    window.open(FB_PAGE, "_blank", "noopener");
+  var f = Object.fromEntries(new FormData(e.target).entries());
+  f.form_type = "private-booking";
+  f.details = f.message;
+  f.message = [f.event_type, f.lineup !== "Not sure yet" ? f.lineup : "", f.date, f.location, f.guests ? f.guests + " guests" : ""]
+    .filter(Boolean).join(" · ") + (f.details ? " — " + f.details : "");
+  send(f, document.getElementById("booking-ok"),
+    "<strong>Thanks, " + esc(f.name.split(" ")[0]) + "!</strong> The band will come back to you with availability and a quote.", e.submitter || e.target.querySelector("button"));
+});
+
+// Checkout: tickets (with packages) or table reservations
+var dlg = document.getElementById("checkout"), co = { qty: 2 };
+function coRender(){
+  var p = co.pkgs.filter(function(x){ return x.id === co.pkg; })[0];
+  document.getElementById("co-qty").textContent = co.qty;
+  document.getElementById("co-per").textContent = p.per === "table of 4" ? (co.qty > 1 ? "tables" : "table") : (co.qty > 1 ? "people" : "person");
+  document.getElementById("co-total").textContent = p.price ? euro(p.price * co.qty) : "";
+  var btn = document.getElementById("co-btn");
+  btn.textContent = p.payLink ? "PAY " + euro(p.price * co.qty) : (p.price ? "RESERVE — PAY ON THE DOOR" : "RESERVE");
+  document.getElementById("co-note").textContent = p.payLink ? "Secure card payment by Stripe." : (p.price ? "We'll hold your " + (co.qty > 1 ? "places" : "place") + "; pay at the venue on the night." : "Free entry — this just holds a table for you.");
+}
+function openCheckout(g, tableOnly){
+  co.gig = g; co.qty = 2;
+  co.pkgs = tableOnly ? [{ id:"table", name:"Table reservation", price:0, per:"person", includes:["Hold a table near the band"], payLink:"" }] : D.ticketPackages;
+  co.pkg = (co.pkgs.filter(function(x){ return x.featured; })[0] || co.pkgs[0]).id;
+  document.getElementById("co-title").textContent = g ? (g.title || g.venue) : D.residency.title;
+  document.getElementById("co-when").textContent = g ? D.fmtDate(g.date, {weekday:"long",day:"numeric",month:"long"}) + " · " + g.time + " · " + (g.title ? g.venue + ", " : "") + g.town
+                                                     : D.residency.day + " · " + D.residency.time + " · " + D.residency.venue + ", " + D.residency.place;
+  document.querySelector("#checkout .eyebrow").textContent = tableOnly ? "RESERVE A TABLE" : "TICKETS";
+  document.getElementById("co-opts").innerHTML = co.pkgs.map(function(p){
+    return '<label class="opt"><input type="radio" name="pkg" value="' + p.id + '"' + (p.id === co.pkg ? " checked" : "") + '>' +
+      '<span><span class="on">' + esc(p.name) + '</span><br><span class="oi">' + p.includes.map(esc).join(" · ") + '</span></span>' +
+      '<span class="op">' + (p.price ? euro(p.price) : "Free") + '</span></label>';
+  }).join("");
+  document.getElementById("co-form").hidden = false; document.getElementById("co-ok").hidden = true;
+  var b = document.getElementById("co-btn"); b.hidden = false; b.disabled = false;
+  coRender(); dlg.showModal();
+}
+document.getElementById("co-opts").addEventListener("change", function(e){ co.pkg = e.target.value; coRender(); });
+document.getElementById("co-minus").addEventListener("click", function(){ co.qty = Math.max(1, co.qty - 1); coRender(); });
+(function(){ var plus = document.createElement("button"); plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label","More");
+  plus.onclick = function(){ co.qty = Math.min(20, co.qty + 1); coRender(); };
+  document.getElementById("co-qty").after(plus); })();
+document.getElementById("co-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  var p = co.pkgs.filter(function(x){ return x.id === co.pkg; })[0], g = co.gig;
+  var f = Object.fromEntries(new FormData(e.target).entries());
+  f.form_type = p.id === "table" ? "table-reservation" : "ticket-order";
+  f.event = g ? (g.title || g.venue) + " — " + g.date + " " + g.time + ", " + g.town : D.residency.title + " (weekly)";
+  f.package = p.name; f.quantity = co.qty; f.total = p.price ? euro(p.price * co.qty) : "free";
+  f.message = f.quantity + " × " + f.package + " for " + f.event + " (" + f.total + ")";
+  if (p.payLink) {
+    send(f, document.getElementById("co-ok"), "", document.getElementById("co-btn"));
+    location.href = p.payLink + (p.payLink.indexOf("?") < 0 ? "?" : "&") + "prefilled_email=" + encodeURIComponent(f.email);
+    return;
   }
+  send(f, document.getElementById("co-ok"),
+    "<strong>You're on the list!</strong> " + esc(f.message) + ". We'll confirm by " + (f.phone ? "WhatsApp" : "email") + ".", document.getElementById("co-btn"));
+});
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-gig],[data-table]"); if (!t) return;
+  if (t.hasAttribute("data-gig")) openCheckout(D.gigs[+t.getAttribute("data-gig")], false);
+  else { var i = t.getAttribute("data-table"); openCheckout(i ? D.gigs[+i] : null, true); }
 });
 
 var io = new IntersectionObserver(function(es){

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Business Card</title>
+<link rel="stylesheet" href="print.css">
+<!--
+  Standard 85 x 55 mm card with 3 mm bleed on every side (page = 91 x 61 mm).
+  Page 1 = front, page 2 = back. Print shops: trim to 85 x 55.
+-->
+<style>
+@page{size:91mm 61mm;margin:0}
+.sheet{width:91mm;height:61mm;padding:3mm}
+.sample::after{font-size:40px}
+@media screen{.sheet{zoom:2;margin:12px auto}}
+.front{background:var(--bg);display:grid;place-items:center}
+.front::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 55%,#c27a2c33,transparent 70%)}
+.front img{width:62mm;position:relative}
+.back{display:grid;grid-template-columns:1fr 19mm;gap:4mm;padding:8mm 8mm 7mm}
+.name{font-family:var(--display);font-size:11pt;letter-spacing:.06em}
+.role{font-style:italic;color:var(--ember);font-size:9.5pt}
+.lines{margin-top:3.5mm;font-size:8.6pt;line-height:1.45;color:#3a352d}
+.tag{position:absolute;left:8mm;right:8mm;bottom:6mm;font-family:var(--display);font-size:5.6pt;letter-spacing:.24em;color:var(--muted);border-top:.25mm solid var(--ember);padding-top:1.6mm}
+.back .qr{align-self:start}
+.back .mark{width:19mm;margin-top:2mm;opacity:.9}
+</style>
+</head>
+<body>
+<div class="sheet front"><img src="../assets/logo-transparent.png" alt="A Las Raices"></div>
+<div class="sheet back">
+  <div>
+    <div class="name" id="name" data-edit></div>
+    <div class="role" data-edit>Band leader · Bookings</div>
+    <div class="lines" id="lines" data-edit></div>
+  </div>
+  <div><img class="qr" src="../assets/qr-facebook.svg" alt="QR code"></div>
+  <div class="tag" data-edit>RUMBA FLAMENCA · DUO · TRIO · FULL BAND</div>
+</div>
+<script src="../data/band.js"></script>
+<script src="common.js"></script>
+<script>
+var c = contactBits();
+document.getElementById("name").textContent = c.leader;
+document.getElementById("lines").innerHTML = c.phone + '<br>' + c.email + '<br>' + c.web + '<br>Costa Blanca, Spain';
+toolbar(); makeEditable(); markSample();
+</script>
+</body>
+</html>

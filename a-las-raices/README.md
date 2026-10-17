@@ -14,11 +14,24 @@ The M365 connector can list these files but can't download video, so share them 
 
 | What | File |
 |---|---|
-| Website (one page) | `index.html` → will be at `/a-las-raices/` on the site once merged |
+| **Dates, residency, ticket packages, contact details** | `data/band.js` — the one file to edit; site and posters read from it |
+| Website (one page) | `index.html`: gigs, weekly residency, tickets & packages, private event quotes. Will be at `/a-las-raices/` once merged |
+| Posters + stationery | `print/` — open `print/index.html`. Click any text to edit, then Print / Save as PDF |
+| Ready PDFs | `print/pdf/` — re-make with `node print/make-pdfs.mjs` after editing `data/band.js` |
 | Screen ad, 15s loop (HTML) | `signage/ad.html` — auto-fits landscape or portrait |
 | Screen ad, MP4 | `signage/ad-landscape-1920x1080.mp4`, `signage/ad-portrait-1080x1920.mp4` |
 | Promo video builder | `promo/make-promo.sh` |
 | Logo (transparent / square), QR | `assets/` |
+
+## Bookings, tickets and packages
+- Private event / venue enquiries and ticket or table orders are sent to the Exposure form API (`/api/client-form`, client `a-las-raices`) and come through as a Telegram alert. If the API is down, the site falls back to WhatsApp (once a number is set) or Facebook.
+- Ticket packages (Show Ticket, Fiesta Package, VIP Table) take reservations with payment on the door until Stripe is set up. Then create a Stripe Payment Link for each package and paste it into `payLink` in `data/band.js`, and the button switches to "Pay €…".
+- `DRAFT: true` in `data/band.js` shows a draft banner on the site and a SAMPLE watermark on every print piece. Set it to `false` once dates, prices and contacts are real.
+
+## Print kit
+- Posters (A4, also scales to A3): **Next Dates** (all gigs, or pick one venue for a "Live here" poster) and **Weekly Residency** (La Zenia Beach Sundays).
+- Stationery: letterhead, business card (85 × 55 mm with 3 mm bleed, front + back), compliments slip (DL), quote/invoice (works out totals and IVA), email signature (copy and paste).
+- Highlighted fields (WhatsApp number, email, NIE, IBAN) still need real details.
 
 ## Putting the ad on the 6 venue screens
 Upload the MP4 that matches each screen's orientation to the signage player (Yodeck or similar) and add it to each venue's playlist.
@@ -28,6 +41,9 @@ Upload the MP4 that matches each screen's orientation to the signage player (Yod
 - [ ] Their OK to use their videos, plus any newer clips (originals from their phones beat Facebook copies)
 - [ ] Confirm the line-up is still current, and a booking email / WhatsApp number
 - [ ] Current prices, if they want them on the site (Dec 2025: duo €150, trio €200, full band €699)
+- [ ] Real gig dates, the La Zenia beach bar name and residency day/time
+- [ ] Ticket package prices and contents (current ones are examples), plus a Stripe account if they want card payments
+- [ ] NIE/NIF and IBAN for the invoice template
 - [ ] A domain if they want their own (e.g. alasraices.com)
 
 ## After that

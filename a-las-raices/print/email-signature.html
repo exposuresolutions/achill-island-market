@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Las Raices – Email Signature</title>
+<link rel="stylesheet" href="print.css">
+<style>
+body{background:#ece6d6;padding-bottom:40px}
+.box{max-width:640px;margin:30px auto;background:#fff;padding:30px;border-radius:6px;box-shadow:0 6px 30px #0002}
+.how{max-width:640px;margin:0 auto;font:15px/1.6 system-ui,sans-serif;color:#333;padding:0 16px}
+.how li{margin-left:20px}
+</style>
+</head>
+<body>
+<div class="box" id="sig"></div>
+<ol class="how">
+  <li>Press <b>Copy signature</b> at the top.</li>
+  <li>Gmail: Settings → See all settings → Signature → paste. Outlook: Settings → Mail → Compose and reply → paste. iPhone Mail: Settings → Mail → Signature → paste.</li>
+  <li>The logo loads from the website, so publish the site before using it.</li>
+</ol>
+<script src="../data/band.js"></script>
+<script src="common.js"></script>
+<script>
+var C = ALR.contact;
+// Images in emails must be hosted online. Update this if the site moves to its own domain.
+var LOGO = "https://achillstore.store/a-las-raices/assets/logo-dark.png";
+var phone = C.phone || "+34 ··· ··· ···", email = C.email || "bookings@…";
+var waLink = C.phone ? "https://wa.me/" + C.phone.replace(/\D/g, "") : "#";
+document.getElementById("sig").innerHTML =
+  '<table cellpadding="0" cellspacing="0" style="font-family:Georgia,serif;color:#14120e;font-size:14px;line-height:1.45">' +
+  '<tr><td style="padding-right:16px;border-right:2px solid #c27a2c;vertical-align:middle">' +
+  '<img src="' + LOGO + '" width="130" alt="A Las Raices" style="display:block;width:130px;height:auto"></td>' +
+  '<td style="padding-left:16px;vertical-align:middle">' +
+  '<div style="font-size:16px;letter-spacing:1px"><b>' + C.leader + '</b></div>' +
+  '<div style="color:#c27a2c;font-style:italic">A Las Raices · Band leader &amp; bookings</div>' +
+  '<div style="margin-top:6px">WhatsApp <a href="' + waLink + '" style="color:#14120e">' + phone + '</a></div>' +
+  '<div><a href="mailto:' + email + '" style="color:#14120e">' + email + '</a></div>' +
+  '<div><a href="' + C.facebook + '" style="color:#14120e">Facebook</a>' + (C.website ? ' · <a href="https://' + C.website + '" style="color:#14120e">' + C.website + '</a>' : '') + '</div>' +
+  '<div style="margin-top:6px;font-size:11px;letter-spacing:2px;color:#8a826e">RUMBA FLAMENCA · DUO · TRIO · FULL BAND · COSTA BLANCA</div>' +
+  '</td></tr></table>';
+
+var t = document.createElement("div"); t.className = "toolbar";
+t.innerHTML = '<span class="hint">Email signature preview</span><button class="primary" type="button" id="copy">Copy signature</button>';
+document.body.prepend(t);
+document.getElementById("copy").onclick = function () {
+  var html = document.getElementById("sig").innerHTML, btn = this;
+  var done = function () { btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = "Copy signature"; }, 2000); };
+  try {
+    navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([html], { type: "text/html" }), "text/plain": new Blob([document.getElementById("sig").innerText], { type: "text/plain" }) })]).then(done);
+  } catch (e) {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById("sig"));
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); s.removeAllRanges(); done();
+  }
+};
+</script>
+</body>
+</html>
